@@ -66,5 +66,5 @@
         </Style>
     </Window.Resources>
 
-    <control:ContactBoxControl></control:ContactBoxControl>
+    <control:MainContainer></control:MainContainer>
 </Window>
