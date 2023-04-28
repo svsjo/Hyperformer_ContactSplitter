@@ -7,6 +7,7 @@
              xmlns:contactParseOverview="clr-namespace:ContactSplitter.Control.ContactParseOverview"
              xmlns:contactList="clr-namespace:ContactSplitter.Control.ContactList"
              xmlns:settings="clr-namespace:ContactSplitter.Control.Settings"
+             d:DataContext="{d:DesignInstance Type=settings:MainContainerViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -17,9 +18,9 @@
 
         <!-- Leiste mit Optionen -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
-            <Button x:Name="Parser" Content="Parser" Click="Parser_Click" Margin="5"/>
-            <Button x:Name="Adressbuch" Content="Adressbuch" Click="Adressbuch_Click" Margin="5"/>
-            <Button x:Name="Einstellungen" Content="Einstellungen" Click="Einstellungen_Click" Margin="5"/>
+            <Button x:Name="Parser" Content="Parser" Command="{Binding ParserCommand}" Margin="5" Background="{Binding ParserBackground}"/>
+            <Button x:Name="Adressbuch" Content="Adressbuch" Command="{Binding AdressbuchCommand}" Margin="5" Background="{Binding AdressbuchBackground}"/>
+            <Button x:Name="Einstellungen" Content="Einstellungen" Command="{Binding EinstellungenCommand}" Margin="5" Background="{Binding EinstellungenBackground}"/>
         </StackPanel>
 
         <!-- Container für UserControls -->
@@ -33,16 +34,16 @@
             </Grid.ColumnDefinitions>
 
             <!-- Parser -->
-            <contactParseOverview:ContactParseOverviewControl x:Name="ContactParseOverviewControl" Grid.Column="0" Grid.Row="0" Visibility="Visible"/>
+            <contactParseOverview:ContactParseOverviewControl x:Name="ContactParseOverviewControl" Grid.Column="0" Grid.Row="0" Visibility="{Binding ContactParseOverviewVisibility}"/>
 
             <!-- Übersicht -->
-            <contactList:ContactListControl x:Name="ContactListControl" Grid.Column="0" Grid.Row="0" Visibility="Collapsed"/>
+            <contactList:ContactListControl x:Name="ContactListControl" Grid.Column="0" Grid.Row="0" Visibility="{Binding ContactListVisibility}"/>
 
             <!-- Bearbeiten 
-            <local:ContactEditControl x:Name="ContactEditControl" Grid.Column="0" Grid.Row="0" Visibility="Collapsed"/> -->
+            <local:ContactEditControl x:Name="ContactEditControl" Grid.Column="0" Grid.Row="0" Visibility="{Binding ContactEditVisibility}"/> -->
 
             <!-- Einstellungen -->
-            <settings:SettingsControl x:Name="SettingsControl" Grid.Column="0" Grid.Row="0" Visibility="Collapsed"/>
+            <settings:SettingsControl x:Name="SettingsControl" Grid.Column="0" Grid.Row="0" Visibility="{Binding SettingsVisibility}"/>
         </Grid>
     </Grid>
 </UserControl>

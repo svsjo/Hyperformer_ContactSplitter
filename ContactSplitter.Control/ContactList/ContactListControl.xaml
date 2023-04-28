@@ -8,6 +8,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="Red">
-
+        <ListView ItemsSource="{Binding AllContacts}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Anrede" DisplayMemberBinding="{Binding Salutation}" />
+                    <GridViewColumn Header="Brief-Anrede" DisplayMemberBinding="{Binding LetterSalutation}" />
+                    <GridViewColumn Header="Titel" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="Geschlecht" DisplayMemberBinding="{Binding Gender}" />
+                    <GridViewColumn Header="Vorname" DisplayMemberBinding="{Binding ForeName}" />
+                    <GridViewColumn Header="Nachname" DisplayMemberBinding="{Binding LastName}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>

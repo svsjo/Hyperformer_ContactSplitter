@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -12,7 +13,25 @@ public class ContactParseViewModel : INotifyPropertyChanged
 {
     private IContactParser _contactParser = null!;
     public ICommand BtnParse { get; set; }
-    public ICommand BtnSave { get; set; }
+    public ICommand BtnSave { get; set; } // In AdressBook speichern den Kontakt
+
+    private ObservableCollection<Contact> _allContacts;
+
+    public ObservableCollection<Contact> AllContacts
+    {
+        get { return _allContacts; }
+        set
+        {
+            _allContacts = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private void OnAllContactsChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        // Änderungen an AllContacts propagieren
+        OnPropertyChanged(nameof(AllContacts));
+    }
 
     private string _input = null!;
 
@@ -29,6 +48,12 @@ public class ContactParseViewModel : INotifyPropertyChanged
 
     public ContactParseViewModel()
     {
+        // Aktuelle Daten von AdressBook abrufen
+        _allContacts = AdressBook.AllContacts;
+
+        // Event abonnieren, um Änderungen an AllContacts zu überwachen
+        AdressBook.AllContacts.CollectionChanged += OnAllContactsChanged;
+
         BtnParse = new DelegateCommand((x) =>
         {
             var possibleContact = _contactParser.ParseContact(Input);
