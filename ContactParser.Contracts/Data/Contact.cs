@@ -2,7 +2,6 @@
 
 public class Contact
 {
-    public string RawContact { get; set; } = string.Empty; // Input String
     public string Salutation { get; set; } = string.Empty; // Anrede
     public string LetterSalutation { get; set; } = string.Empty; // Brief-Anrede
     public string Title { get; set; } = string.Empty; // Titel

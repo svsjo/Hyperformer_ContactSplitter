@@ -5,7 +5,7 @@ namespace ContactParser;
 
 public class DefaultContactParser : IContactParser
 {
-    public Contact ParseContact(string input)
+    public PossibleContact ParseContact(string input)
     {
         throw new NotImplementedException();
     }

@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using ContactParser.Contracts;
+using ContactParser.Contracts.Data;
 
 namespace ContactSplitter.Control;
 
@@ -101,12 +103,12 @@ public class ContactBoxViewModel : INotifyPropertyChanged
         BtnSplit = new DelegateCommand((x) =>
         {
             var contact = this._contactParser.ParseContact(this.Input);
-            this.ForeName = contact.ForeName;
-            this.LastName = contact.LastName;
-            this.Gender = contact.Gender;
-            this.Title = contact.Title;
-            this.LetterSalutation = contact.LetterSalutation;
-            this.Salutation = contact.Salutation;
+            this.ForeName = contact.ForeName.ParsedText;
+            this.LastName = contact.LastName.ParsedText;
+            this.Gender = contact.Gender.ParsedText;
+            this.Title = contact.Title.ParsedText;
+            this.LetterSalutation = contact.LetterSalutation.ParsedText;
+            this.Salutation = contact.Salutation.ParsedText;
         }, null);
     }
 
