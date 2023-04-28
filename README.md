@@ -6,8 +6,14 @@
 - Seva Pypenko
 - Jonas Weis
 
-## Abgabedatum
-12.05.2023
+## Abgabedatum und Anforderungen
+Datum: 12.05.2023
+
+User Stories:
+- TODO
+- TODO
+- TODO
+- TODO
 
 ## Repository Aufbau
 Dokumente mit Erklärungen zu Aufbau des Projektes und Begründung von Design-Entscheidungen liegt unter ./Documentation
