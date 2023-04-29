@@ -1,76 +1,114 @@
-﻿using System;
-using ContactParser.Contracts.Data;
+﻿#region
+
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows;
 using System.Windows.Input;
-using System.Globalization;
+using ContactParser.Contracts.Data;
+
+#endregion
 
 namespace ContactSplitter.Control.ContactList;
 
 public class ContactListViewModel : INotifyPropertyChanged
 {
-    public ICommand SaveCommand { get; set; }
-    public ICommand SortCommand { get; set; }
-
     private ObservableCollection<Contact> _allContacts;
+
+    private ICollectionView _contactsView;
+
+    private string _searchText = string.Empty;
+
+    public ContactListViewModel()
+    {
+        AllContacts = new ObservableCollection<Contact>() // Später Daten aus Repos beziehen
+        {
+            new()
+            {
+                ForeName = "Jonas Noah",
+                LastName = "Schmid-Weis",
+                Gender = "M",
+                LetterSalutation = "Sehr geehrter",
+                Salutation = "Sehr geehrter",
+                Title = "Prof. Dr.-Ing."
+            },
+            new()
+            {
+                ForeName = "Nonas Joah",
+                LastName = "Weis-Schmid",
+                Gender = "F",
+                LetterSalutation = "Sehr geehrte",
+                Salutation = "Sehr geehrte",
+                Title = "Dr.-Ing. net. rar."
+            },
+            new()
+            {
+                ForeName = "Arne",
+                LastName = "Amel",
+                Gender = "M",
+                LetterSalutation = "Hallo",
+                Salutation = "Moin",
+                Title = "Absolvent"
+            }
+        };
+
+        ContactsView = CollectionViewSource.GetDefaultView(AllContacts);
+        ContactsView.Filter = FilterContacts;
+    }
+
+    public ICommand EditCommand { get; set; }
 
     public ObservableCollection<Contact> AllContacts
     {
-        get { return _allContacts; }
+        get => _allContacts;
         set
         {
-            if (_allContacts != null)
-            {
-                _allContacts.CollectionChanged -= OnAllContactsCollectionChanged;
-            }
-
             _allContacts = value;
-
-            if (_allContacts != null)
-            {
-                _allContacts.CollectionChanged += OnAllContactsCollectionChanged;
-            }
-
             OnPropertyChanged();
         }
     }
 
-    public ContactListViewModel()
+    public string SearchText
     {
-        // Aktuelle Daten von AdressBook abrufen
-        _allContacts = AdressBook.AllContacts;
-
-        // Event abonnieren, um Änderungen an AllContacts zu überwachen
-        AdressBook.AllContacts.CollectionChanged += OnAllContactsChanged;
-    }
-
-    private void OnAllContactsChanged(object sender, NotifyCollectionChangedEventArgs e = default)
-    {
-        // Änderungen an AllContacts propagieren
-        OnPropertyChanged(nameof(AllContacts));
-    }
-
-    private void OnAllContactsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-    {
-        // Propagate changes back to AdressBook.AllContacts
-        AdressBook.AllContacts.CollectionChanged -= OnAllContactsChanged;
-        AdressBook.AllContacts.Clear();
-
-        foreach (var contact in _allContacts)
+        get => _searchText;
+        set
         {
-            AdressBook.AllContacts.Add(contact);
+            _searchText = value;
+            ContactsView.Refresh();
+            OnPropertyChanged();
         }
+    }
 
-        AdressBook.AllContacts.CollectionChanged += OnAllContactsChanged;
+    public ICollectionView ContactsView
+    {
+        get => _contactsView;
+        set
+        {
+            _contactsView = value;
+            OnPropertyChanged();
+        }
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
+
+    private bool FilterContacts(object item)
+    {
+        if (item is not Contact contact) return false;
+
+        if (string.IsNullOrEmpty(SearchText)) return true;
+
+        var searchString = SearchText.ToLower();
+        if (contact.ForeName.ToLower().Contains(searchString)
+            || contact.LastName.ToLower().Contains(searchString)
+            || contact.Salutation.ToLower().Contains(searchString)
+            || contact.LetterSalutation.ToLower().Contains(searchString)
+            || contact.Title.ToLower().Contains(searchString)
+            || contact.Gender.ToLower().Contains(searchString))
+            return true;
+
+        return false;
+    }
 
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {

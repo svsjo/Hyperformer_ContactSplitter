@@ -7,7 +7,7 @@
              d:DataContext="{d:DesignInstance Type=local:ContactParseViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Green">
+    <Grid Background="#6B818C">
             
     </Grid>
 </UserControl>

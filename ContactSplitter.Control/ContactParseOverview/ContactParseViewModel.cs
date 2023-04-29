@@ -1,39 +1,38 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+﻿#region
+
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using ContactParser.Contracts;
-using ContactParser.Contracts.Data;
+
+#endregion
 
 namespace ContactSplitter.Control.ContactParseOverview;
 
 public class ContactParseViewModel : INotifyPropertyChanged
 {
     private IContactParser _contactParser = null!;
-    public ICommand BtnParse { get; set; }
-    public ICommand BtnSave { get; set; } // In AdressBook speichern den Kontakt
-
-    private ObservableCollection<Contact> _allContacts;
-
-    public ObservableCollection<Contact> AllContacts
-    {
-        get { return _allContacts; }
-        set
-        {
-            _allContacts = value;
-            OnPropertyChanged();
-        }
-    }
-
-    private void OnAllContactsChanged(object sender, NotifyCollectionChangedEventArgs e)
-    {
-        // Änderungen an AllContacts propagieren
-        OnPropertyChanged(nameof(AllContacts));
-    }
 
     private string _input = null!;
+
+    public ContactParseViewModel()
+    {
+        BtnParse = new DelegateCommand(x =>
+        {
+            var possibleContact = _contactParser.ParseContact(Input);
+        }, null);
+
+        BtnSave = new DelegateCommand(x =>
+        {
+            // Zeug aus Felder holen und in Data Repos speichern
+        }, null);
+    }
+
+    public ICommand BtnParse { get; set; }
+    public ICommand BtnSave { get; set; }
+
+    // TODO: Felder für alles
 
     private string Input
     {
@@ -44,25 +43,6 @@ public class ContactParseViewModel : INotifyPropertyChanged
             _input = value;
             OnPropertyChanged();
         }
-    }
-
-    public ContactParseViewModel()
-    {
-        // Aktuelle Daten von AdressBook abrufen
-        _allContacts = AdressBook.AllContacts;
-
-        // Event abonnieren, um Änderungen an AllContacts zu überwachen
-        AdressBook.AllContacts.CollectionChanged += OnAllContactsChanged;
-
-        BtnParse = new DelegateCommand((x) =>
-        {
-            var possibleContact = _contactParser.ParseContact(Input);
-        }, null);
-
-        BtnSave = new DelegateCommand((x) =>
-        {
-            // Zeug aus Felder holen
-        }, null);
     }
 
     public IContactParser ContactParser

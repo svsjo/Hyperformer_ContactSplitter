@@ -1,10 +1,6 @@
 ﻿#region
 
-using System.ComponentModel;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
 
 #endregion
 

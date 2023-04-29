@@ -4,78 +4,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ContactSplitter.Control.ContactList"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              d:DataContext="{d:DesignInstance Type=local:ContactListViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1200">
-
-    <Grid Background="Red">
-        <ListView ItemsSource="{Binding AllContacts}" Name="ContactView" IsManipulationEnabled="True">
-            <ListView.View>
-                <GridView AllowsColumnReorder="True">
-                    <GridView.ColumnHeaderContainerStyle>
-                        <Style TargetType="GridViewColumnHeader">
-                            <Setter Property="Background" Value="#20ca78"></Setter>
-                            <Setter Property="FontWeight" Value="Bold"></Setter>
-                            <Setter Property="FontSize" Value="14"></Setter>
-                        </Style>
-                    </GridView.ColumnHeaderContainerStyle>
-                    <GridViewColumn Width="200" Header="Anrede">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Text="{Binding Salutation}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="200" Header="Brief-Anrede">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Text="{Binding LetterSalutation}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="200" Header="Titel">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Text="{Binding Title}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100" Header="Geschlecht">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Text="{Binding Gender}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="200" Header="Vorname">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Text="{Binding ForeName}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="200" Header="Nachname">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Text="{Binding LastName}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Speichern" Width="70">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="S" Width="20" Command="{Binding SaveCommand}" Background="#20ca78">
-                                    <Button.Resources>
-                                        <Style TargetType="Border">
-                                            <Setter Property="CornerRadius" Value="5"></Setter>
-                                        </Style>
-                                    </Button.Resources>
-                                </Button>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+    
+    <Grid Background="#355A61">
+        <StackPanel Orientation="Vertical">
+            <ui:DataGrid ItemsSource="{Binding ContactsView}" AutoGenerateColumns="False" Height="625">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#355A61"></Setter>
+                        <Setter Property="FontWeight" Value="Bold"></Setter>
+                        <Setter Property="Height" Value="30"></Setter>
+                        <Setter Property="Margin" Value="0,10,0,0"></Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="245" Header="Anrede" Binding="{Binding Salutation, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Width="250" Header="Brief-Anrede" Binding="{Binding LetterSalutation, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Width="240" Header="Titel" Binding="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Width="100" Header="Geschlecht" Binding="{Binding Gender, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Width="220" Header="Vorname" Binding="{Binding ForeName, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Width="220" Header="Nachname" Binding="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" />
+                </DataGrid.Columns>
+            </ui:DataGrid>
+            
+            <StackPanel Orientation="Horizontal" Height="40" Margin="10,10,0,0">
+                <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Width="250" Focusable="True"/>
+            </StackPanel>
+            
+        </StackPanel>
     </Grid>
 </UserControl>
