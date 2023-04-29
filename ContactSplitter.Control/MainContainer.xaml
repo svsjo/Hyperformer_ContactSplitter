@@ -4,10 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ContactSplitter.Control"
-             xmlns:contactParseOverview="clr-namespace:ContactSplitter.Control.ContactParseOverview"
+             xmlns:mainContainer="clr-namespace:ContactSplitter.Control"
              xmlns:contactList="clr-namespace:ContactSplitter.Control.ContactList"
              xmlns:settings="clr-namespace:ContactSplitter.Control.Settings"
-             d:DataContext="{d:DesignInstance Type=settings:MainContainerViewModel}"
+             xmlns:contactParseOverview="clr-namespace:ContactSplitter.Control.ContactParseOverview"
+             d:DataContext="{d:DesignInstance Type=local:MainContainerViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -24,7 +25,7 @@
         </StackPanel>
 
         <!-- Container für UserControls -->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -38,9 +39,6 @@
 
             <!-- Übersicht -->
             <contactList:ContactListControl x:Name="ContactListControl" Grid.Column="0" Grid.Row="0" Visibility="{Binding ContactListVisibility}"/>
-
-            <!-- Bearbeiten 
-            <local:ContactEditControl x:Name="ContactEditControl" Grid.Column="0" Grid.Row="0" Visibility="{Binding ContactEditVisibility}"/> -->
 
             <!-- Einstellungen -->
             <settings:SettingsControl x:Name="SettingsControl" Grid.Column="0" Grid.Row="0" Visibility="{Binding SettingsVisibility}"/>

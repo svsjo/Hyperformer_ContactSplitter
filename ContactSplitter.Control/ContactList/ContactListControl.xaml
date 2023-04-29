@@ -6,17 +6,74 @@
              xmlns:local="clr-namespace:ContactSplitter.Control.ContactList"
              d:DataContext="{d:DesignInstance Type=local:ContactListViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="1200">
+
     <Grid Background="Red">
-        <ListView ItemsSource="{Binding AllContacts}">
+        <ListView ItemsSource="{Binding AllContacts}" Name="ContactView" IsManipulationEnabled="True">
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Anrede" DisplayMemberBinding="{Binding Salutation}" />
-                    <GridViewColumn Header="Brief-Anrede" DisplayMemberBinding="{Binding LetterSalutation}" />
-                    <GridViewColumn Header="Titel" DisplayMemberBinding="{Binding Title}" />
-                    <GridViewColumn Header="Geschlecht" DisplayMemberBinding="{Binding Gender}" />
-                    <GridViewColumn Header="Vorname" DisplayMemberBinding="{Binding ForeName}" />
-                    <GridViewColumn Header="Nachname" DisplayMemberBinding="{Binding LastName}" />
+                <GridView AllowsColumnReorder="True">
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="GridViewColumnHeader">
+                            <Setter Property="Background" Value="#20ca78"></Setter>
+                            <Setter Property="FontWeight" Value="Bold"></Setter>
+                            <Setter Property="FontSize" Value="14"></Setter>
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
+                    <GridViewColumn Width="200" Header="Anrede">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Salutation}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" Header="Brief-Anrede">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding LetterSalutation}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" Header="Titel">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Title}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" Header="Geschlecht">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Gender}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" Header="Vorname">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding ForeName}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" Header="Nachname">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding LastName}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Speichern" Width="70">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="S" Width="20" Command="{Binding SaveCommand}" Background="#20ca78">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5"></Setter>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

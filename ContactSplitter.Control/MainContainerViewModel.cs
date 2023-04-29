@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 #endregion
 
-namespace ContactSplitter.Control.Settings;
+namespace ContactSplitter.Control;
 
 public class MainContainerViewModel : INotifyPropertyChanged
 {
