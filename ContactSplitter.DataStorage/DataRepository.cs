@@ -52,9 +52,4 @@ namespace ContactSplitter.DataStorage
             "Dip.-Ing."
         };
     }
-
-    public static class UserGuidingNotes
-    {
-        public static string EmptyInput { get; set; } = "Eingabe darf nicht leer sein";
-    }
 }
