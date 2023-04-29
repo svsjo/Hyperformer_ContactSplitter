@@ -1,5 +1,4 @@
-﻿using ContactSplitter.Control.ContactEdit;
-using ContactSplitter.Control.ContactParseOverview;
+﻿using ContactSplitter.Control.ContactParseOverview;
 using System;
 using System.Collections.Generic;
 using System.Linq;
