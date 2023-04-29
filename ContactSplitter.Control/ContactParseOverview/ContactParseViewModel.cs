@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using ContactParser.Contracts;
+using ContactParser.Contracts.Data;
 
 #endregion
 
@@ -13,19 +14,56 @@ namespace ContactSplitter.Control.ContactParseOverview;
 public class ContactParseViewModel : INotifyPropertyChanged
 {
     private IContactParser _contactParser = null!;
+    private PossibleContact _parseResult = null!;
+
+    private string _foreName = null!;
+
+    private string _gender = null!;
 
     private string _input = null!;
+
+    private string _lastName = null!;
+
+    private string _letterSalutation = null!;
+
+    private string _note = null!;
+
+    private string _notParsed = null!;
+
+    private string _salutation = null!;
+
+    private string _title = null!;
 
     public ContactParseViewModel()
     {
         BtnParse = new DelegateCommand(x =>
         {
-            var possibleContact = _contactParser.ParseContact(Input);
+            _parseResult = _contactParser.ParseContact(Input);
+
+            ForeName = _parseResult.ForeName.ParsedText;
+            LastName = _parseResult.LastName.ParsedText;
+            Salutation = _parseResult.Salutation.ParsedText;
+            LetterSalutation = _parseResult.LetterSalutation.ParsedText;
+            Gender = _parseResult.Gender.ParsedText;
+            Title = _parseResult.Title.ParsedText;
+            Note = _parseResult.Note;
+            NotParsed = _parseResult.NotParsed;
         }, null);
 
         BtnSave = new DelegateCommand(x =>
         {
-            // Zeug aus Felder holen und in Data Repos speichern
+            var contact = new Contact()
+            {
+                ForeName = ForeName,
+                LastName = LastName,
+                Salutation = Salutation,
+                LetterSalutation = LetterSalutation,
+                Gender = Gender,
+                Title = Title,
+            };
+            // TODO: Speichern
+
+            ForeName = LastName = Salutation = LetterSalutation = Gender = Title = Note = Input = NotParsed = string.Empty;
         }, null);
     }
 
@@ -52,6 +90,94 @@ public class ContactParseViewModel : INotifyPropertyChanged
         {
             if (Equals(value, _contactParser)) return;
             _contactParser = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string Salutation
+    {
+        get => _salutation;
+        set
+        {
+            if (value == _salutation) return;
+            _salutation = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string LetterSalutation
+    {
+        get => _letterSalutation;
+        set
+        {
+            if (value == _letterSalutation) return;
+            _letterSalutation = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string Title
+    {
+        get => _title;
+        set
+        {
+            if (value == _title) return;
+            _title = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string Gender
+    {
+        get => _gender;
+        set
+        {
+            if (value == _gender) return;
+            _gender = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string ForeName
+    {
+        get => _foreName;
+        set
+        {
+            if (value == _foreName) return;
+            _foreName = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string LastName
+    {
+        get => _lastName;
+        set
+        {
+            if (value == _lastName) return;
+            _lastName = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string Note
+    {
+        get => _note;
+        set
+        {
+            if (value == _note) return;
+            _note = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string NotParsed
+    {
+        get => _notParsed;
+        set
+        {
+            if (value == _notParsed) return;
+            _notParsed = value;
             OnPropertyChanged();
         }
     }
