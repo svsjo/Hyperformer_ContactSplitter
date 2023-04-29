@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactSplitter.Tests", "ContactSplitter.Tests\ContactSplitter.Tests.csproj", "{1D48B254-6763-4617-BB46-8A3BD0869349}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactSplitter.Tests", "ContactSplitter.Tests\ContactSplitter.Tests.csproj", "{1D48B254-6763-4617-BB46-8A3BD0869349}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactSplitter.Control", "ContactSplitter.Control\ContactSplitter.Control.csproj", "{0FC0AF7D-2B5D-4637-8813-669EF129CB57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactSplitter.Control", "ContactSplitter.Control\ContactSplitter.Control.csproj", "{0FC0AF7D-2B5D-4637-8813-669EF129CB57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactParser.Contracts", "ContactParser.Contracts\ContactParser.Contracts.csproj", "{79A9B3DD-5268-417F-8AE8-89CCFE88979E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactParser.Contracts", "ContactParser.Contracts\ContactParser.Contracts.csproj", "{79A9B3DD-5268-417F-8AE8-89CCFE88979E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactParser", "ContactParser\ContactParser.csproj", "{2D02F52D-0655-4333-947F-5E540D4D428E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactParser", "ContactParser\ContactParser.csproj", "{2D02F52D-0655-4333-947F-5E540D4D428E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactSplitter", "ContactSplitter\ContactSplitter.csproj", "{40DF7249-68FE-4755-8873-06E2CCB73719}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactSplitter", "ContactSplitter\ContactSplitter.csproj", "{40DF7249-68FE-4755-8873-06E2CCB73719}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactSplitter.DataStorage", "ContactSplitter.DataStorage\ContactSplitter.DataStorage.csproj", "{C1980F2F-6C30-471D-B466-47BA018E2684}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{40DF7249-68FE-4755-8873-06E2CCB73719}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40DF7249-68FE-4755-8873-06E2CCB73719}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40DF7249-68FE-4755-8873-06E2CCB73719}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1980F2F-6C30-471D-B466-47BA018E2684}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1980F2F-6C30-471D-B466-47BA018E2684}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1980F2F-6C30-471D-B466-47BA018E2684}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1980F2F-6C30-471D-B466-47BA018E2684}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

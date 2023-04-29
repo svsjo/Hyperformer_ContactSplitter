@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using ContactSplitter.DataStorage;
 
 #endregion
 
@@ -12,37 +13,20 @@ namespace ContactSplitter.Control.Settings;
 
 public class SettingsViewModel : INotifyPropertyChanged
 {
-    private ObservableCollection<string> _allTitles;
-
     private string _newTitle;
 
     public SettingsViewModel()
     {
         AddTitleCommand = new DelegateCommand(AddTitle);
         RemoveTitleCommand = new DelegateCommand(RemoveTitle);
-        AllTitles = new ObservableCollection<string>
-        {
-            "Dr.",
-            "Prof.",
-            "Dip.-Ing.",
-            "Dr.",
-            "Prof.",
-            "Dip.-Ing.",
-            "Dr.",
-            "Prof.",
-            "Dip.-Ing.",
-            "Dr.",
-            "Prof.",
-            "Dip.-Ing."
-        }; // Später Daten aus Repos beziehen
     }
 
     public ObservableCollection<string> AllTitles
     {
-        get => _allTitles;
+        get => DataRepository.AllTitles;
         set
         {
-            _allTitles = value;
+            DataRepository.AllTitles = value;
             OnPropertyChanged();
         }
     }

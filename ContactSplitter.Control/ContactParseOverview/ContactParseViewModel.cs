@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using ContactParser.Contracts;
 using ContactParser.Contracts.Data;
+using ContactSplitter.DataStorage;
 
 #endregion
 
@@ -36,43 +37,56 @@ public class ContactParseViewModel : INotifyPropertyChanged
 
     public ContactParseViewModel()
     {
-        BtnParse = new DelegateCommand(x =>
-        {
-            _parseResult = _contactParser.ParseContact(Input);
-
-            ForeName = _parseResult.ForeName.ParsedText;
-            LastName = _parseResult.LastName.ParsedText;
-            Salutation = _parseResult.Salutation.ParsedText;
-            LetterSalutation = _parseResult.LetterSalutation.ParsedText;
-            Gender = _parseResult.Gender.ParsedText;
-            Title = _parseResult.Title.ParsedText;
-            Note = _parseResult.Note;
-            NotParsed = _parseResult.NotParsed;
-        }, null);
-
-        BtnSave = new DelegateCommand(x =>
-        {
-            var contact = new Contact()
-            {
-                ForeName = ForeName,
-                LastName = LastName,
-                Salutation = Salutation,
-                LetterSalutation = LetterSalutation,
-                Gender = Gender,
-                Title = Title,
-            };
-            // TODO: Speichern
-
-            ForeName = LastName = Salutation = LetterSalutation = Gender = Title = Note = Input = NotParsed = string.Empty;
-        }, null);
+        ParseCommand = new DelegateCommand(ParseInput);
+        SaveCommand = new DelegateCommand(SaveContact);
     }
 
-    public ICommand BtnParse { get; set; }
-    public ICommand BtnSave { get; set; }
+    private void SaveContact(object x)
+    {
+        var contact = new Contact()
+        {
+            ForeName = ForeName,
+            LastName = LastName,
+            Salutation = Salutation,
+            LetterSalutation = LetterSalutation,
+            Gender = Gender,
+            Title = Title,
+        };
 
-    // TODO: Felder für alles
+        DataRepository.AdressBook.Add(contact);
 
-    private string Input
+        ClearFields();
+    }
+
+    private void ClearFields()
+    {
+        ForeName = LastName = Salutation = LetterSalutation = Gender = Title = Note = Input = NotParsed = string.Empty;
+    }
+
+    private void ParseInput(object x)
+    {
+        if (string.IsNullOrEmpty(Input))
+        {
+            Note = UserGuidingNotes.EmptyInput;
+            return;
+        }
+
+        _parseResult = _contactParser.ParseContact(Input);
+
+        ForeName = _parseResult.ForeName.ParsedText;
+        LastName = _parseResult.LastName.ParsedText;
+        Salutation = _parseResult.Salutation.ParsedText;
+        LetterSalutation = _parseResult.LetterSalutation.ParsedText;
+        Gender = _parseResult.Gender.ParsedText;
+        Title = _parseResult.Title.ParsedText;
+        Note = _parseResult.Note;
+        NotParsed = _parseResult.NotParsed;
+    }
+
+    public ICommand ParseCommand { get; set; }
+    public ICommand SaveCommand { get; set; }
+
+    public string Input
     {
         get => _input;
         set
