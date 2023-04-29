@@ -8,7 +8,7 @@
              d:DataContext="{d:DesignInstance Type=local:SettingsViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1200">
-    <Grid Background="#35605A">
+    <Grid >
         <StackPanel Orientation="Vertical" Margin="20">
             <TextBlock Text="Zulässige Titel" FontSize="24" FontWeight="Bold" Foreground="White" TextAlignment="Left" Margin="0 0 0 10" />
             <StackPanel Orientation="Vertical">

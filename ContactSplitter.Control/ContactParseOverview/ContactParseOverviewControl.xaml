@@ -7,7 +7,7 @@
              d:DataContext="{d:DesignInstance Type=local:ContactParseViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1200">
-    <Grid Background="#6B818C">
+    <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="10">
                 <TextBox IsEnabled="False" Margin="0,0,5,0" Text="Unformatierte Eingabe"></TextBox>

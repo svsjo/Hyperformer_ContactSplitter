@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1200">
     
-    <Grid Background="#355A61">
+    <Grid >
         <StackPanel Orientation="Vertical">
             <ui:DataGrid ItemsSource="{Binding ContactsView}" AutoGenerateColumns="False" Height="625">
                 <DataGrid.ColumnHeaderStyle>
