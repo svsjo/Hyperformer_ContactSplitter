@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ContactSplitter"
         xmlns:control="clr-namespace:ContactSplitter.Control;assembly=ContactSplitter.Control"
         xmlns:contactList="clr-namespace:ContactSplitter.Control.ContactList;assembly=ContactSplitter.Control"
+        xmlns:userGuide="clr-namespace:ContactSplitter.Control.UserGuide;assembly=ContactSplitter.Control"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
         Title="Contact Splitter" Width="1360" Height="800"
@@ -51,6 +52,11 @@
                         Icon="BookGlobe24"
                         PageType="{x:Type contactList:ContactListControl}" 
                         PageTag="list" />
+                    <ui:NavigationItem
+                        Content="Anleitung"
+                        Icon="Document20"
+                        PageType="{x:Type control:UserGuideControl}" 
+                        PageTag="tutorial" />
                 </ui:NavigationStore.Items>
                 <ui:NavigationStore.Footer>
                     <ui:NavigationItem
