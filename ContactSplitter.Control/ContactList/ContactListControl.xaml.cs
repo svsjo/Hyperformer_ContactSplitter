@@ -11,11 +11,9 @@ namespace ContactSplitter.Control.ContactList;
 /// </summary>
 public partial class ContactListControl : UserControl
 {
-    public ContactListControl()
+    public ContactListControl(ContactListViewModel viewModel)
     {
         InitializeComponent();
-
-        var viewModel = new ContactListViewModel();
 
         DataContext = viewModel;
     }

@@ -14,7 +14,9 @@ namespace ContactSplitter.Control.ContactParseOverview;
 
 public class ContactParseViewModel : INotifyPropertyChanged
 {
-    private IContactParser _contactParser = null!;
+    private IContactParser _contactParser;
+    private readonly DataRepository _dataRepository;
+    private readonly UserGuidingNotes _userGuidingNotes;
     private PossibleContact _parseResult = null!;
 
     private string _foreName = null!;
@@ -35,8 +37,12 @@ public class ContactParseViewModel : INotifyPropertyChanged
 
     private string _title = null!;
 
-    public ContactParseViewModel()
+    public ContactParseViewModel(IContactParser contactParser, DataRepository dataRepository, UserGuidingNotes userGuidingNotes)
     {
+        _contactParser = contactParser;
+        _dataRepository = dataRepository;
+        _userGuidingNotes = userGuidingNotes;
+
         ParseCommand = new DelegateCommand(ParseInput);
         SaveCommand = new DelegateCommand(SaveContact);
     }
@@ -53,7 +59,7 @@ public class ContactParseViewModel : INotifyPropertyChanged
             Title = Title,
         };
 
-        DataRepository.AdressBook.Add(contact);
+        _dataRepository.AdressBook.Add(contact);
 
         ClearFields();
     }
@@ -67,7 +73,7 @@ public class ContactParseViewModel : INotifyPropertyChanged
     {
         if (string.IsNullOrEmpty(Input))
         {
-            Note = UserGuidingNotes.EmptyInput;
+            Note = _userGuidingNotes.EmptyInput;
             return;
         }
 

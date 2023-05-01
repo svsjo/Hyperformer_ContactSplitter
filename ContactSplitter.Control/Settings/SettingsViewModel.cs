@@ -13,20 +13,23 @@ namespace ContactSplitter.Control.Settings;
 
 public class SettingsViewModel : INotifyPropertyChanged
 {
-    private string _newTitle;
+    private string _newTitle = string.Empty;
+    private readonly DataRepository _dataRepository;
 
-    public SettingsViewModel()
+    public SettingsViewModel(DataRepository dataRepository)
     {
+        _dataRepository = dataRepository;
+
         AddTitleCommand = new DelegateCommand(AddTitle);
         RemoveTitleCommand = new DelegateCommand(RemoveTitle);
     }
 
     public ObservableCollection<string> AllTitles
     {
-        get => DataRepository.AllTitles;
+        get => _dataRepository.AllTitles;
         set
         {
-            DataRepository.AllTitles = value;
+            _dataRepository.AllTitles = value;
             OnPropertyChanged();
         }
     }

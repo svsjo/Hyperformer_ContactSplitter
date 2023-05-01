@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ContactSplitter.Control.UserGuide;
 
 namespace ContactSplitter.Control
 {
@@ -20,9 +21,11 @@ namespace ContactSplitter.Control
     /// </summary>
     public partial class UserGuideControl : UserControl
     {
-        public UserGuideControl()
+        public UserGuideControl(UserGuideViewModel viewModel)
         {
             InitializeComponent();
+
+            this.DataContext = viewModel;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Windows.Controls;
 
 namespace ContactSplitter.Control.Settings
 {
@@ -7,11 +8,9 @@ namespace ContactSplitter.Control.Settings
     /// </summary>
     public partial class SettingsControl : UserControl
     {
-        public SettingsControl()
+        public SettingsControl(SettingsViewModel viewModel)
         {
             InitializeComponent();
-
-            var viewModel = new SettingsViewModel();
 
             this.DataContext = viewModel;
         }

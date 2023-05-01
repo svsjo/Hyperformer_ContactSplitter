@@ -7,11 +7,9 @@ namespace ContactSplitter.Control.ContactParseOverview
     /// </summary>
     public partial class ContactParseOverviewControl : UserControl
     {
-        public ContactParseOverviewControl()
+        public ContactParseOverviewControl(ContactParseViewModel viewModel)
         {
             InitializeComponent();
-
-            var viewModel = new ContactParseViewModel();
 
             this.DataContext = viewModel;
         }

@@ -5,6 +5,14 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using ContactParser;
+using ContactParser.Contracts;
+using ContactSplitter.Control.ContactList;
+using ContactSplitter.Control.ContactParseOverview;
+using ContactSplitter.Control.Settings;
+using ContactSplitter.Control.UserGuide;
+using ContactSplitter.DataStorage;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ContactSplitter
 {
@@ -13,5 +21,27 @@ namespace ContactSplitter
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            var services = new ServiceCollection();
+            ConfigureServices(services);
+        }
+
+        private void ConfigureServices(IServiceCollection services)
+        {
+            /* Datenhaltung */
+            services.AddSingleton<DataRepository>();
+            services.AddScoped<UserGuidingNotes>();
+
+            /* Logik */
+            services.AddScoped<IContactParser, DefaultContactParser>();
+
+            /* View Models */
+            services.AddTransient<UserGuideViewModel>();
+            services.AddTransient<SettingsViewModel>();
+            services.AddTransient<ContactParseViewModel>();
+            services.AddTransient<ContactListViewModel>();
+        }
     }
 }

@@ -3,9 +3,9 @@ using ContactParser.Contracts.Data;
 
 namespace ContactSplitter.DataStorage
 {
-    public static class DataRepository
+    public class DataRepository
     {
-        public static ObservableCollection<Contact> AdressBook { get; set; } = new ObservableCollection<Contact>()
+        public ObservableCollection<Contact> AdressBook { get; set; } = new ObservableCollection<Contact>()
         {
             new()
             {
@@ -225,7 +225,7 @@ namespace ContactSplitter.DataStorage
             },
         };
 
-        public static ObservableCollection<string> AllTitles { get; set; } = new ObservableCollection<string>()
+        public ObservableCollection<string> AllTitles { get; set; } = new ObservableCollection<string>()
         {
             "Dr.",
             "Prof.",

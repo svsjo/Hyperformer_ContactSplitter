@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using ContactParser.Contracts.Data;
 using ContactSplitter.DataStorage;
+using Wpf.Ui.Mvvm.Contracts;
 
 #endregion
 
@@ -16,15 +17,17 @@ namespace ContactSplitter.Control.ContactList;
 
 public class ContactListViewModel : INotifyPropertyChanged
 {
+    private readonly DataRepository _dataRepository;
     private ICollectionView _contactsView;
-
     public ICommand DeleteContactCommand { get; set; }
 
     private string _searchText = string.Empty;
 
-    public ContactListViewModel()
+    public ContactListViewModel(DataRepository dataRepository)
     {
-        ContactsView = CollectionViewSource.GetDefaultView(AllContacts);
+        _dataRepository = dataRepository;
+
+        _contactsView = CollectionViewSource.GetDefaultView(AllContacts);
         ContactsView.Filter = FilterContacts;
         DeleteContactCommand = new DelegateCommand((x) =>
         {
@@ -32,15 +35,15 @@ public class ContactListViewModel : INotifyPropertyChanged
             DeleteContact(contact);
         });
 
-        _contactsCount = ContactsView.Cast<object>().Count() + " " + "(von " + AllContacts.Count() + ") Einträgen";
+        _contactsCount = ContactsView.Cast<object>().Count() + " " + "(von " + AllContacts.Count + ") Einträgen";
     }
 
     public ObservableCollection<Contact> AllContacts
     {
-        get => DataRepository.AdressBook;
+        get => _dataRepository.AdressBook;
         set
         {
-            DataRepository.AdressBook = value;
+            _dataRepository.AdressBook = value;
             OnPropertyChanged();
         }
     }
@@ -79,7 +82,7 @@ public class ContactListViewModel : INotifyPropertyChanged
         get => _contactsCount;
         set
         {
-            _contactsCount = value + "(von " + AllContacts.Count() + ") Einträgen";
+            _contactsCount = value + "(von " + AllContacts.Count + ") Einträgen";
             OnPropertyChanged();
         }
     }

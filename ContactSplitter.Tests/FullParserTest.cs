@@ -6,7 +6,12 @@ namespace ContactSplitter.Tests;
 
 public class FullParserTest
 {
-    private readonly IContactParser _contactParser = new DefaultContactParser();
+    public FullParserTest(IContactParser contactParser)
+    {
+        _contactParser = contactParser;
+    }
+
+    private readonly IContactParser _contactParser;
 
     [Theory]
     [InlineData("Frau Sandra Berger", "Frau", "", "", "Sandra", "Berger", "F")]
