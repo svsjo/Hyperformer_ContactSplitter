@@ -6,21 +6,22 @@ namespace ContactSplitter;
 
 public class MainViewModel: INotifyPropertyChanged
 {
-    private ContactParseViewModel _parseViewModel;
+    private CustomControlViewModelMapper _userControlMapper;
 
-    public ContactParseViewModel ParseViewModel
+    public CustomControlViewModelMapper UserControlMapper
     {
+        get => _userControlMapper;
         set
         {
-            if (Equals(value, _parseViewModel)) return;
-            _parseViewModel = value;
+            if (Equals(value, _userControlMapper)) return;
+            _userControlMapper = value;
             OnPropertyChanged();
         }
     }
 
-    public MainViewModel(ContactParseViewModel contactParseViewModel)
+    public MainViewModel(CustomControlViewModelMapper userControlMapper)
     {
-        ParseViewModel = contactParseViewModel;
+        UserControlMapper = userControlMapper;
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
