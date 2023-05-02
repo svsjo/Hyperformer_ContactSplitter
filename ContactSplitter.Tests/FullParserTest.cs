@@ -21,7 +21,7 @@ public class FullParserTest
     [InlineData("Frau Prof. Dr. rer. nat. Maria von Leuthäuser-Schnarrenberger", "Frau Prof.", "Prof. Dr. rer. nat.", "Sehr geehrte Frau Prof.", "Maria", "von Leuthäuser-Schnarrenberger", "F")]
     [InlineData("Herr Dipl. Ing. Max von Müller", "Herr Dipl. Ing.", "Dipl. Ing.", "Sehr geehrter Herr Dipl. Ing.", "Max", "von Müller", "M")]
     [InlineData("Dr. Russwurm, Winfried", "Herr Dr.", "Dr.", "Sehr geehrter Herr Dr.", "Winfried", "Russwurm", "M")]
-    [InlineData("Herr Dr.-Ing. Dr. rer. nat. Dr. h.c. mult. Paul Steffens", "Herr Dr.", "Dr.-Ing. Dr. rer. nat. Dr. h.c. mult.", "Sehr geehrter Herr Dr.", "Paul", "Steffens", "M")
+    [InlineData("Herr Dr.-Ing. Dr. rer. nat. Dr. h.c. mult. Paul Steffens", "Herr Dr.", "Dr.-Ing. Dr. rer. nat. Dr. h.c. mult.", "Sehr geehrter Herr Dr.", "Paul", "Steffens", "M")]
     [InlineData("Frau Dr. med. Petra Schmitz-Hoffmann", "Frau Dr.", "Dr. med.", "Sehr geehrte Frau Dr.", "Petra", "Schmitz-Hoffmann", "F")]
     [InlineData("Herr Professor Dr. rer. pol. Hans-Joachim Schmidt", "Herr Professor", "Professor Dr. rer. pol.", "Sehr geehrter Herr Professor", "Hans-Joachim", "Schmidt", "M")]
     [InlineData("Frau Dipl.-Ing. Karin Müller-Lüdenscheidt", "Frau Dipl.-Ing.", "Dipl.-Ing.", "Sehr geehrte Frau Dipl.-Ing.", "Karin", "Müller-Lüdenscheidt", "F")]
