@@ -1,10 +1,13 @@
 ﻿#region
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using System.Windows.Media;
 using ContactSplitter.DataStorage;
 
 #endregion
@@ -14,6 +17,23 @@ namespace ContactSplitter.Control.Settings;
 public class SettingsViewModel : INotifyPropertyChanged
 {
     private string _newTitle = string.Empty;
+
+    private UiTheme _selectedTheme = UiTheme.Dunkel;
+
+    public UiTheme SelectedTheme
+    {
+        get => _selectedTheme;
+        set
+        {
+            _selectedTheme = value;
+            this.ChangeTheme();
+            OnPropertyChanged();
+        }
+    }
+
+    public Color TextColour => SelectedTheme == UiTheme.Hell ? Colors.Black : Colors.White;
+
+    public List<UiTheme> AvailableThemes { get; } = Enum.GetValues(typeof(UiTheme)).Cast<UiTheme>().ToList();
     private readonly DataRepository _dataRepository;
 
     public SettingsViewModel(DataRepository dataRepository)
@@ -22,7 +42,6 @@ public class SettingsViewModel : INotifyPropertyChanged
 
         AddTitleCommand = new DelegateCommand(AddTitle);
         RemoveTitleCommand = new DelegateCommand(RemoveTitle);
-        ChangeThemeCommand = new DelegateCommand((x) => ChangeTheme(x));
     }
 
     public ObservableCollection<string> AllTitles
@@ -47,17 +66,13 @@ public class SettingsViewModel : INotifyPropertyChanged
 
     public ICommand AddTitleCommand { get; set; }
     public ICommand RemoveTitleCommand { get; set; }
-    public ICommand ChangeThemeCommand { get; set; }
 
-    private void ChangeTheme(object themeObj)
+    private void ChangeTheme()
     {
-        if (themeObj is not string theme) return;
-
-        var wpfTheme = theme switch
+        var wpfTheme = SelectedTheme switch
         {
-            "Dunkel" => Wpf.Ui.Appearance.ThemeType.Dark,
-            "Hell" => Wpf.Ui.Appearance.ThemeType.Light,
-            "Hoher Kontrast" => Wpf.Ui.Appearance.ThemeType.HighContrast,
+            UiTheme.Dunkel => Wpf.Ui.Appearance.ThemeType.Dark,
+            UiTheme.Hell => Wpf.Ui.Appearance.ThemeType.Light,
             _ => Wpf.Ui.Appearance.ThemeType.Dark,
         };
 
@@ -90,4 +105,10 @@ public class SettingsViewModel : INotifyPropertyChanged
         OnPropertyChanged(propertyName);
         return true;
     }
+}
+
+public enum UiTheme
+{
+    Dunkel,
+    Hell,
 }

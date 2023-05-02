@@ -1,12 +1,20 @@
-﻿using System.ComponentModel;
+﻿#region
+
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using ContactSplitter.Control.ContactParseOverview;
+
+#endregion
 
 namespace ContactSplitter;
 
-public class MainViewModel: INotifyPropertyChanged
+public class MainViewModel : INotifyPropertyChanged
 {
     private CustomControlViewModelMapper _userControlMapper;
+
+    public MainViewModel(CustomControlViewModelMapper userControlMapper)
+    {
+        UserControlMapper = userControlMapper;
+    }
 
     public CustomControlViewModelMapper UserControlMapper
     {
@@ -19,17 +27,10 @@ public class MainViewModel: INotifyPropertyChanged
         }
     }
 
-    public MainViewModel(CustomControlViewModelMapper userControlMapper)
-    {
-        UserControlMapper = userControlMapper;
-    }
-
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
-
- 
 }
