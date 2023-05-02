@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Media;
 using ContactSplitter.DataStorage;
+using Wpf.Ui.Appearance;
 
 #endregion
 
@@ -16,25 +17,12 @@ namespace ContactSplitter.Control.Settings;
 
 public class SettingsViewModel : INotifyPropertyChanged
 {
+    private readonly DataRepository _dataRepository;
     private string _newTitle = string.Empty;
 
     private UiTheme _selectedTheme = UiTheme.Dunkel;
 
-    public UiTheme SelectedTheme
-    {
-        get => _selectedTheme;
-        set
-        {
-            _selectedTheme = value;
-            this.ChangeTheme();
-            OnPropertyChanged();
-        }
-    }
-
-    public Color TextColour => SelectedTheme == UiTheme.Hell ? Colors.Black : Colors.White;
-
-    public List<UiTheme> AvailableThemes { get; } = Enum.GetValues(typeof(UiTheme)).Cast<UiTheme>().ToList();
-    private readonly DataRepository _dataRepository;
+    private Brush _textColour = Brushes.White;
 
     public SettingsViewModel(DataRepository dataRepository)
     {
@@ -43,6 +31,29 @@ public class SettingsViewModel : INotifyPropertyChanged
         AddTitleCommand = new DelegateCommand(AddTitle);
         RemoveTitleCommand = new DelegateCommand(RemoveTitle);
     }
+
+    public UiTheme SelectedTheme
+    {
+        get => _selectedTheme;
+        set
+        {
+            _selectedTheme = value;
+            ChangeTheme();
+            OnPropertyChanged();
+        }
+    }
+
+    public Brush TextColour
+    {
+        get => _textColour;
+        set
+        {
+            _textColour = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public List<UiTheme> AvailableThemes { get; } = Enum.GetValues(typeof(UiTheme)).Cast<UiTheme>().ToList();
 
     public ObservableCollection<string> AllTitles
     {
@@ -67,19 +78,26 @@ public class SettingsViewModel : INotifyPropertyChanged
     public ICommand AddTitleCommand { get; set; }
     public ICommand RemoveTitleCommand { get; set; }
 
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    private void CalculateBrush()
+    {
+        TextColour = SelectedTheme == UiTheme.Hell ? Brushes.Black : Brushes.White;
+    }
+
     private void ChangeTheme()
     {
         var wpfTheme = SelectedTheme switch
         {
-            UiTheme.Dunkel => Wpf.Ui.Appearance.ThemeType.Dark,
-            UiTheme.Hell => Wpf.Ui.Appearance.ThemeType.Light,
-            _ => Wpf.Ui.Appearance.ThemeType.Dark,
+            UiTheme.Dunkel => ThemeType.Dark,
+            UiTheme.Hell => ThemeType.Light,
+            _ => ThemeType.Dark
         };
 
-        Wpf.Ui.Appearance.Theme.Apply(wpfTheme);
-    }
+        Theme.Apply(wpfTheme);
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+        CalculateBrush();
+    }
 
     private void RemoveTitle(object titleObj)
     {
@@ -105,10 +123,4 @@ public class SettingsViewModel : INotifyPropertyChanged
         OnPropertyChanged(propertyName);
         return true;
     }
-}
-
-public enum UiTheme
-{
-    Dunkel,
-    Hell,
 }
