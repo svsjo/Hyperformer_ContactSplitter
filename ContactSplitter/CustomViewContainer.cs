@@ -6,13 +6,13 @@ namespace ContactSplitter;
 
 public class CustomViewContainer: Frame
 {
-    public static readonly DependencyProperty customViewMapperProperty = DependencyProperty.Register(
-        nameof(customViewMapper), typeof(CustomControlViewModelMapper), typeof(CustomViewContainer), new PropertyMetadata(default(CustomControlViewModelMapper)));
+    public static readonly DependencyProperty CustomViewMapperProperty = DependencyProperty.Register(
+        nameof(CustomViewMapper), typeof(CustomControlViewModelMapper), typeof(CustomViewContainer), new PropertyMetadata(default(CustomControlViewModelMapper)));
 
-    public CustomControlViewModelMapper customViewMapper
+    public CustomControlViewModelMapper CustomViewMapper
     {
-        get { return (CustomControlViewModelMapper)GetValue(customViewMapperProperty); }
-        set { SetValue(customViewMapperProperty, value); }
+        get { return (CustomControlViewModelMapper)GetValue(CustomViewMapperProperty); }
+        set { SetValue(CustomViewMapperProperty, value); }
     }
 
     public CustomViewContainer()
@@ -24,6 +24,6 @@ public class CustomViewContainer: Frame
     {
         if(e.Content is not ContentControl c)
             return;
-        customViewMapper.HandleNavigation(c);
+        CustomViewMapper.HandleNavigation(c);
     }
 }
