@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace ContactSplitter.Control.ContactParseOverview
 {
@@ -7,11 +8,10 @@ namespace ContactSplitter.Control.ContactParseOverview
     /// </summary>
     public partial class ContactParseOverviewControl : UserControl
     {
-        public ContactParseOverviewControl(ContactParseViewModel viewModel)
+      
+        public ContactParseOverviewControl()
         {
             InitializeComponent();
-
-            this.DataContext = viewModel;
         }
     }
 }

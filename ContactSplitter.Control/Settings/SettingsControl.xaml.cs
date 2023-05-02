@@ -8,11 +8,9 @@ namespace ContactSplitter.Control.Settings
     /// </summary>
     public partial class SettingsControl : UserControl
     {
-        public SettingsControl(SettingsViewModel viewModel)
+        public SettingsControl()
         {
             InitializeComponent();
-
-            this.DataContext = viewModel;
         }
     }
 }

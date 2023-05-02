@@ -21,11 +21,10 @@ namespace ContactSplitter.Control
     /// </summary>
     public partial class UserGuideControl : UserControl
     {
-        public UserGuideControl(UserGuideViewModel viewModel)
+        public UserGuideControl()
         {
             InitializeComponent();
 
-            this.DataContext = viewModel;
         }
     }
 }

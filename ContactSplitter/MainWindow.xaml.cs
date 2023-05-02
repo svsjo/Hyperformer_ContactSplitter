@@ -12,7 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ContactSplitter.Control.ContactParseOverview;
+using Wpf.Ui.Common;
 using Wpf.Ui.Controls;
+using Wpf.Ui.Controls.Interfaces;
+using Wpf.Ui.Mvvm.Contracts;
 
 namespace ContactSplitter
 {
@@ -21,9 +25,18 @@ namespace ContactSplitter
     /// </summary>
     public partial class MainWindow : UiWindow
     {
-        public MainWindow()
+        private readonly CustomControlViewModelMapper _customControlViewModelMapper;
+
+        public MainWindow(MainViewModel viewModel, CustomControlViewModelMapper customControlViewModelMapper)
         {
+            _customControlViewModelMapper = customControlViewModelMapper;
             InitializeComponent();
+            this.DataContext = viewModel;
+        }
+
+        private void RootFrame_OnNavigated(object sender, NavigationEventArgs e)
+        {
+            _customControlViewModelMapper.HandleNavigation((ContentControl)e.Content);
         }
     }
 }
