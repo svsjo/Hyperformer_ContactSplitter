@@ -33,14 +33,23 @@ namespace ContactSplitter
 
             var provider = services.BuildServiceProvider();
 
+            MapCustomControls(provider);
+            StartWindow(provider);
+        }
 
+        private void StartWindow(ServiceProvider provider)
+        {
+            this.MainWindow = provider.GetService<MainWindow>();
+            this.MainWindow.Show();
+        }
+
+        private static void MapCustomControls(ServiceProvider provider)
+        {
             var controlMapper = provider.GetService<CustomControlViewModelMapper>();
             controlMapper.AddMapping<ContactParseOverviewControl, ContactParseViewModel>();
             controlMapper.AddMapping<SettingsControl, SettingsViewModel>();
             controlMapper.AddMapping<ContactListControl, ContactListViewModel>();
             controlMapper.AddMapping<UserGuideControl, UserGuideViewModel>();
-            this.MainWindow = provider.GetService<MainWindow>();
-            this.MainWindow.Show();
         }
 
         private void ConfigureServices(IServiceCollection services)
