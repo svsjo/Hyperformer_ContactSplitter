@@ -11,8 +11,8 @@ public class CustomViewContainer: Frame
 
     public CustomControlViewModelMapper CustomViewMapper
     {
-        get { return (CustomControlViewModelMapper)GetValue(CustomViewMapperProperty); }
-        set { SetValue(CustomViewMapperProperty, value); }
+        get => (CustomControlViewModelMapper)GetValue(CustomViewMapperProperty);
+        set => SetValue(CustomViewMapperProperty, value);
     }
 
     public CustomViewContainer()
