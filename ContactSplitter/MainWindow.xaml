@@ -84,7 +84,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Frame x:Name="RootFrame" Navigated="RootFrame_OnNavigated" Grid.Row="1" />
+                    <local:CustomViewContainer CustomViewMapper="{Binding UserControlMapper}" x:Name="RootFrame" Grid.Row="1" />
                     <ui:Breadcrumb
                     Grid.Row="0"
                     Margin="18"
