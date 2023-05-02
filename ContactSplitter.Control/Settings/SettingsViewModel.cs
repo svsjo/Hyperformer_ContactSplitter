@@ -22,6 +22,7 @@ public class SettingsViewModel : INotifyPropertyChanged
 
         AddTitleCommand = new DelegateCommand(AddTitle);
         RemoveTitleCommand = new DelegateCommand(RemoveTitle);
+        ChangeThemeCommand = new DelegateCommand((x) => ChangeTheme(x));
     }
 
     public ObservableCollection<string> AllTitles
@@ -46,6 +47,22 @@ public class SettingsViewModel : INotifyPropertyChanged
 
     public ICommand AddTitleCommand { get; set; }
     public ICommand RemoveTitleCommand { get; set; }
+    public ICommand ChangeThemeCommand { get; set; }
+
+    private void ChangeTheme(object themeObj)
+    {
+        if (themeObj is not string theme) return;
+
+        var wpfTheme = theme switch
+        {
+            "Dunkel" => Wpf.Ui.Appearance.ThemeType.Dark,
+            "Hell" => Wpf.Ui.Appearance.ThemeType.Light,
+            "Hoher Kontrast" => Wpf.Ui.Appearance.ThemeType.HighContrast,
+            _ => Wpf.Ui.Appearance.ThemeType.Dark,
+        };
+
+        Wpf.Ui.Appearance.Theme.Apply(wpfTheme);
+    }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
