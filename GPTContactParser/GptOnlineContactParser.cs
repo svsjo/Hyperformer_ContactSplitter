@@ -48,15 +48,14 @@ namespace GPTContactParser
 
             const string apiKey = "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";
 
-            const string dataRaw = "Dr. Russwurm, Winfried -> (Herr Dr.; Dr.; Sehr geehrter Herr Dr.; Winfried; Russwurm; M)";
+            const string dataRaw = "Dr. Russwurm, Winfried -> {Herr Dr.; Dr.; Sehr geehrter Herr Dr.; Winfried; Russwurm; M}";
 
 
-            const string task =
-                "Du bist ein Parser zum Parsen von Personenmerkmalen. Das Ergebnis gibst du jeweils im Format: (Anrede; Titel; Begrüßung; Vorname; Nachname; Geschlecht)  zurück. Bist du nicht sicher gibst du einfach den Wahrscheinlichsten Vorschlag an (nur ein Ergebnis). Nutzte zudem Logik und Weltwissen zum bestimmen des Geschlechtes";
+            const string task = "Du bist ein Parser zum Parsen von Personenmerkmalen. Das Ergebnis gibst du jeweils im Format: (Anrede; Titel; Begrüßung; Vorname; Nachname; Geschlecht)  zurück. Bist du nicht sicher gibst du einfach den Wahrscheinlichsten Vorschlag an (nur ein Ergebnis). Nutzte zudem Logik und Weltwissen zum bestimmen des Geschlechtes";
 
 
             var prompt =
-                $"{task} \n Beispielhaft so: \n {dataRaw} \n\n Schreibe das Ergebnis immer in geschwungenen Klammern: {{result}} Eingabe: {input}";
+                $"{task} \n Beispielhaft so: \n {dataRaw} \n\n Schreibe das Ergebnis immer in geschwungenen Klammern: {{ Ergebnis }} ";
 
             var data = new
             {
@@ -67,6 +66,11 @@ namespace GPTContactParser
                     new
                     {
                         content = prompt,
+                        role = "system"
+                    },
+                    new
+                    {
+                        content = $"Eingabe: {input}",
                         role = "user"
                     }
                 }
