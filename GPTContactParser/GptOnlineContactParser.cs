@@ -6,12 +6,12 @@ using ContactParser.Contracts.Data;
 
 namespace GPTContactParser
 {
-    public class GPTContactParser:IContactParser
+    public class GptOnlineContactParser:IOnlineContactParser
     {
-        public PossibleContact ParseContact(string input)
+        public async Task<PossibleContact> ParseContact(string input)
         {
             //const string Input = "Dr. Phil. Antonius Van Hoof";
-            var res = Parse(input).Result;
+            var res = await Parse(input);
             var resParts = res.Split(";");
             return new PossibleContact()
             {
@@ -35,7 +35,7 @@ namespace GPTContactParser
                 {
                     ParsedText = resParts[5]
                 },
-                LastName =
+                LastName = new ContactFieldWrapper()
                 {
                     ParsedText = resParts[4]
                 }

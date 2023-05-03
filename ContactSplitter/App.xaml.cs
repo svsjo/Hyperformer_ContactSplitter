@@ -57,7 +57,8 @@ public partial class App : Application
         services.AddSingleton<ProjectSettings>();
 
         /* Logik */
-        services.AddScoped<IContactParser, DefaultContactParser>();
+        services.AddScoped<IOfflineContactParser, DefaultOfflineContactParser>();
+        services.AddScoped<IOnlineContactParser, GPTContactParser.GptOnlineContactParser>();
 
         /* View Models */
         services.AddScoped<UserGuideViewModel>();

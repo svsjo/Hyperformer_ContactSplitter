@@ -33,10 +33,10 @@ public class FullParserTest
     [InlineData("Frau Dr. iur. Claudia Schuster-Müller", "Frau Dr.", "Dr. iur.", "Sehr geehrte Frau Dr.", "Claudia", "Schuster-Müller", "F")]
     [InlineData("Herr Dr. rer. nat. habil. Franz Bauer", "Herr Dr.", "Dr. rer. nat. habil.", "Sehr geehrter Herr Dr.", "Franz", "Bauer", "M")]
     [InlineData("Frau Prof. Dr. rer. pol. habil. Anna Schmidt-Weiß", "Frau Prof.", "Prof. Dr. rer. pol. habil.", "Sehr geehrte Frau Prof.", "Anna", "Schmidt-Weiß", "F")]
-    public void GivenInput_ShouldParseContact(string input, string salutation, string title, string letterSalutation, string foreName, string lastName, string gender)
+    public async void GivenInput_ShouldParseContact(string input, string salutation, string title, string letterSalutation, string foreName, string lastName, string gender)
     {
         // Act
-        var contact = _contactParser.ParseContact(input);
+        var contact = await _contactParser.ParseContact(input);
 
         // Assert
         Assert.Equal(salutation, contact.Salutation.ParsedText);

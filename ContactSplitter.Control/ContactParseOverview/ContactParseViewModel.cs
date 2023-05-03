@@ -14,7 +14,10 @@ namespace ContactSplitter.Control.ContactParseOverview;
 
 public class ContactParseViewModel : INotifyPropertyChanged
 {
-    private IContactParser _contactParser;
+    private IOnlineContactParser _onlineOnlineContactParser;
+    private readonly IOfflineContactParser _offlineContactParser;
+
+
     private readonly DataRepository _dataRepository;
     private readonly UserGuidingNotes _userGuidingNotes;
     private PossibleContact _parseResult = null!;
@@ -37,9 +40,10 @@ public class ContactParseViewModel : INotifyPropertyChanged
 
     private string _title = null!;
 
-    public ContactParseViewModel(IContactParser contactParser, DataRepository dataRepository, UserGuidingNotes userGuidingNotes)
+    public ContactParseViewModel(IOnlineContactParser onlineOnlineContactParser, IOfflineContactParser offlineContactParser, DataRepository dataRepository, UserGuidingNotes userGuidingNotes)
     {
-        _contactParser = contactParser;
+        _onlineOnlineContactParser = onlineOnlineContactParser;
+        _offlineContactParser = offlineContactParser;
         _dataRepository = dataRepository;
         _userGuidingNotes = userGuidingNotes;
 
@@ -69,7 +73,7 @@ public class ContactParseViewModel : INotifyPropertyChanged
         ForeName = LastName = Salutation = LetterSalutation = Gender = Title = Note = Input = NotParsed = string.Empty;
     }
 
-    private void ParseInput(object x)
+    private async void ParseInput(object x)
     {
         if (string.IsNullOrEmpty(Input))
         {
@@ -77,8 +81,7 @@ public class ContactParseViewModel : INotifyPropertyChanged
             return;
         }
 
-        _parseResult = _contactParser.ParseContact(Input);
-
+        _parseResult = await _onlineOnlineContactParser.ParseContact(Input);
         ForeName = _parseResult.ForeName.ParsedText;
         LastName = _parseResult.LastName.ParsedText;
         Salutation = _parseResult.Salutation.ParsedText;
@@ -103,13 +106,13 @@ public class ContactParseViewModel : INotifyPropertyChanged
         }
     }
 
-    public IContactParser ContactParser
+    public IOnlineContactParser OnlineContactParser
     {
-        get => _contactParser;
+        get => _onlineOnlineContactParser;
         set
         {
-            if (Equals(value, _contactParser)) return;
-            _contactParser = value;
+            if (Equals(value, _onlineOnlineContactParser)) return;
+            _onlineOnlineContactParser = value;
             OnPropertyChanged();
         }
     }

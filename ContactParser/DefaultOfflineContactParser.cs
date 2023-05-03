@@ -3,9 +3,9 @@ using ContactParser.Contracts.Data;
 
 namespace ContactParser;
 
-public class DefaultContactParser : IContactParser
+public class DefaultOfflineContactParser : IOfflineContactParser
 {
-    public PossibleContact ParseContact(string input)
+    public Task<PossibleContact> ParseContact(string input)
     {
         throw new NotImplementedException();
     }
