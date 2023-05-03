@@ -39,11 +39,11 @@ public class FullParserTest
         var contact = await _contactParser.ParseContact(input);
 
         // Assert
-        Assert.Equal(salutation, contact.Salutation.ParsedText);
-        Assert.Equal(title, contact.Title.ParsedText);
-        Assert.Equal(letterSalutation, contact.LetterSalutation.ParsedText);
-        Assert.Equal(foreName, contact.ForeName.ParsedText);
-        Assert.Equal(lastName, contact.LastName.ParsedText);
-        Assert.Equal(gender, contact.Gender.ParsedText);
+        Assert.Equal(salutation, contact.Salutation);
+        Assert.Equal(title, contact.Title);
+        Assert.Equal(letterSalutation, contact.LetterSalutation);
+        Assert.Equal(foreName, contact.ForeName);
+        Assert.Equal(lastName, contact.LastName);
+        Assert.Equal(gender, contact.Gender);
     }
 }

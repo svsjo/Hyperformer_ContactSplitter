@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Media;
 using ContactSplitter.DataStorage;
+using ContactSplitter.DataStorage.HelperClasses;
 using Wpf.Ui.Appearance;
 
 #endregion
@@ -21,15 +22,26 @@ public class SettingsViewModel : INotifyPropertyChanged
     private readonly ProjectSettings _projectSettings;
     private string _newTitle = string.Empty;
 
-    private Brush _textColour = Brushes.White;
+    private Brush _textColour = null!;
 
     public SettingsViewModel(DataRepository dataRepository, ProjectSettings projectSettings)
     {
         _dataRepository = dataRepository;
         _projectSettings = projectSettings;
+        CalculateBrush();
 
         AddTitleCommand = new DelegateCommand(AddTitle);
         RemoveTitleCommand = new DelegateCommand(RemoveTitle);
+    }
+
+    public ParserType SelectedParser
+    {
+        get => _projectSettings.Parser;
+        set
+        {
+            _projectSettings.Parser = value;
+            OnPropertyChanged();
+        }
     }
 
     public UiTheme SelectedTheme
@@ -54,6 +66,7 @@ public class SettingsViewModel : INotifyPropertyChanged
     }
 
     public List<UiTheme> AvailableThemes { get; } = Enum.GetValues(typeof(UiTheme)).Cast<UiTheme>().ToList();
+    public List<ParserType> AvailableParsers { get; } = Enum.GetValues(typeof(ParserType)).Cast<ParserType>().ToList();
 
     public ObservableCollection<string> AllTitles
     {
@@ -82,7 +95,7 @@ public class SettingsViewModel : INotifyPropertyChanged
 
     private void CalculateBrush()
     {
-        TextColour = SelectedTheme == UiTheme.Hell ? Brushes.Black : Brushes.White;
+        TextColour = _projectSettings.Theme == UiTheme.Hell ? Brushes.Black : Brushes.White;
     }
 
     private void ChangeTheme()

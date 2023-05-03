@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ContactSplitter.DataStorage;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -6,9 +7,15 @@ namespace ContactSplitter.Control.UserGuide;
 
 public class UserGuideViewModel : INotifyPropertyChanged
 {
+    private readonly ProjectSettings _projectSettings;
     private string _bedieneranleitung = "TODO";
     private string _bestPractices = "TODO";
     private string _developers = "Jonathan Schwab, Felix Wochele, Seva Pypenko, Jonas Weis";
+
+    public UserGuideViewModel(ProjectSettings projectSettings)
+    {
+        _projectSettings = projectSettings;
+    }
 
     public string Bedieneranleitung
     {
