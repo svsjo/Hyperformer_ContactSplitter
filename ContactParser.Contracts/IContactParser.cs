@@ -4,5 +4,5 @@ namespace ContactParser.Contracts;
 
 public interface IContactParser
 {
-    public PossibleContact ParseContact(string input);
+    public Task<PossibleContact> ParseContact(string input);
 }

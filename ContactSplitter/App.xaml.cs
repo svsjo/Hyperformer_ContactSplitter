@@ -56,7 +56,8 @@ public partial class App : Application
         services.AddScoped<UserGuidingNotes>();
 
         /* Logik */
-        services.AddScoped<IContactParser, DefaultContactParser>();
+        services.AddScoped<IOfflineContactParser, DefaultOfflineContactParser>();
+        services.AddScoped<IOnlineContactParser, GPTContactParser.GptOnlineContactParser>();
 
         /* View Models */
         services.AddScoped<UserGuideViewModel>();
