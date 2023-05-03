@@ -18,15 +18,15 @@ namespace ContactSplitter.Control.Settings;
 public class SettingsViewModel : INotifyPropertyChanged
 {
     private readonly DataRepository _dataRepository;
+    private readonly ProjectSettings _projectSettings;
     private string _newTitle = string.Empty;
-
-    private UiTheme _selectedTheme = UiTheme.Dunkel;
 
     private Brush _textColour = Brushes.White;
 
-    public SettingsViewModel(DataRepository dataRepository)
+    public SettingsViewModel(DataRepository dataRepository, ProjectSettings projectSettings)
     {
         _dataRepository = dataRepository;
+        _projectSettings = projectSettings;
 
         AddTitleCommand = new DelegateCommand(AddTitle);
         RemoveTitleCommand = new DelegateCommand(RemoveTitle);
@@ -34,10 +34,10 @@ public class SettingsViewModel : INotifyPropertyChanged
 
     public UiTheme SelectedTheme
     {
-        get => _selectedTheme;
+        get => _projectSettings.Theme;
         set
         {
-            _selectedTheme = value;
+            _projectSettings.Theme = value;
             ChangeTheme();
             OnPropertyChanged();
         }

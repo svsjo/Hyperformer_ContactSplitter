@@ -54,6 +54,7 @@ public partial class App : Application
         /* Datenhaltung */
         services.AddSingleton<DataRepository>();
         services.AddScoped<UserGuidingNotes>();
+        services.AddSingleton<ProjectSettings>();
 
         /* Logik */
         services.AddScoped<IContactParser, DefaultContactParser>();
