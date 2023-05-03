@@ -2,13 +2,13 @@
 
 public class PossibleContact
 {
-    public ContactFieldWrapper RawContact { get; set; } // Input String
-    public ContactFieldWrapper Salutation { get; set; } // Anrede
-    public ContactFieldWrapper LetterSalutation { get; set; } // Brief-Anrede
-    public ContactFieldWrapper Title { get; set; } // Titel
-    public ContactFieldWrapper Gender { get; set; } // Geschlecht
-    public ContactFieldWrapper ForeName { get; set; } // Vorname
-    public ContactFieldWrapper LastName { get; set; } // Nachname
+    public string RawContact { get; set; } = string.Empty; // Input String
+    public string Salutation { get; set; } = string.Empty; // Anrede
+    public string LetterSalutation { get; set; } = string.Empty; // Brief-Anrede
+    public string Title { get; set; } = string.Empty; // Titel
+    public string Gender { get; set; } = string.Empty; // Geschlecht
+    public string ForeName { get; set; } = string.Empty; // Vorname
+    public string LastName { get; set; } = string.Empty; // Nachname
     public string Note { get; set; } = string.Empty;
     public string NotParsed { get; set; } = string.Empty;
 }

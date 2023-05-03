@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using ContactParser.Contracts;
 using ContactParser.Contracts.Data;
 using ContactSplitter.DataStorage;
+using ContactSplitter.DataStorage.HelperClasses;
 
 #endregion
 
@@ -16,7 +18,7 @@ public class ContactParseViewModel : INotifyPropertyChanged
 {
     private IOnlineContactParser _onlineOnlineContactParser;
     private readonly IOfflineContactParser _offlineContactParser;
-
+    private readonly ProjectSettings _projectSettings;
 
     private readonly DataRepository _dataRepository;
     private readonly UserGuidingNotes _userGuidingNotes;
@@ -40,12 +42,13 @@ public class ContactParseViewModel : INotifyPropertyChanged
 
     private string _title = null!;
 
-    public ContactParseViewModel(IOnlineContactParser onlineOnlineContactParser, IOfflineContactParser offlineContactParser, DataRepository dataRepository, UserGuidingNotes userGuidingNotes)
+    public ContactParseViewModel(IOnlineContactParser onlineOnlineContactParser, IOfflineContactParser offlineContactParser, DataRepository dataRepository, UserGuidingNotes userGuidingNotes, ProjectSettings projectSettings)
     {
         _onlineOnlineContactParser = onlineOnlineContactParser;
         _offlineContactParser = offlineContactParser;
         _dataRepository = dataRepository;
         _userGuidingNotes = userGuidingNotes;
+        _projectSettings = projectSettings;
 
         ParseCommand = new DelegateCommand(ParseInput);
         SaveCommand = new DelegateCommand(SaveContact);
@@ -81,13 +84,14 @@ public class ContactParseViewModel : INotifyPropertyChanged
             return;
         }
 
-        _parseResult = await _onlineOnlineContactParser.ParseContact(Input);
-        ForeName = _parseResult.ForeName.ParsedText;
-        LastName = _parseResult.LastName.ParsedText;
-        Salutation = _parseResult.Salutation.ParsedText;
-        LetterSalutation = _parseResult.LetterSalutation.ParsedText;
-        Gender = _parseResult.Gender.ParsedText;
-        Title = _parseResult.Title.ParsedText;
+        _parseResult = _projectSettings.Parser is ParserType.ChatGpt ? await _onlineOnlineContactParser.ParseContact(Input) : await _offlineContactParser.ParseContact(Input);
+
+        ForeName = _parseResult.ForeName;
+        LastName = _parseResult.LastName;
+        Salutation = _parseResult.Salutation;
+        LetterSalutation = _parseResult.LetterSalutation;
+        Gender = _parseResult.Gender;
+        Title = _parseResult.Title;
         Note = _parseResult.Note;
         NotParsed = _parseResult.NotParsed;
     }
@@ -105,6 +109,8 @@ public class ContactParseViewModel : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
+    public bool Enabled => _projectSettings.Theme == UiTheme.Hell;
 
     public IOnlineContactParser OnlineContactParser
     {

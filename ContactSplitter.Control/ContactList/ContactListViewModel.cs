@@ -18,14 +18,16 @@ namespace ContactSplitter.Control.ContactList;
 public class ContactListViewModel : INotifyPropertyChanged
 {
     private readonly DataRepository _dataRepository;
+    private readonly ProjectSettings _projectSettings;
     private ICollectionView _contactsView;
     public ICommand DeleteContactCommand { get; set; }
 
     private string _searchText = string.Empty;
 
-    public ContactListViewModel(DataRepository dataRepository)
+    public ContactListViewModel(DataRepository dataRepository, ProjectSettings projectSettings)
     {
         _dataRepository = dataRepository;
+        _projectSettings = projectSettings;
 
         _contactsView = CollectionViewSource.GetDefaultView(AllContacts);
         ContactsView.Filter = FilterContacts;

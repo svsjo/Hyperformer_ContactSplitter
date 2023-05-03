@@ -240,5 +240,7 @@ namespace ContactSplitter.DataStorage
             "RA",
             "Notar"
         };
+
+        public ObservableCollection<string> AllPrefixes { get; set; } = new ObservableCollection<string>();
     }
 }

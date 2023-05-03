@@ -12,8 +12,7 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical" Margin="20">
                 <TextBlock Text="Zulässige Titel" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
-                <StackPanel Orientation="Vertical">
-                    <ListBox ItemsSource="{Binding AllTitles}" Height="520" Width="350" HorizontalAlignment="Left">
+                    <ListBox ItemsSource="{Binding AllTitles}" Height="580" Width="350" HorizontalAlignment="Left">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -23,16 +22,25 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Text="{Binding NewTitle, Mode=TwoWay}" Margin="0,10" Width="275"/>
-                        <Button Content="Add" Command="{Binding AddTitleCommand}" Margin="5,0,0,0" Height="35" Width="70"/>
-                    </StackPanel>
-                </StackPanel>
             </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="20">
+                <TextBlock Text="Neuer Titel" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
+                <TextBox Text="{Binding NewTitle, Mode=TwoWay}" Margin="0,0,0,10" Width="275"/>
+                <Button Content="Add" Command="{Binding AddTitleCommand}" Height="35" Width="275"/>
+            </StackPanel>
+            <Separator Margin="35,0"></Separator>
             <StackPanel Orientation="Vertical" Margin="20">
                 <TextBlock Text="Design Theme" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
                 <ComboBox ItemsSource="{Binding AvailableThemes}"
                           SelectedItem="{Binding SelectedTheme}"
+                          Width="150">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="20">
+                <TextBlock Text="Parser Typen" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" 
+                           TextAlignment="Left" Margin="0 0 0 10" />
+                <ComboBox ItemsSource="{Binding AvailableParsers}"
+                          SelectedItem="{Binding SelectedParser}"
                           Width="150">
                 </ComboBox>
             </StackPanel>

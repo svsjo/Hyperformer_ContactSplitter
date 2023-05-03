@@ -11,6 +11,7 @@ using ContactSplitter.Control.Settings;
 using ContactSplitter.Control.UserGuide;
 using ContactSplitter.DataStorage;
 using Microsoft.Extensions.DependencyInjection;
+using GPTContactParser;
 
 #endregion
 
@@ -54,17 +55,18 @@ public partial class App : Application
         /* Datenhaltung */
         services.AddSingleton<DataRepository>();
         services.AddScoped<UserGuidingNotes>();
+        services.AddSingleton<ProjectSettings>();
 
         /* Logik */
         services.AddScoped<IOfflineContactParser, DefaultOfflineContactParser>();
-        services.AddScoped<IOnlineContactParser, GPTContactParser.GptOnlineContactParser>();
+        services.AddScoped<IOnlineContactParser, GptOnlineContactParser>();
 
         /* View Models */
-        services.AddScoped<UserGuideViewModel>();
-        services.AddScoped<SettingsViewModel>();
-        services.AddScoped<ContactParseViewModel>();
-        services.AddScoped<ContactListViewModel>();
-        services.AddScoped<MainViewModel>();
+        services.AddTransient<UserGuideViewModel>();
+        services.AddTransient<SettingsViewModel>();
+        services.AddTransient<ContactParseViewModel>();
+        services.AddTransient<ContactListViewModel>();
+        services.AddTransient<MainViewModel>();
 
         /*MainWindow */
         services.AddSingleton<MainWindow>();
