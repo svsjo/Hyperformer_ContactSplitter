@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - master
-      - cicd
+      - cicdcd
   pull_request:
     branches:
       - master
-      - cicd
+      - cicdcd
 
 jobs:
   build-and-test:
