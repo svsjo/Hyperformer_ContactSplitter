@@ -25,7 +25,7 @@
                     <DataGridTextColumn Width="230" Header="Brief-Anrede" Binding="{Binding LetterSalutation, UpdateSourceTrigger=PropertyChanged}" />
                     <DataGridTextColumn Width="230" Header="Titel" Binding="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
                     <DataGridTextColumn Width="80" Header="Geschlecht" Binding="{Binding Gender, UpdateSourceTrigger=PropertyChanged}" />
-                    <DataGridTextColumn Width="205" Header="Vorname" Binding="{Binding ForeName, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Width="205" Header="Vorname" Binding="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" />
                     <DataGridTextColumn Width="205" Header="Nachname" Binding="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" />
                     <DataGridTemplateColumn Header="Löschen" Width="80">
                         <DataGridTemplateColumn.CellTemplate>
