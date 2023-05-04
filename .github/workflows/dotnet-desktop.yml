@@ -30,4 +30,5 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: Run tests
+      working-directory: ContactSplitter.Tests
       run: dotnet test TestProject.csproj
