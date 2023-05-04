@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using ContactParser.Contracts.Data;
+using ContactSplitter.DataStorage.HelperClasses;
 
 namespace ContactSplitter.DataStorage
 {
@@ -9,7 +10,7 @@ namespace ContactSplitter.DataStorage
         {
             new()
             {
-                ForeName = "Jonas Noah",
+                FirstName = "Jonas Noah",
                 LastName = "Schmid-Weis",
                 Gender = "M",
                 LetterSalutation = "Sehr geehrter",
@@ -18,7 +19,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Nonas Joah",
+                FirstName = "Nonas Joah",
                 LastName = "Weis-Schmid",
                 Gender = "F",
                 LetterSalutation = "Sehr geehrte",
@@ -27,7 +28,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Arne",
+                FirstName = "Arne",
                 LastName = "Amel",
                 Gender = "M",
                 LetterSalutation = "Hallo",
@@ -36,7 +37,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Jonas Noah",
+                FirstName = "Jonas Noah",
                 LastName = "Schmid-Weis",
                 Gender = "M",
                 LetterSalutation = "Sehr geehrter",
@@ -45,7 +46,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Nonas Joah",
+                FirstName = "Nonas Joah",
                 LastName = "Weis-Schmid",
                 Gender = "F",
                 LetterSalutation = "Sehr geehrte",
@@ -54,7 +55,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Arne",
+                FirstName = "Arne",
                 LastName = "Amel",
                 Gender = "M",
                 LetterSalutation = "Hallo",
@@ -63,7 +64,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Jonas Noah",
+                FirstName = "Jonas Noah",
                 LastName = "Schmid-Weis",
                 Gender = "M",
                 LetterSalutation = "Sehr geehrter",
@@ -72,7 +73,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Nonas Joah",
+                FirstName = "Nonas Joah",
                 LastName = "Weis-Schmid",
                 Gender = "F",
                 LetterSalutation = "Sehr geehrte",
@@ -81,7 +82,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Arne",
+                FirstName = "Arne",
                 LastName = "Amel",
                 Gender = "M",
                 LetterSalutation = "Hallo",
@@ -90,7 +91,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Jonas Noah",
+                FirstName = "Jonas Noah",
                 LastName = "Schmid-Weis",
                 Gender = "M",
                 LetterSalutation = "Sehr geehrter",
@@ -99,7 +100,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Nonas Joah",
+                FirstName = "Nonas Joah",
                 LastName = "Weis-Schmid",
                 Gender = "F",
                 LetterSalutation = "Sehr geehrte",
@@ -108,7 +109,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Arne",
+                FirstName = "Arne",
                 LastName = "Amel",
                 Gender = "M",
                 LetterSalutation = "Hallo",
@@ -117,7 +118,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Jonas Noah",
+                FirstName = "Jonas Noah",
                 LastName = "Schmid-Weis",
                 Gender = "M",
                 LetterSalutation = "Sehr geehrter",
@@ -126,7 +127,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Nonas Joah",
+                FirstName = "Nonas Joah",
                 LastName = "Weis-Schmid",
                 Gender = "F",
                 LetterSalutation = "Sehr geehrte",
@@ -135,7 +136,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Arne",
+                FirstName = "Arne",
                 LastName = "Amel",
                 Gender = "M",
                 LetterSalutation = "Hallo",
@@ -144,7 +145,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Jonas Noah",
+                FirstName = "Jonas Noah",
                 LastName = "Schmid-Weis",
                 Gender = "M",
                 LetterSalutation = "Sehr geehrter",
@@ -153,7 +154,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Nonas Joah",
+                FirstName = "Nonas Joah",
                 LastName = "Weis-Schmid",
                 Gender = "F",
                 LetterSalutation = "Sehr geehrte",
@@ -162,7 +163,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Arne",
+                FirstName = "Arne",
                 LastName = "Amel",
                 Gender = "M",
                 LetterSalutation = "Hallo",
@@ -171,7 +172,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Jonas Noah",
+                FirstName = "Jonas Noah",
                 LastName = "Schmid-Weis",
                 Gender = "M",
                 LetterSalutation = "Sehr geehrter",
@@ -180,7 +181,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Nonas Joah",
+                FirstName = "Nonas Joah",
                 LastName = "Weis-Schmid",
                 Gender = "F",
                 LetterSalutation = "Sehr geehrte",
@@ -189,7 +190,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Arne",
+                FirstName = "Arne",
                 LastName = "Amel",
                 Gender = "M",
                 LetterSalutation = "Hallo",
@@ -198,7 +199,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Jonas Noah",
+                FirstName = "Jonas Noah",
                 LastName = "Schmid-Weis",
                 Gender = "Männlich",
                 LetterSalutation = "Sehr geehrter",
@@ -207,7 +208,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Nonas Joah",
+                FirstName = "Nonas Joah",
                 LastName = "Weis-Schmid",
                 Gender = "F",
                 LetterSalutation = "Sehr geehrte",
@@ -216,7 +217,7 @@ namespace ContactSplitter.DataStorage
             },
             new()
             {
-                ForeName = "Arne",
+                FirstName = "Arne",
                 LastName = "Amel",
                 Gender = "M",
                 LetterSalutation = "Hallo",
@@ -225,22 +226,23 @@ namespace ContactSplitter.DataStorage
             },
         };
 
-        public ObservableCollection<string> AllTitles { get; set; } = new ObservableCollection<string>()
+        public ObservableCollection<Title> AllTitles { get; set; } = new ObservableCollection<Title>()
         {
-            "Dr.",
-            "Prof.",
-            "Dipl.-Ing.",
-            "Ing.",
-            "Mag.",
-            "Baron",
-            "Graf",
-            "Herzog",
-            "Fürst",
-            "Dipl.-Kfm.",
-            "RA",
-            "Notar"
+            new Title { MaleTitle = "Graf", Abbreviation = "Gf." },
+            new Title { MaleTitle = "Gräfin", Abbreviation = "Grfn." },
+            new Title { MaleTitle = "Baron", Abbreviation = "Bar." },
+            new Title { MaleTitle = "Baronin", Abbreviation = "Barin." },
+            new Title { MaleTitle = "Freiherr", Abbreviation = "Frhr." },
+            new Title { MaleTitle = "Freifrau", Abbreviation = "Frn." },
+            new Title { MaleTitle = "Freiherrin", Abbreviation = "Frn." },
+            new Title { MaleTitle = "Doktor", Abbreviation = "Dr." },
+            new Title { MaleTitle = "Professor", Abbreviation = "Prof." },
         };
 
-        public ObservableCollection<string> AllPrefixes { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<string> AllPrefixes { get; set; } = new ObservableCollection<string>()
+        {
+            "van",
+            "von"
+        };
     }
 }

@@ -58,7 +58,7 @@ public class ContactParseViewModel : INotifyPropertyChanged
     {
         var contact = new Contact()
         {
-            ForeName = ForeName,
+            FirstName = ForeName,
             LastName = LastName,
             Salutation = Salutation,
             LetterSalutation = LetterSalutation,
@@ -86,7 +86,7 @@ public class ContactParseViewModel : INotifyPropertyChanged
 
         _parseResult = _projectSettings.Parser is ParserType.ChatGpt ? await _onlineOnlineContactParser.ParseContact(Input) : await _offlineContactParser.ParseContact(Input);
 
-        ForeName = _parseResult.ForeName;
+        ForeName = _parseResult.FirstName;
         LastName = _parseResult.LastName;
         Salutation = _parseResult.Salutation;
         LetterSalutation = _parseResult.LetterSalutation;

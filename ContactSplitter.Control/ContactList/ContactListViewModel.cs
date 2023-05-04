@@ -98,7 +98,7 @@ public class ContactListViewModel : INotifyPropertyChanged
         if (string.IsNullOrEmpty(SearchText)) return true;
 
         var searchString = SearchText.ToLower();
-        return contact.ForeName.ToLower().Contains(searchString)
+        return contact.FirstName.ToLower().Contains(searchString)
                || contact.LastName.ToLower().Contains(searchString)
                || contact.Salutation.ToLower().Contains(searchString)
                || contact.LetterSalutation.ToLower().Contains(searchString)

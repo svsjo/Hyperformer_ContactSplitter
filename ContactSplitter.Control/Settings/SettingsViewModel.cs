@@ -20,7 +20,9 @@ public class SettingsViewModel : INotifyPropertyChanged
 {
     private readonly DataRepository _dataRepository;
     private readonly ProjectSettings _projectSettings;
-    private string _newTitle = string.Empty;
+    private string _newTitleAbbr = string.Empty;
+    private string _newTitleFull = string.Empty;
+    private string _newPrefix = string.Empty;
 
     private Brush _textColour = null!;
 
@@ -32,6 +34,8 @@ public class SettingsViewModel : INotifyPropertyChanged
 
         AddTitleCommand = new DelegateCommand(AddTitle);
         RemoveTitleCommand = new DelegateCommand(RemoveTitle);
+        AddPrefixCommand = new DelegateCommand(AddPrefix);
+        RemovePrefixCommand = new DelegateCommand(RemovePrefix);
     }
 
     public ParserType SelectedParser
@@ -68,7 +72,7 @@ public class SettingsViewModel : INotifyPropertyChanged
     public List<UiTheme> AvailableThemes { get; } = Enum.GetValues(typeof(UiTheme)).Cast<UiTheme>().ToList();
     public List<ParserType> AvailableParsers { get; } = Enum.GetValues(typeof(ParserType)).Cast<ParserType>().ToList();
 
-    public ObservableCollection<string> AllTitles
+    public ObservableCollection<Title> AllTitles
     {
         get => _dataRepository.AllTitles;
         set
@@ -78,18 +82,50 @@ public class SettingsViewModel : INotifyPropertyChanged
         }
     }
 
-    public string NewTitle
+    public ObservableCollection<string> AllPrefixes
     {
-        get => _newTitle;
+        get => _dataRepository.AllPrefixes;
         set
         {
-            _newTitle = value;
+            _dataRepository.AllPrefixes = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string NewTitleFull
+    {
+        get => _newTitleFull;
+        set
+        {
+            _newTitleFull = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string NewPrefix
+    {
+        get => _newPrefix;
+        set
+        {
+            _newPrefix = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string NewTitleAbbr
+    {
+        get => _newTitleAbbr;
+        set
+        {
+            _newTitleAbbr = value;
             OnPropertyChanged();
         }
     }
 
     public ICommand AddTitleCommand { get; set; }
     public ICommand RemoveTitleCommand { get; set; }
+    public ICommand AddPrefixCommand { get; set; }
+    public ICommand RemovePrefixCommand { get; set; }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -112,16 +148,35 @@ public class SettingsViewModel : INotifyPropertyChanged
         CalculateBrush();
     }
 
+    private void RemovePrefix(object prefixObj)
+    {
+        if (prefixObj is not string prefix) return;
+        AllPrefixes.Remove(prefix);
+    }
+
     private void RemoveTitle(object titleObj)
     {
-        if (titleObj is not string title) return;
+        if (titleObj is not Title title) return;
         AllTitles.Remove(title);
+    }
+
+    private void AddPrefix(object x)
+    {
+        _dataRepository.AllPrefixes.Add(NewPrefix);
+        NewPrefix = string.Empty;
     }
 
     private void AddTitle(object x)
     {
-        AllTitles.Add(NewTitle);
-        NewTitle = "";
+        var title = new Title()
+        {
+            MaleTitle = NewTitleFull,
+            Abbreviation = NewTitleAbbr,
+        };
+
+        AllTitles.Add(title);
+        NewTitleFull = string.Empty;
+        NewTitleAbbr = string.Empty;
     }
 
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)

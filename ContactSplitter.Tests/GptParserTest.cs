@@ -1,17 +1,15 @@
-﻿using ContactParser;
-using ContactParser.Contracts;
-using ContactParser.Contracts.Data;
+﻿using ContactParser.Contracts;
 
 namespace ContactSplitter.Tests;
 
-public class FullParserTest
+public class GptParserTest
 {
-    public FullParserTest(IContactParser contactParser)
+    public GptParserTest(IOnlineContactParser contactParser)
     {
         _contactParser = contactParser;
     }
 
-    private readonly IContactParser _contactParser;
+    private readonly IOnlineContactParser _contactParser;
 
     /* Input, Anrede, Titel, Briefanrede, Vorname, Nachname, Geschlecht */
     [Theory]
@@ -42,7 +40,7 @@ public class FullParserTest
         Assert.Equal(salutation, contact.Salutation);
         Assert.Equal(title, contact.Title);
         Assert.Equal(letterSalutation, contact.LetterSalutation);
-        Assert.Equal(foreName, contact.ForeName);
+        Assert.Equal(foreName, contact.FirstName);
         Assert.Equal(lastName, contact.LastName);
         Assert.Equal(gender, contact.Gender);
     }

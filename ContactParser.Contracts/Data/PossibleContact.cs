@@ -7,7 +7,7 @@ public class PossibleContact
     public string LetterSalutation { get; set; } = string.Empty; // Brief-Anrede
     public string Title { get; set; } = string.Empty; // Titel
     public string Gender { get; set; } = string.Empty; // Geschlecht
-    public string ForeName { get; set; } = string.Empty; // Vorname
+    public string FirstName { get; set; } = string.Empty; // Vorname
     public string LastName { get; set; } = string.Empty; // Nachname
     public string Note { get; set; } = string.Empty;
     public string NotParsed { get; set; } = string.Empty;

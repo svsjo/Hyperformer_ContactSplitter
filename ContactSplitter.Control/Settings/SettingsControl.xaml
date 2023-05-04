@@ -8,42 +8,84 @@
              d:DataContext="{d:DesignInstance Type=local:SettingsViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1200">
-    <Grid >
-        <StackPanel Orientation="Horizontal">
-            <StackPanel Orientation="Vertical" Margin="20">
-                <TextBlock Text="Zulässige Titel" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
-                    <ListBox ItemsSource="{Binding AllTitles}" Height="580" Width="350" HorizontalAlignment="Left">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Height="25" FontSize="15" Text="{Binding}" Margin="5,0" Width="240"/>
-                                    <Button Height="25" FontSize="11" Content="Remove" Command="{Binding DataContext.RemoveTitleCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+    <Grid>
+        <TabControl>
+            <TabItem Header="Titel" FontSize="18">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" Margin="20">
+                    <TextBlock Text="Zulässige Titel" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
+                        <ListBox ItemsSource="{Binding AllTitles}" Height="580" Width="410" HorizontalAlignment="Left">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Height="33" FontSize="15" Text="{Binding MaleTitle}" Margin="5,0" Width="200"/>
+                                        <TextBlock Height="33" FontSize="15" Text="{Binding Abbreviation}" Margin="5,0" Width="100"/>
+                                        <Button Height="33" FontSize="12"  Margin="5,0" Content="Remove" Command="{Binding DataContext.RemoveTitleCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="20">
+                    <TextBlock Text="Neuer Titel" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox IsReadOnly="True" Margin="0,0,10,10" Width="90">Voller Titel</TextBox>
+                            <TextBox Text="{Binding NewTitleFull, Mode=TwoWay}" Margin="0,0,0,10" Width="175"/>
+                        </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox IsReadOnly="True" Margin="0,0,10,10" Width="90">Abkürzung</TextBox>
+                        <TextBox Text="{Binding NewTitleAbbr, Mode=TwoWay}" Margin="0,0,0,10" Width="175"/>
+                    </StackPanel>
+                    <Button Content="Add" Command="{Binding AddTitleCommand}" Height="35" Width="275"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="20">
-                <TextBlock Text="Neuer Titel" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
-                <TextBox Text="{Binding NewTitle, Mode=TwoWay}" Margin="0,0,0,10" Width="275"/>
-                <Button Content="Add" Command="{Binding AddTitleCommand}" Height="35" Width="275"/>
-            </StackPanel>
-            <Separator Margin="35,0"></Separator>
-            <StackPanel Orientation="Vertical" Margin="20">
-                <TextBlock Text="Design Theme" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
-                <ComboBox ItemsSource="{Binding AvailableThemes}"
-                          SelectedItem="{Binding SelectedTheme}"
-                          Width="150">
-                </ComboBox>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="20">
-                <TextBlock Text="Parser Typen" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" 
-                           TextAlignment="Left" Margin="0 0 0 10" />
-                <ComboBox ItemsSource="{Binding AvailableParsers}"
-                          SelectedItem="{Binding SelectedParser}"
-                          Width="150">
-                </ComboBox>
-            </StackPanel>
-        </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Präfix" FontSize="18">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="20">
+                        <TextBlock Text="Zulässige Präfixe" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
+                        <ListBox ItemsSource="{Binding AllPrefixes}" Height="580" Width="250" HorizontalAlignment="Left">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Height="33" FontSize="15" Text="{Binding }" Margin="5,0" Width="150"/>
+                                        <Button Height="33" FontSize="12"  Margin="5,0" Content="Remove" Command="{Binding DataContext.RemovePrefixCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="20">
+                        <TextBlock Text="Neuer Präfix" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox IsReadOnly="True" Margin="0,0,10,10" Width="75">Präfix</TextBox>
+                            <TextBox Text="{Binding NewPrefix, Mode=TwoWay}" Margin="0,0,0,10" Width="190"/>
+                        </StackPanel>
+                        <Button Content="Add" Command="{Binding AddPrefixCommand}" Height="35" Width="275"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Style und Parser" FontSize="18">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="20">
+                        <TextBlock Text="Design Theme" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
+                        <ComboBox ItemsSource="{Binding AvailableThemes}"
+                                  SelectedItem="{Binding SelectedTheme}"
+                                  Width="150">
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="20">
+                        <TextBlock Text="Parser Typen" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" 
+                                   TextAlignment="Left" Margin="0 0 0 10" />
+                        <ComboBox ItemsSource="{Binding AvailableParsers}"
+                                  SelectedItem="{Binding SelectedParser}"
+                                  Width="150">
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>

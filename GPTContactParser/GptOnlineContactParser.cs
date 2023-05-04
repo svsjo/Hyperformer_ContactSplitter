@@ -22,7 +22,7 @@ public class GptOnlineContactParser : IOnlineContactParser
             Title = resParts[1],
             Salutation = resParts[0],
             LetterSalutation = resParts[2],
-            ForeName = resParts[3],
+            FirstName = resParts[3],
             Gender = resParts[5],
             LastName = resParts[4]
         };
