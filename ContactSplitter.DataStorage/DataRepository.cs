@@ -149,6 +149,7 @@ public class DataRepository
         new Title { MaleTitle = "Diplom-Wirtschaftsingenieur", Abbreviation = "Dipl.-Wi.-Ing." },
         new Title { MaleTitle = "Diplom-Agraringenieur", Abbreviation = "Dipl.-Agraring." },
         new Title { MaleTitle = "Diplom-Architekt", Abbreviation = "Dipl.-Arch." },
+        new Title { MaleTitle = "Doktor-Ingenieur", Abbreviation = "Dr.-Ing." },
 
 /* Fachrichtungen, wird bspw. angehängt nach Dr. */
         new Title { MaleTitle = "agriculturae", Abbreviation = "agr.", IsGeneric = true },

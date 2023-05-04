@@ -59,15 +59,11 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         if (string.IsNullOrEmpty(title)) return anrede;
 
         var splits = title.Split(' ').ToList();
-        var titleObjects = new List<Title>();
-        foreach (var s in splits)
-        {
-            if (TryFindTitle(s, out var titleObj)) titleObjects.Add(titleObj!);
-        }
+        if (!TryFindTitle(splits.First(), out var titleObj)) return anrede;
 
-        if (gender == "F") anrede = anrede + " " + string.Join(' ', titleObjects.Select(x => x.FemaleTitle));
-        if (gender == "M") anrede = anrede + " " + string.Join(' ', titleObjects.Select(x => x.MaleTitle));
-        else anrede = anrede + " " + string.Join(' ', titleObjects.Select(x => x.GenericTitle));
+        if (gender == "F") anrede = anrede + " " + titleObj?.FemaleTitle;
+        if (gender == "M") anrede = anrede + " " + titleObj?.MaleTitle;
+        else anrede = anrede + " " + titleObj?.GenericTitle;
 
         return anrede;
     }
