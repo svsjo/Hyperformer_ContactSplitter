@@ -82,9 +82,9 @@ public class DefaultOfflineContactParser : IOfflineContactParser
     {
         var anrede = gender switch
         {
-            "M" => "Sehr Geehrter",
-            "F" => "Sehr Geehrte",
-            _ => "Sehr Geehrte",
+            "M" => "Sehr geehrter",
+            "F" => "Sehr geehrte",
+            _ => "Sehr geehrte",
         };
 
 

@@ -1,14 +1,15 @@
 ﻿using ContactParser;
 using ContactParser.Contracts;
 using ContactParser.Contracts.Data;
+using ContactSplitter.DataStorage;
 
 namespace ContactSplitter.Tests;
 
 public class DefaultParserTest
 {
-    public DefaultParserTest(IOfflineContactParser contactParser)
+    public DefaultParserTest()
     {
-        _contactParser = contactParser;
+        _contactParser = new DefaultOfflineContactParser(new DataRepository());
     }
 
     private readonly IOfflineContactParser _contactParser;

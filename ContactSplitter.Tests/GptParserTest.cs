@@ -1,12 +1,15 @@
-﻿using ContactParser.Contracts;
+﻿using ContactParser;
+using ContactParser.Contracts;
+using ContactSplitter.DataStorage;
+using GPTContactParser;
 
 namespace ContactSplitter.Tests;
 
 public class GptParserTest
 {
-    public GptParserTest(IOnlineContactParser contactParser)
+    public GptParserTest()
     {
-        _contactParser = contactParser;
+        _contactParser = new GptOnlineContactParser();
     }
 
     private readonly IOnlineContactParser _contactParser;
