@@ -227,6 +227,10 @@ public class DataRepository
     public ObservableCollection<string> AllPrefixes { get; set; } = new()
     {
         "van",
-        "von"
+        "von",
+        "zu",
+        "von der",
+        "de",
+        "van der",
     };
 }
