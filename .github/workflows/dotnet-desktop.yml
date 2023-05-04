@@ -30,4 +30,4 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: Run tests
-      run: dotnet test ./TestProject/TestProject.csproj
+      run: dotnet test TestProject.csproj
