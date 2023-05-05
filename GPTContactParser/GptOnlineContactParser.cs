@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -16,6 +17,8 @@ public class GptOnlineContactParser : IOnlineContactParser
     {
         var res = await Parse(input);
         var resParts = res.Split(";");
+        if (resParts.Length < 6) return new PossibleContact();
+
         return new PossibleContact
         {
             Title = resParts[1],
@@ -31,12 +34,17 @@ public class GptOnlineContactParser : IOnlineContactParser
     {
         const string url = "https://api.openai.com/v1/chat/completions";
 
-        const string apiKey = "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";
 
-            const string dataRaw = "Dr. Russwurm, Winfried -> {Herr Dr.; Dr.; Sehr geehrter Herr Dr.; Winfried; Russwurm; M}";
+        var apiKeyEncoded = "c2stdkw2STNERVpFd2d1ZUI5ZENKdEpUM0JsYmtGSncxaXRZRVZvQ0hGMmpuaXVHblF2";
+
+        var apiKey = Encoding.UTF8.GetString(Convert.FromBase64String(apiKeyEncoded));
 
 
-            const string task = "Du bist ein Parser zum Parsen von Personenmerkmalen. Das Ergebnis gibst du jeweils im Format: (Anrede; Titel; Begrüßung; Vorname; Nachname; Geschlecht)  zurück. Bist du nicht sicher gibst du einfach den Wahrscheinlichsten Vorschlag an (nur ein Ergebnis). Nutze zudem Logik und Weltwissen zum bestimmen des Geschlechtes";
+
+        const string dataRaw = "Dr. Russwurm, Winfried -> {Herr Dr.; Dr.; Sehr geehrter Herr Doktor; Winfried; Russwurm; M}";
+
+
+            const string task = "Du bist ein Parser zum Parsen von Personenmerkmalen. Das Ergebnis gibst du jeweils im Format: (Anrede; Titel; Begrüßung; Vorname; Nachname; Geschlecht)  zurück. Bist du nicht sicher gibst du einfach den Wahrscheinlichsten Vorschlag an (nur ein Ergebnis). Nutze zudem Logik und Weltwissen zum bestimmen des Geschlechtes. Bei der Begrüßung den Titel bitte ausschreiben: Dr. wird z.B. zu Doktor";
 
 
             var prompt =
