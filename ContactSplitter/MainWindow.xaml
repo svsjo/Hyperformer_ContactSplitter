@@ -84,7 +84,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <local:CustomViewContainer CustomViewMapper="{Binding UserControlMapper}" x:Name="RootFrame" Grid.Row="1" />
+                    <local:DependencyControlContainer CustomViewInjector="{Binding UserControlInjector}" x:Name="RootFrame" Grid.Row="1" />
                     <ui:Breadcrumb
                     Grid.Row="0"
                     Margin="18"

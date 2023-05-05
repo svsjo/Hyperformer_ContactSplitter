@@ -25,18 +25,12 @@ namespace ContactSplitter
     /// </summary>
     public partial class MainWindow : UiWindow
     {
-        private readonly CustomControlViewModelMapper _customControlViewModelMapper;
-
-        public MainWindow(MainViewModel viewModel, CustomControlViewModelMapper customControlViewModelMapper)
+    
+        public MainWindow(MainViewModel viewModel)
         {
-            _customControlViewModelMapper = customControlViewModelMapper;
             InitializeComponent();
             this.DataContext = viewModel;
         }
 
-        private void RootFrame_OnNavigated(object sender, NavigationEventArgs e)
-        {
-            _customControlViewModelMapper.HandleNavigation((ContentControl)e.Content);
-        }
     }
 }

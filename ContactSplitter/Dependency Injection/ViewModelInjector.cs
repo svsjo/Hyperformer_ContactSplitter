@@ -9,12 +9,12 @@ using System.Windows.Controls;
 
 namespace ContactSplitter;
 
-public class CustomControlViewModelMapper
+public class ViewModelInjector
 {
     private readonly IServiceProvider _iServiceProvider;
     private readonly Dictionary<Type, Type> _map = new();
 
-    public CustomControlViewModelMapper(IServiceProvider iServiceProvider)
+    public ViewModelInjector(IServiceProvider iServiceProvider)
     {
         _iServiceProvider = iServiceProvider;
     }

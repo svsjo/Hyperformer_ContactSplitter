@@ -9,20 +9,20 @@ namespace ContactSplitter;
 
 public class MainViewModel : INotifyPropertyChanged
 {
-    private CustomControlViewModelMapper _userControlMapper;
+    private ViewModelInjector _userControlInjector;
 
-    public MainViewModel(CustomControlViewModelMapper userControlMapper)
+    public MainViewModel(ViewModelInjector userControlInjector)
     {
-        UserControlMapper = userControlMapper;
+        UserControlInjector = userControlInjector;
     }
 
-    public CustomControlViewModelMapper UserControlMapper
+    public ViewModelInjector UserControlInjector
     {
-        get => _userControlMapper;
+        get => _userControlInjector;
         set
         {
-            if (Equals(value, _userControlMapper)) return;
-            _userControlMapper = value;
+            if (Equals(value, _userControlInjector)) return;
+            _userControlInjector = value;
             OnPropertyChanged();
         }
     }
