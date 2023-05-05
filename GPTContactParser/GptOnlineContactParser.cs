@@ -35,7 +35,7 @@ public class GptOnlineContactParser : IOnlineContactParser
         const string url = "https://api.openai.com/v1/chat/completions";
 
 
-        var apiKeyEncoded = "c2stdkw2STNERVpFd2d1ZUI5ZENKdEpUM0JsYmtGSncxaXRZRVZvQ0hGMmpuaXVHblF2";
+        const string apiKeyEncoded = "c2stdkw2STNERVpFd2d1ZUI5ZENKdEpUM0JsYmtGSncxaXRZRVZvQ0hGMmpuaXVHblF2";
 
         var apiKey = Encoding.UTF8.GetString(Convert.FromBase64String(apiKeyEncoded));
 
