@@ -230,8 +230,6 @@ public class DataRepository
         "van",
         "von",
         "zu",
-        "von der",
         "de",
-        "van der",
     };
 }
