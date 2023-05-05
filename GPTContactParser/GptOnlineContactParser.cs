@@ -14,7 +14,6 @@ public class GptOnlineContactParser : IOnlineContactParser
 {
     public async Task<PossibleContact> ParseContact(string input)
     {
-        //const string Input = "Dr. Phil. Antonius Van Hoof";
         var res = await Parse(input);
         var resParts = res.Split(";");
         return new PossibleContact
@@ -46,7 +45,6 @@ public class GptOnlineContactParser : IOnlineContactParser
             var data = new
             {
                 model = "gpt-3.5-turbo",
-                // max_tokens = 10,
                 messages = new[]
                 {
                     new
