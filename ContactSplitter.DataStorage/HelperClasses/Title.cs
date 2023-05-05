@@ -8,13 +8,21 @@ public class Title
     public string GenericTitle => IsGeneric ? MaleTitle : MaleTitle + "en" + " und " + MaleTitle + "innen";
     public bool IsGeneric { get; set; } = false;
 
-    public string GetFormattedTitle(string gender)
+    public bool TryGetGender(string title, out string gender)
     {
-        return gender switch
+        gender = string.Empty;
+        if (title == MaleTitle)
         {
-            "M" => MaleTitle,
-            "F" => FemaleTitle,
-            _ => GenericTitle,
-        };
+            gender = "M";
+            return true;
+        }
+
+        if (title == FemaleTitle)
+        {
+            gender = "F";
+            return true;
+        }
+
+        return false;
     }
 }
