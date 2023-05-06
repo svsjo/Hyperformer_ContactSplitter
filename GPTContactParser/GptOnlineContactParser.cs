@@ -12,18 +12,27 @@ public class GptOnlineContactParser : IOnlineContactParser
 {
     public async Task<PossibleContact> ParseContact(string input)
     {
-        var res = await GptApiClient.Request(input, GptContactParserPrompt.Get());
+        string res;
+        try
+        {
+            res = await GptApiClient.Request(input, GptContactParserPrompt.Get());
+        }
+        catch (Exception)
+        {
+            throw new APIException();
+        }
+
         var resParts = res.Split(";");
         if (resParts.Length < 6) return new PossibleContact();
 
         return new PossibleContact
         {
-            Title = resParts[1].Trim(),
-            Salutation = resParts[0].Trim(),
-            LetterSalutation = resParts[2].Trim(),
-            FirstName = resParts[3].Trim(),
-            Gender = resParts[5].Trim(),
-            LastName = resParts[4].Trim()
+            Title = resParts.ElementAtOrDefault(1)?.Trim() ?? "",
+            Salutation = resParts.ElementAtOrDefault(0)?.Trim() ?? "",
+            LetterSalutation = resParts.ElementAtOrDefault(2)?.Trim() ?? "",
+            FirstName = resParts.ElementAtOrDefault(3)?.Trim() ?? "",
+            Gender = resParts.ElementAtOrDefault(5)?.Trim() ?? "",
+            LastName = resParts.ElementAtOrDefault(4)?.Trim() ?? ""
         };
     }
 }

@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -86,12 +87,29 @@ public class ContactParseViewModel : INotifyPropertyChanged
             Note = _userGuidingNotes.EmptyInput;
             return;
         }
-
         IsLoading = Visibility.Visible;
 
-        _parseResult = _projectSettings.Parser is ParserType.ChatGpt ? await _onlineOnlineContactParser.ParseContact(Input) : await _offlineContactParser.ParseContact(Input);
+        var success = false;
+
+        try
+        {
+            _parseResult = _projectSettings.Parser is ParserType.ChatGpt
+                ? await _onlineOnlineContactParser.ParseContact(Input)
+                : await _offlineContactParser.ParseContact(Input);
+            success = true;
+        }
+        catch (APIException)
+        {
+            this.Note = "API Error";
+        }
+        catch (Exception)
+        {
+            this.Note = "Interner Fehler";
+        }
 
         IsLoading = Visibility.Collapsed;
+
+        if (!success) return;
 
         ForeName = _parseResult.FirstName;
         LastName = _parseResult.LastName;
