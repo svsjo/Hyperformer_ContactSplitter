@@ -70,6 +70,12 @@ public class ContactParseViewModel : INotifyPropertyChanged
             Title = Title,
         };
 
+        if (contact.IsEmpty)
+        {
+            this.Note = "Keine Daten angegeben";
+            return;
+        }
+
         _dataRepository.AdressBook.Add(contact);
 
         ClearFields();
