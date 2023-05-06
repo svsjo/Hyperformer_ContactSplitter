@@ -14,12 +14,12 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" Margin="20">
                     <TextBlock Text="Zulässige Titel" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
-                        <ListBox ItemsSource="{Binding AllTitles}" Height="580" Width="410" HorizontalAlignment="Left">
+                        <ListBox ItemsSource="{Binding AllTitles}" Height="580" Width="500" HorizontalAlignment="Left">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Height="33" FontSize="15" Text="{Binding MaleTitle}" Margin="5,0" Width="200"/>
-                                        <TextBlock Height="33" FontSize="15" Text="{Binding Abbreviation}" Margin="5,0" Width="100"/>
+                                        <TextBlock Height="33" FontSize="15" Text="{Binding MaleTitle}" Margin="5,0" Width="260"/>
+                                        <TextBlock Height="33" FontSize="15" Text="{Binding Abbreviation}" Margin="5,0" Width="120"/>
                                         <Button Height="33" FontSize="12"  Margin="5,0" Content="Remove" Command="{Binding DataContext.RemoveTitleCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"/>
                                     </StackPanel>
                                 </DataTemplate>

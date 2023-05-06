@@ -111,11 +111,11 @@ public class DataRepository
 
     public ObservableCollection<Title> AllTitles { get; set; } = new()
     {
-        /* Adelstitel */
         new Title { MaleTitle = "Graf", Abbreviation = "Gf." },
         new Title { MaleTitle = "Baron", Abbreviation = "Bar." },
         new Title { MaleTitle = "Freiherr", Abbreviation = "Frhr." },
-        /* Akademische Grade */
+        new Title { MaleTitle = "König", Abbreviation = "Kg." },
+        new Title { MaleTitle = "Kaiser", Abbreviation = "Ks." },
         new Title { MaleTitle = "Doktor", Abbreviation = "Dr." },
         new Title { MaleTitle = "Professor", Abbreviation = "Prof." },
         new Title { MaleTitle = "Bachelor", Abbreviation = "B." },
@@ -150,8 +150,6 @@ public class DataRepository
         new Title { MaleTitle = "Diplom-Agraringenieur", Abbreviation = "Dipl.-Agraring." },
         new Title { MaleTitle = "Diplom-Architekt", Abbreviation = "Dipl.-Arch." },
         new Title { MaleTitle = "Doktor-Ingenieur", Abbreviation = "Dr.-Ing." },
-
-/* Fachrichtungen, wird bspw. angehängt nach Dr. */
         new Title { MaleTitle = "agriculturae", Abbreviation = "agr.", IsGeneric = true },
         new Title { MaleTitle = "biologiae", Abbreviation = "biol.", IsGeneric = true },
         new Title { MaleTitle = "animalis", Abbreviation = "anim.", IsGeneric = true },
@@ -230,8 +228,7 @@ public class DataRepository
         "van",
         "von",
         "zu",
-        "von der",
         "de",
-        "van der",
+        "der"
     };
 }

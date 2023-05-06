@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using ContactParser.Contracts;
@@ -41,6 +42,8 @@ public class ContactParseViewModel : INotifyPropertyChanged
     private string _salutation = null!;
 
     private string _title = null!;
+
+    private Visibility _isLoading = Visibility.Collapsed;
 
     public ContactParseViewModel(IOnlineContactParser onlineOnlineContactParser, IOfflineContactParser offlineContactParser, DataRepository dataRepository, UserGuidingNotes userGuidingNotes, ProjectSettings projectSettings)
     {
@@ -84,7 +87,11 @@ public class ContactParseViewModel : INotifyPropertyChanged
             return;
         }
 
+        IsLoading = Visibility.Visible;
+
         _parseResult = _projectSettings.Parser is ParserType.ChatGpt ? await _onlineOnlineContactParser.ParseContact(Input) : await _offlineContactParser.ParseContact(Input);
+
+        IsLoading = Visibility.Collapsed;
 
         ForeName = _parseResult.FirstName;
         LastName = _parseResult.LastName;
@@ -106,6 +113,17 @@ public class ContactParseViewModel : INotifyPropertyChanged
         {
             if (value == _input) return;
             _input = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public Visibility IsLoading
+    {
+        get => _isLoading;
+        set
+        {
+            if (value == _isLoading) return;
+            _isLoading = value;
             OnPropertyChanged();
         }
     }

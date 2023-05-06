@@ -1,7 +1,11 @@
-﻿using ContactParser.Contracts;
+﻿#region
+
+using ContactParser.Contracts;
 using ContactParser.Contracts.Data;
 using ContactSplitter.DataStorage;
 using ContactSplitter.DataStorage.HelperClasses;
+
+#endregion
 
 namespace ContactParser;
 
@@ -25,6 +29,8 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         var titleResult = TryGetTitle(input);
         var title = titleResult.Result;
         input = titleResult.NewString;
+
+        if (TryActualisateGender(title, out var newGender)) gender = newGender;
 
         var lastNameResult = TryGetLastName(input);
         var lastName = lastNameResult.Result;
@@ -53,7 +59,8 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         {
             "M" => "Herr",
             "F" => "Frau",
-            _ => string.Empty,
+            "D" => "Damen und Herren",
+            _ => string.Empty
         };
 
         if (string.IsNullOrEmpty(title)) return anrede;
@@ -61,16 +68,17 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         var splits = title.Split(' ').ToList();
         if (!TryFindTitle(splits.First(), out var titleObj)) return anrede;
 
-        if (gender == "F") anrede = anrede + " " + titleObj?.FemaleTitle;
-        if (gender == "M") anrede = anrede + " " + titleObj?.MaleTitle;
-        else anrede = anrede + " " + titleObj?.GenericTitle;
+        if (gender == "F") anrede = anrede + " " + titleObj!.FemaleTitle;
+        if (gender == "M") anrede = anrede + " " + titleObj!.MaleTitle;
+        else anrede = titleObj!.GenericTitle;
 
         return anrede;
     }
 
     private bool TryFindTitle(string input, out Title? title)
     {
-        title = _dataRepository.AllTitles.FirstOrDefault(x => x.Abbreviation == input || x.FemaleTitle == input || x.MaleTitle == input);
+        title = _dataRepository.AllTitles.FirstOrDefault(x =>
+            x.Abbreviation == input || x.FemaleTitle == input || x.MaleTitle == input);
         return title != null;
     }
 
@@ -80,7 +88,7 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         {
             "M" => "Sehr geehrter",
             "F" => "Sehr geehrte",
-            _ => "Sehr geehrte",
+            _ => "Sehr geehrte"
         };
 
 
@@ -92,23 +100,56 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         var splits = input.Split(' ');
         var lastName = splits.Last();
         var prefix = splits.Where(x => _dataRepository.AllPrefixes.Contains(x)).ToList();
-        if (!prefix.Any()) return new ParseResult(string.Join(' ', splits.Where(x => x != lastName)), lastName);
+
+        var result = splits.Reverse().ToList();
+        result.Remove(lastName);
+        result.Reverse();
+
+        if (!prefix.Any()) return new ParseResult(string.Join(' ', result), lastName);
 
         var concatString = prefix.Last() + " " + lastName;
-        return input.Contains(concatString) /* Ansonsten unzusammenhängend -> kein echter Prefix */
-            ? new ParseResult(string.Join(' ', splits.Where(x => x != lastName)), lastName)
-            : new ParseResult(string.Join(' ', splits.Where(x => x != lastName && x != prefix.Last())), lastName);
+        if (input.Contains(concatString))
+        {
+            result.Reverse();
+            result.Remove(prefix.Last());
+            result.Reverse();
+
+            return new ParseResult(string.Join(' ', result), concatString);
+        }
+        else
+        {
+            return new ParseResult(string.Join(' ', result), lastName);
+        }
     }
 
     private ParseResult TryGetTitle(string input)
     {
         var splits = input.Split(' ');
+        if (splits.Length == 1) return new ParseResult(input, string.Empty);
+
         var results = splits
             .Where(x => TryFindTitle(x, out var title))
+            .Distinct()
             .ToList();
 
         results.AddRange(splits.Except(results).Where(x => x.EndsWith('.')));
-        return new ParseResult(string.Join(' ', splits.Except(results)), string.Join(' ', results));
+
+        var toIgnore = new List<string>(results);
+
+        var newString = string.Empty;
+
+        foreach (var split in splits)
+        {
+            if (toIgnore.Contains(split))
+            {
+                toIgnore.Remove(split);
+                continue;
+            }
+
+            newString = newString + " " + split;
+        }
+
+        return new ParseResult(newString.Trim(), string.Join(' ', results));
         /* Ggf. beachten, dass alle Titel ja zusammenhängend sein müssen -> außerdem letztes Wort != Titel */
     }
 
@@ -116,6 +157,7 @@ public class DefaultOfflineContactParser : IOfflineContactParser
     private ParseResult TryGetGender(string input)
     {
         var splits = input.Split(' ');
+        if (splits.Length == 1) return new ParseResult(input, string.Empty);
 
         return splits[0].ToLower() switch
         {
@@ -123,5 +165,14 @@ public class DefaultOfflineContactParser : IOfflineContactParser
             "frau" => new ParseResult(string.Join(' ', splits.Skip(1)), "F"),
             _ => new ParseResult(input, "D")
         };
+    }
+
+    private bool TryActualisateGender(string title, out string gender)
+    {
+        gender = string.Empty;
+        if (!TryFindTitle(title, out var titleObj)) return false;
+        if (!titleObj!.TryGetGender(title, out var genderStr)) return false;
+        gender = genderStr;
+        return true;
     }
 }
