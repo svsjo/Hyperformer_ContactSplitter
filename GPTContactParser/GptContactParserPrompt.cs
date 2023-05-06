@@ -10,8 +10,8 @@ internal static class GptContactParserPrompt
         const string task =
             "Du bist ein Parser zum Parsen von Personenmerkmalen. Das Ergebnis gibst du jeweils im Format: (Anrede; Titel; Begrüßung; Vorname; Nachname; Geschlecht) zurück." +
             "Bist du nicht sicher gibst du einfach den Wahrscheinlichsten Vorschlag an (nur ein Ergebnis). " +
-            "Nutze zudem Logik und Weltwissen zum bestimmen des Geschlechtes. Gebe das Geschlecht mit M (Male) und F (Female) an." +
-            "Bei der Begrüßung nur den höchsten Titel verwenden und diesen bitte ausschreiben: 'Herr Prof. Dr.' wird z.B. zu 'Professor'.";
+            "Nutze zudem Logik und Weltwissen zum Bestimmen des Geschlechtes. Gebe das Geschlecht mit M (Male) und F (Female) an." +
+            "Bei der Begrüßung und der Anrede nur den höchstgradigsten Titel verwenden und diesen bitte ausschreiben: 'Herr Prof. Dr.' wird z.B. zu 'Professor'." ;
 
 
         const string prompt =
