@@ -325,5 +325,12 @@ public class DataRepository
         "der",
         "vom",
         "zur",
+        "dem",
+        "zu",
+        "aus",
+        "den",
+        "über",
+        "unter",
+        "hinter"
     };
 }
