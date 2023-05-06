@@ -45,7 +45,7 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical" Margin="20">
                         <TextBlock Text="Zulässige Präfixe" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
-                        <ListBox ItemsSource="{Binding AllPrefixes}" Height="580" Width="250" HorizontalAlignment="Left">
+                        <ListBox ItemsSource="{Binding AllPrefixes}" Height="580" Width="270" HorizontalAlignment="Left">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
