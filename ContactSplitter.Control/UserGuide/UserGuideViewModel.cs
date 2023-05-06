@@ -1,5 +1,4 @@
 ﻿using ContactSplitter.DataStorage;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -13,6 +12,23 @@ public class UserGuideViewModel : INotifyPropertyChanged
     private string _bestPractices = "Unterschieden wird zwischen zwei Parsern, welche im folgenden weiter erklärt werden.\r\n\r\n1. ChatGPT: \r\nSetzt Internetverbindung vorraus und dauert einige Sekunden.\r\nStellt eine Anfrage an die API von ChatGPT, nutzt also ein Sprachmodell zur Lösung.\r\nVorteil ist, dass diese Version deutlich besser mit Grenzfällen umgehen kann.\r\n\r\n2. Offline:\r\nFunktioniert auch offline und liefert sofort ein Ergebnis.\r\nNutzt einen eigenen Parser, welcher nach fester Logik arbeitet.\r\nNachteil ist, dass die Eingabe in fester Form erfolgen muss und auf Grenzfälle schlechter reagieren kann. \r\nHerr/Frau - Titel (*) - Vornamen (*) - Präfix - Nachname (weitere Nachnamen nur mit -).\r\nEs werden nur Titel und Präfixe erkannt, welche auch in der Datenbank sind.";
 
     private string _developers = "Mitglieder: Jonathan Schwab, Felix Wochele, Seva Pypenko, Jonas Weis\nTemname: Hyperformer";
+
+    private string _architektur = "Die verwendete Architektur ist eine Composite Components Architektur in Kombination mit einer Schichtenarchitektur. \n\n" +
+                                  "Die Composite Componentes Architektur sieht eine Trennung von Schnittstellen und Implementierungen auf Komponentenebene (in .NET also auf Assembly-Ebene) vor. \n" +
+                                  "Dies ermöglich eine Austauschbarkeit auf Komponentenebene. Zusätzlich wird das Dependecy Inversion Prinzip eingehalten, welches eine Entkopplung von Schnittstellen " +
+                                  "\nauf Implementierungen auf Klassenebene vorsieht. Das Mapping von Schnittstellen und Implementierungen erfolgt über einen Dependecy Injection Container, \n" +
+                                  "welcher sich im Hauptprojekt (ContactSplitter) befindet." +
+                                  " Das Hauptprojekt konsumiert alle Komponenten und führt entsprechende Kompositionen durch.\n" +
+                                  "Diese Schritte ermöglichen eine Testbarkeit, Wiederverwendbarkeit und Austauschbarkeit der Komponenten und Klassen und erhöhen jeweils die Modularität.\n" +
+                                  "\nFür das UserInterface-Element des Adressbuches wurde ein getrenntes UserControl erstellt, welches als Bibliothek konsumiert und beliebig eingebunden werden kann.\n" +
+                                  "\n\nAus Perspektive der Schichtenarchitektur gibt es die Schichten: Repository, Logik und UI.\n" +
+                                  "Bei der UI wird das MVVM Entwurfsmuster verwendet.";
+
+    private string _cleanCode =
+        "Zur Einhalung von CleanCode und entsprechender Codierungsrichtlinien, wurde neben Sorgfalt der Entwickler, das Werkzeug Resharper verwendet. \n" +
+        "Dieses Werkzeug führt statische Codeanalysen durch und kann mittels syntaktischer semantischer Analyse Antipatterns, Inkonsistenzen, mögliche Vereinfachungen,\n" +
+        "sowie verletzungen von Codierungsrichlinien (Namenskonventionen, Einrückung, Formaitierung...) erkennen. Die verwendeten Codierungsrichlinien sind die von der Firma Jetbrains empfohlenen \n" +
+        "und im Resharper vorkonfigurierten Richtlinien: https://www.jetbrains.com/dotnet/guide/tutorials/resharper-essentials/";
 
     public UserGuideViewModel(ProjectSettings projectSettings)
     {
@@ -39,6 +55,28 @@ public class UserGuideViewModel : INotifyPropertyChanged
         }
     }
 
+    public string CleanCode
+    {
+        get => _cleanCode;
+        set
+        {
+            if (value == _cleanCode) return;
+            _cleanCode = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string Architektur
+    {
+        get => _architektur;
+        set
+        {
+            if (value == _architektur) return;
+            _architektur = value;
+            OnPropertyChanged();
+        }
+    }
+
     public string Developers
     {
         get => _developers;
@@ -54,13 +92,5 @@ public class UserGuideViewModel : INotifyPropertyChanged
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    private bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-    {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-        field = value;
-        OnPropertyChanged(propertyName);
-        return true;
     }
 }

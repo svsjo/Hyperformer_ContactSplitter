@@ -14,6 +14,8 @@
                 <ui:Card Margin="10" Footer="{Binding Bedieneranleitung}" Content="Bedieneranleitung"></ui:Card>
                 <ui:Card Margin="10" Footer="{Binding BestPractices}" Content="Best Practices und Grenzfälle"></ui:Card>
                 <ui:Card Margin="10" Footer="{Binding Developers}" Content="Infos zum Entwicklerteam"></ui:Card>
+                <ui:Card Margin="10" Footer="{Binding Architektur}" Content="Infos zur Architektur"></ui:Card>
+                <ui:Card Margin="10" Footer="{Binding CleanCode}" Content="Infos zu Clean Code"></ui:Card>
             </StackPanel>
         </ScrollViewer>
     </Grid>

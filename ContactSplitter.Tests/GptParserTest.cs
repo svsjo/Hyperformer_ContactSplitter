@@ -17,6 +17,12 @@ public class GptParserTest
     /* Input, Anrede, Titel, Briefanrede, Vorname, Nachname, Geschlecht */
     [Theory]
     [InlineData("Frau Sandra Berger", "Frau", "", "Sehr geehrte Frau", "Sandra", "Berger", "F")]
+
+    [InlineData("Herr Sandra Berger", "Frau", "", "Sehr geehrte Frau", "Sandra", "Berger", "F")]
+
+
+
+
     [InlineData("Herr Dr. Sandro Gutmensch", "Herr Doktor", "Dr.", "Sehr geehrter Herr Doktor", "Sandro", "Gutmensch", "M")]
     [InlineData("Professor Heinreich Freiherr vom Wald", "Herr Professor", "Professor", "Sehr geehrter Herr Professor", "Heinreich", "Freiherr vom Wald", "M")]
     [InlineData("Frau Prof. Dr. rer. nat. Maria von Leuthäuser-Schnarrenberger", "Frau Professor", "Prof. Dr. rer. nat.", "Sehr geehrte Frau Professor", "Maria", "von Leuthäuser-Schnarrenberger", "F")]
