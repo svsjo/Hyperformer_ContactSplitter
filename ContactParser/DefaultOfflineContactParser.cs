@@ -57,7 +57,7 @@ public class DefaultOfflineContactParser : IOfflineContactParser
     {
         var anrede = gender switch
         {
-            "M" => "Herr",
+            "M" => "Herr", 
             "F" => "Frau",
             "D" => "Damen und Herren",
             _ => string.Empty
@@ -69,7 +69,7 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         if (!TryFindTitle(splits.First(), out var titleObj)) return anrede;
 
         if (gender == "F") anrede = anrede + " " + titleObj!.FemaleTitle;
-        if (gender == "M") anrede = anrede + " " + titleObj!.MaleTitle;
+        else if (gender == "M") anrede = anrede + " " + titleObj!.MaleTitle;
         else anrede = titleObj!.GenericTitle;
 
         return anrede;
