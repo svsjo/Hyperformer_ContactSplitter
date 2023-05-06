@@ -68,11 +68,9 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         var splits = title.Split(' ').ToList();
         if (!TryFindTitle(splits.First(), out var titleObj)) return anrede;
 
-        if (gender == "F") anrede = anrede + " " + titleObj!.FemaleTitle;
-        if (gender == "M") anrede = anrede + " " + titleObj!.MaleTitle;
-        else anrede = titleObj!.GenericTitle;
-
-        return anrede;
+        if (gender == "F") return anrede + " " + titleObj!.FemaleTitle;
+        if (gender == "M") return anrede + " " + titleObj!.MaleTitle;
+        return titleObj!.GenericTitle;
     }
 
     private bool TryFindTitle(string input, out Title? title)
@@ -167,12 +165,18 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         };
     }
 
-    private bool TryActualisateGender(string title, out string gender)
+    private bool TryActualisateGender(string titleString, out string gender)
     {
         gender = string.Empty;
-        if (!TryFindTitle(title, out var titleObj)) return false;
-        if (!titleObj!.TryGetGender(title, out var genderStr)) return false;
-        gender = genderStr;
-        return true;
+        var splits = titleString.Split(' ').ToList();
+        foreach (var title in splits)
+        {
+            if (!TryFindTitle(title, out var titleObj)) continue;
+            if (!titleObj!.TryGetGender(title, out var genderStr)) continue;
+            gender = genderStr;
+            return true;
+        }
+
+        return false;
     }
 }
