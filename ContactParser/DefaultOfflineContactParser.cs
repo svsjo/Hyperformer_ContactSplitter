@@ -127,7 +127,6 @@ public class DefaultOfflineContactParser : IOfflineContactParser
 
         var results = splits
             .Where(x => TryFindTitle(x, out var title))
-            .Distinct()
             .ToList();
 
         results.AddRange(splits.Except(results).Where(x => x.EndsWith('.')));

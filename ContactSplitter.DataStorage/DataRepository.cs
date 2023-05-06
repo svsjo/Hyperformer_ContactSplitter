@@ -1,6 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿#region
+
+using System.Collections.ObjectModel;
 using ContactParser.Contracts.Data;
 using ContactSplitter.DataStorage.HelperClasses;
+
+#endregion
 
 namespace ContactSplitter.DataStorage;
 
@@ -220,7 +224,96 @@ public class DataRepository
         new Title { MaleTitle = "soziologiae", Abbreviation = "soz.", IsGeneric = true },
         new Title { MaleTitle = "philosophiae", Abbreviation = "phil.", IsGeneric = true },
         new Title { MaleTitle = "historicae", Abbreviation = "hist.", IsGeneric = true },
-        new Title { MaleTitle = "politicae", Abbreviation = "pol.", IsGeneric = true }
+        new Title { MaleTitle = "politicae", Abbreviation = "pol.", IsGeneric = true },
+        new Title { MaleTitle = "rerum", Abbreviation = "rer.", IsGeneric = true },
+        new Title { MaleTitle = "nat", Abbreviation = "nat.", IsGeneric = true }, // Naturwissenschaften
+        new Title { MaleTitle = "physiologiae", Abbreviation = "physiol.", IsGeneric = true }, // Physiologie
+        new Title { MaleTitle = "pharmaciae", Abbreviation = "pharm.", IsGeneric = true }, // Pharmazie
+        new Title { MaleTitle = "odontologiae", Abbreviation = "odont.", IsGeneric = true }, // Zahnmedizin
+        new Title { MaleTitle = "ophthalmologiae", Abbreviation = "ophthal.", IsGeneric = true }, // Augenheilkunde
+        new Title { MaleTitle = "dermatologiae", Abbreviation = "derm.", IsGeneric = true }, // Dermatologie
+        new Title { MaleTitle = "endocrinologiae", Abbreviation = "endocr.", IsGeneric = true }, // Endokrinologie
+        new Title { MaleTitle = "gastroenterologiae", Abbreviation = "gastro.", IsGeneric = true }, // Gastroenterologie
+        new Title { MaleTitle = "hematologiae", Abbreviation = "hematol.", IsGeneric = true }, // Hämatologie
+        new Title { MaleTitle = "obstetriciae", Abbreviation = "obst.", IsGeneric = true }, // Geburtshilfe
+        new Title { MaleTitle = "oncologiae", Abbreviation = "onco.", IsGeneric = true }, // Onkologie
+        new Title
+        {
+            MaleTitle = "otolaryngologiae", Abbreviation = "oto.", IsGeneric = true
+        }, // Hals-Nasen-Ohrenheilkunde
+        new Title { MaleTitle = "pneumologiae", Abbreviation = "pneumol.", IsGeneric = true }, // Pneumologie
+        new Title { MaleTitle = "proctologiae", Abbreviation = "proctol.", IsGeneric = true }, // Proktologie
+        new Title { MaleTitle = "radiologiae", Abbreviation = "radiol.", IsGeneric = true }, // Radiologie
+        new Title { MaleTitle = "rheumatologiae", Abbreviation = "rheumatol.", IsGeneric = true }, // Rheumatologie
+        new Title { MaleTitle = "urologiae", Abbreviation = "uro.", IsGeneric = true }, // Urologie
+        new Title { MaleTitle = "venerologiae", Abbreviation = "venerol.", IsGeneric = true }, // Venerologie
+        new Title { MaleTitle = "toxicologiae", Abbreviation = "tox.", IsGeneric = true }, // Toxikologie
+        new Title { MaleTitle = "anatomiae", Abbreviation = "anat.", IsGeneric = true }, // Anatomie
+        new Title { MaleTitle = "pathologiae", Abbreviation = "pathol.", IsGeneric = true }, // Pathologie
+        new Title { MaleTitle = "hygienicae", Abbreviation = "hyg.", IsGeneric = true }, // Hygiene
+        new Title { MaleTitle = "socialis", Abbreviation = "soc.", IsGeneric = true }, // Sozialwissenschaften
+        new Title { MaleTitle = "publicae", Abbreviation = "publ.", IsGeneric = true },
+        new Title { MaleTitle = "artium", Abbreviation = "art.", IsGeneric = true }, // Geisteswissenschaften
+        new Title { MaleTitle = "ethicae", Abbreviation = "eth.", IsGeneric = true }, // Ethik
+        new Title { MaleTitle = "logicae", Abbreviation = "log.", IsGeneric = true }, // Logik
+        new Title { MaleTitle = "linguae antiquae", Abbreviation = "ling. ant.", IsGeneric = true }, // Alte Sprachen
+        new Title { MaleTitle = "architecturae", Abbreviation = "arch.", IsGeneric = true }, // Architektur
+        new Title { MaleTitle = "astronomiae", Abbreviation = "astron.", IsGeneric = true }, // Astronomie
+        new Title { MaleTitle = "psychiatriae", Abbreviation = "psychiat.", IsGeneric = true }, // Psychiatrie
+        new Title { MaleTitle = "psychotherapiae", Abbreviation = "psychother.", IsGeneric = true }, // Psychotherapie
+        new Title { MaleTitle = "sexologiae", Abbreviation = "sexol.", IsGeneric = true }, // Sexologie
+        new Title { MaleTitle = "criminologiae", Abbreviation = "crim.", IsGeneric = true }, // Kriminologie
+        new Title { MaleTitle = "linguae germanicae", Abbreviation = "germ.", IsGeneric = true }, // Germanistik
+        new Title { MaleTitle = "linguae romanicae", Abbreviation = "rom.", IsGeneric = true }, // Romanistik
+        new Title { MaleTitle = "linguae slavicae", Abbreviation = "slav.", IsGeneric = true }, // Slawistik
+        new Title { MaleTitle = "philologiae", Abbreviation = "philol.", IsGeneric = true }, // Philologie
+        new Title { MaleTitle = "geologiae", Abbreviation = "geol.", IsGeneric = true }, // Geologie
+        new Title { MaleTitle = "technicae", Abbreviation = "tech.", IsGeneric = true }, // Technikwissenschaften
+        new Title { MaleTitle = "pediatriae", Abbreviation = "ped.", IsGeneric = true }, // Pädiatrie
+        new Title { MaleTitle = "orthopaediae", Abbreviation = "ortho.", IsGeneric = true }, // Orthopädie
+        new Title { MaleTitle = "neonatologiae", Abbreviation = "neonatol.", IsGeneric = true }, // Neonatologie
+        new Title { MaleTitle = "audiologiae", Abbreviation = "audiol.", IsGeneric = true }, // Audiologie
+        new Title { MaleTitle = "neurochirurgiae", Abbreviation = "neurochir.", IsGeneric = true }, // Neurochirurgie
+        new Title { MaleTitle = "radiatiotherapiae", Abbreviation = "rad.ther.", IsGeneric = true }, // Strahlentherapie
+        new Title { MaleTitle = "medicinae veterinariae", Abbreviation = "vet.", IsGeneric = true }, // Veterinärmedizin
+        new Title { MaleTitle = "didacticae", Abbreviation = "didact.", IsGeneric = true },
+        new Title
+        {
+            MaleTitle = "aequatoriae", Abbreviation = "aequat.", IsGeneric = true
+        }, // Äquatoriale Wissenschaften
+        new Title
+        {
+            MaleTitle = "bibliothecariae", Abbreviation = "bibl.", IsGeneric = true
+        }, // Bibliothekswissenschaften
+        new Title { MaleTitle = "generosae", Abbreviation = "gen.", IsGeneric = true }, // Gender Studies
+        new Title { MaleTitle = "ethnologiae", Abbreviation = "ethnol.", IsGeneric = true }, // Ethnologie
+        new Title { MaleTitle = "chirurgiae", Abbreviation = "chir.", IsGeneric = true }, // Chirurgie
+        new Title { MaleTitle = "cardiologiae", Abbreviation = "cardiol.", IsGeneric = true }, // Kardiologie
+        new Title { MaleTitle = "gerontologiae", Abbreviation = "gerontol.", IsGeneric = true }, // Gerontologie
+        new Title { MaleTitle = "anglisticae", Abbreviation = "angl.", IsGeneric = true }, // Anglistik
+        new Title { MaleTitle = "sinologiae", Abbreviation = "sinol.", IsGeneric = true }, // Sinologie
+        new Title { MaleTitle = "sinologicae", Abbreviation = "sinol.", IsGeneric = true }, // Sinologie (alternativ)
+        new Title { MaleTitle = "sinicis", Abbreviation = "sin.", IsGeneric = true }, // China-Studien
+        new Title { MaleTitle = "orientalium", Abbreviation = "or.", IsGeneric = true }, // Orientalistik
+        new Title { MaleTitle = "tecnologiae", Abbreviation = "tec.", IsGeneric = true }, // Technologie
+        new Title
+        {
+            MaleTitle = "aeronauticae", Abbreviation = "aero.", IsGeneric = true
+        }, // Luft- und Raumfahrttechnik
+        new Title { MaleTitle = "econometrica", Abbreviation = "econ.", IsGeneric = true }, // Ökonometrie
+        new Title
+        {
+            MaleTitle = "institute of technology", Abbreviation = "IT", IsGeneric = true
+        }, // Institut für Technologie
+        new Title { MaleTitle = "biomaterialia", Abbreviation = "biomat.", IsGeneric = true }, // Biomaterialien
+        new Title { MaleTitle = "horticulturae", Abbreviation = "hort.", IsGeneric = true }, // Gartenbau
+        new Title { MaleTitle = "cellularis", Abbreviation = "cell.", IsGeneric = true }, // Zellbiologie
+        new Title
+        {
+            MaleTitle = "mineralogia et crystallographia", Abbreviation = "min.cryst.", IsGeneric = true
+        }, // Mineralogie und Kristallographie
+        new Title { MaleTitle = "geobotanicae", Abbreviation = "geobot.", IsGeneric = true }, // Geobotanik
+        new Title { MaleTitle = "geomorphologiae", Abbreviation = "geomorph.", IsGeneric = true } // Geomorph
     };
 
     public ObservableCollection<string> AllPrefixes { get; set; } = new()
@@ -229,6 +322,8 @@ public class DataRepository
         "von",
         "zu",
         "de",
-        "der"
+        "der",
+        "vom",
+        "zur",
     };
 }

@@ -18,7 +18,7 @@ public class DefaultParserTest
     [Theory]
     [InlineData("Frau Sandra Berger", "Frau", "", "Sehr geehrte Frau", "Sandra", "Berger", "F")]
     [InlineData("Herr Dr. Sandro Gutmensch", "Herr Doktor", "Dr.", "Sehr geehrter Herr Doktor", "Sandro", "Gutmensch", "M")]
-    [InlineData("Professor Heinreich Freiherr vom Wald", "Herr Professor", "Professor", "Sehr geehrter Herr Professor", "Heinreich", "Freiherr vom Wald", "M")]
+    [InlineData("Professor Heinreich Freiherr vom Wald", "Herr Professor", "Professor Freiherr", "Sehr geehrter Herr Professor", "Heinreich", "vom Wald", "M")]
     [InlineData("Frau Prof. Dr. rer. nat. Maria von Leuthäuser-Schnarrenberger", "Frau Professorin", "Prof. Dr. rer. nat.", "Sehr geehrte Frau Professorin", "Maria", "von Leuthäuser-Schnarrenberger", "F")]
     [InlineData("Herr Dipl.-Ing. Max von Müller", "Herr Diplom-Ingenieur", "Dipl.-Ing.", "Sehr geehrter Herr Diplom-Ingenieur", "Max", "von Müller", "M")]
     [InlineData("Dr. Winfried Russwurm", "Doktoren und Doktorinnen", "Dr.", "Sehr geehrte Doktoren und Doktorinnen", "Winfried", "Russwurm", "D")]
