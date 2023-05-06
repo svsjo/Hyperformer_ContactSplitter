@@ -11,7 +11,7 @@
     
     <Grid >
         <StackPanel Orientation="Vertical">
-            <ui:DataGrid ItemsSource="{Binding ContactsView}" AutoGenerateColumns="False" Height="625">
+            <ui:DataGrid ItemsSource="{Binding ContactsView}" CanUserResizeRows="False" AutoGenerateColumns="False" Height="625">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background" Value="#355A61"></Setter>
