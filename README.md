@@ -1,5 +1,11 @@
 # Hyperformer_ContactSplitter
 
+<img align="right" width="220" height="90" src="https://upload.wikimedia.org/wikipedia/de/1/1d/DHBW-Logo.svg">
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c-sharp.svg)]([https://forthebadge.com](https://learn.microsoft.com/de-de/dotnet/csharp/tour-of-csharp/))
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/FelixWochele/Bierbock)
+
+
 ## Team
 - Jonathan Schwab
 - Jonas Weis
