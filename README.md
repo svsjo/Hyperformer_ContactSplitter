@@ -22,12 +22,15 @@ User Stories:
 4. Als Nutzer möchte ich gespeicherte Kontakte nachträglich verändern und löschen können, um mein Adressbuch aktuell zu halten.
 
 ## Repository Aufbau
-Dokumente mit Erklärungen zu Aufbau des Projektes und Begründung von Design-Entscheidungen liegt unter ./Documentation
+Dokumente mit Erklärungen zu Aufbau des Projektes und Begründung von Design-Entscheidungen liegt unter [./Documentation](./Documentation)
 
 ## Anleitung
 
 ### Installation
 Die Anwendung wurde mit .NET 7 entwickelt, was daher auf dem Rechner installiert sein sollte. Folgend kann entweder die .exe ausgeführt werden, oder in bspw. Visual Studio 2022 das Projekt erstellt und dort gestartet werden. 
+Die ausführbare Anwendung ist unter unten genanntem Link zu finden. Um die Anwendung auszuführen, wird der ganze Ordner Executable mit den enthaltenen Dateien benötigt. Diese Dateien benötigt die Anwendung um korrekt ausgeführt zu werden.
+
+[Ausführbare Hyperformer_ContactSplitter.exe](https://dhbwstg-my.sharepoint.com/:u:/g/personal/i20036_hb_dhbw-stuttgart_de/ERIvux44prxFruqOJ1Fg2mkB-2B834MS4q2iuWA_-Sr82A?e=tO26RD)
 
 ### Nutzung
 Informationen zur Nutzung sind in der Anwendung selbst zu finden. 
