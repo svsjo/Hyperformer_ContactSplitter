@@ -14,102 +14,156 @@ public class DataRepository
     {
         new Contact
         {
-            FirstName = "TempData",
-            LastName = "Temp-Data",
-            Gender = "M",
-            LetterSalutation = "Sehr geehrter Herr",
-            Salutation = "Herr",
-            Title = "Prof. Dr.-Ing."
+            Salutation = "Frau",
+            LetterSalutation = "Sehr geehrte Frau",
+            Title = "",
+            Gender = "F",
+            FirstName = "Sandra",
+            LastName = "Berger"
         },
         new Contact
         {
-            FirstName = "TempData",
-            LastName = "Temp-Data",
+            Salutation = "Herr Doktor",
+            LetterSalutation = "Sehr geehrter Herr Doktor",
+            Title = "Dr.",
             Gender = "M",
-            LetterSalutation = "Sehr geehrter Herr",
-            Salutation = "Herr",
-            Title = "Prof. Dr.-Ing."
+            FirstName = "Sandro",
+            LastName = "Gutmensch"
         },
         new Contact
         {
-            FirstName = "TempData",
-            LastName = "Temp-Data",
+            Salutation = "Herr Professor",
+            LetterSalutation = "Sehr geehrter Herr Professor",
+            Title = "Professor Freiherr",
             Gender = "M",
-            LetterSalutation = "Sehr geehrter Herr",
-            Salutation = "Herr",
-            Title = "Prof. Dr.-Ing."
+            FirstName = "Heinreich",
+            LastName = "vom Wald"
         },
         new Contact
         {
-            FirstName = "TempData",
-            LastName = "Temp-Data",
-            Gender = "M",
-            LetterSalutation = "Sehr geehrter Herr",
-            Salutation = "Herr",
-            Title = "Prof. Dr.-Ing."
+            Salutation = "Frau Professorin",
+            LetterSalutation = "Sehr geehrte Frau Professorin",
+            Title = "Prof. Dr. rer. nat.",
+            Gender = "F",
+            FirstName = "Maria",
+            LastName = "von Leuthäuser-Schnarrenberger"
         },
         new Contact
         {
-            FirstName = "TempData",
-            LastName = "Temp-Data",
+            Salutation = "Herr Diplom-Ingenieur",
+            LetterSalutation = "Sehr geehrter Herr Diplom-Ingenieur",
+            Title = "Dipl.-Ing.",
             Gender = "M",
-            LetterSalutation = "Sehr geehrter Herr",
-            Salutation = "Herr",
-            Title = "Prof. Dr.-Ing."
+            FirstName = "Max Moritz",
+            LastName = "von Müller"
         },
         new Contact
         {
-            FirstName = "TempData",
-            LastName = "Temp-Data",
-            Gender = "M",
-            LetterSalutation = "Sehr geehrter Herr",
-            Salutation = "Herr",
-            Title = "Prof. Dr.-Ing."
+            Salutation = "Doktoren und Doktorinnen",
+            LetterSalutation = "Sehr geehrte Doktoren und Doktorinnen",
+            Title = "Dr.",
+            Gender = "D",
+            FirstName = "Winfried",
+            LastName = "Russwurm"
         },
         new Contact
         {
-            FirstName = "TempData",
-            LastName = "Temp-Data",
+            Salutation = "Herr Doktor-Ingenieur",
+            LetterSalutation = "Sehr geehrter Herr Doktor-Ingenieur",
+            Title = "Dr.-Ing. Dr. rer. nat. Dr. h.c. mult.",
             Gender = "M",
-            LetterSalutation = "Sehr geehrter Herr",
-            Salutation = "Herr",
-            Title = "Prof. Dr.-Ing."
+            FirstName = "Paul Peter",
+            LastName = "Steffens"
         },
         new Contact
         {
-            FirstName = "TempData",
-            LastName = "Temp-Data",
-            Gender = "M",
-            LetterSalutation = "Sehr geehrter Herr",
-            Salutation = "Herr",
-            Title = "Prof. Dr.-Ing."
+            Salutation = "Frau Doktorin",
+            LetterSalutation = "Sehr geehrte Frau Doktorin",
+            Title = "Dr. med.",
+            Gender = "F",
+            FirstName = "Petra Clara",
+            LastName = "Schmitz-Hoffmann"
         },
         new Contact
         {
-            FirstName = "TempData",
-            LastName = "Temp-Data",
+            Salutation = "Herr Professor",
+            LetterSalutation = "Sehr geehrter Herr Professor",
+            Title = "Professor Dr. rer. pol.",
             Gender = "M",
-            LetterSalutation = "Sehr geehrter Herr",
-            Salutation = "Herr",
-            Title = "Prof. Dr.-Ing."
+            FirstName = "Hans-Joachim",
+            LastName = "Schmidt"
         },
         new Contact
         {
-            FirstName = "TempData",
-            LastName = "Temp-Data",
-            Gender = "M",
-            LetterSalutation = "Sehr geehrter Herr",
-            Salutation = "Herr",
-            Title = "Prof. Dr.-Ing."
+            Salutation = "Frau Diplom-Ingenieurin",
+            LetterSalutation = "Sehr geehrte Frau Diplom-Ingenieurin",
+            Title = "Dipl.-Ing.",
+            Gender = "F",
+            FirstName = "Karin",
+            LastName = "Müller-Lüdenscheidt"
         },
         new Contact
         {
-            FirstName = "TempData",
-            LastName = "Temp-Data",
+            Salutation = "Herr Doktor",
+            LetterSalutation = "Sehr geehrter Herr Doktor",
+            Title = "Dr. phil. habil.",
             Gender = "M",
-            LetterSalutation = "Sehr geehrter Herr",
-            Salutation = "Herr",
-            Title = "Prof. Dr.-Ing."
+            FirstName = "Horst",
+            LastName = "Schmid-Weis"
+        },
+        new Contact
+        {
+            Salutation = "Herr Diplom-Kaufmann",
+            LetterSalutation = "Sehr geehrter Herr Diplom-Kaufmann",
+            Title = "Dipl.-Kfm.",
+            Gender = "M",
+            FirstName = "Johannes",
+            LastName = "Maier-Schulze"
+        },
+        new Contact
+        {
+            Salutation = "Doktoren und Doktorinnen",
+            LetterSalutation = "Sehr geehrte Doktoren und Doktorinnen",
+            Title = "Dr. rer. nat.",
+            Gender = "D",
+            FirstName = "Ingrid",
+            LastName = "Schulz"
+        },
+        new Contact
+        {
+            Salutation = "Herr Diplom-Ingenieur",
+            LetterSalutation = "Sehr geehrter Herr Diplom-Ingenieur",
+            Title = "Dipl.-Ing.",
+            Gender = "M",
+            FirstName = "Michael",
+            LastName = "Bauer"
+        },
+        new Contact
+        {
+            Salutation = "Frau Doktorin",
+            LetterSalutation = "Sehr geehrte Frau Doktorin",
+            Title = "Dr. iur.",
+            Gender = "F",
+            FirstName = "Claudia",
+            LastName = "Schuster-Müller"
+        },
+        new Contact
+        {
+            Salutation = "Herr Doktor",
+            LetterSalutation = "Sehr geehrter Herr Doktor",
+            Title = "Dr. rer. nat. habil.",
+            Gender = "M",
+            FirstName = "Franz",
+            LastName = "Bauer"
+        },
+        new Contact
+        {
+            Salutation = "Frau Professorin",
+            LetterSalutation = "Sehr geehrte Frau Professorin",
+            Title = "Prof. Dr. rer. pol. habil.",
+            Gender = "F",
+            FirstName = "Anna",
+            LastName = "Schmidt-Weiß"
         }
     };
 

@@ -5,5 +5,5 @@ namespace ContactSplitter.DataStorage;
 public class ProjectSettings
 {
     public UiTheme Theme { get; set; } = UiTheme.Dunkel;
-    public ParserType Parser { get; set; } = ParserType.ChatGpt;
+    public ParserType Parser { get; set; } = ParserType.Offline;
 }

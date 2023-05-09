@@ -21,12 +21,12 @@
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="230" Header="Anrede" Binding="{Binding Salutation, UpdateSourceTrigger=PropertyChanged}" />
-                    <DataGridTextColumn Width="230" Header="Brief-Anrede" Binding="{Binding LetterSalutation, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Width="200" Header="Anrede" Binding="{Binding Salutation, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Width="260" Header="Brief-Anrede" Binding="{Binding LetterSalutation, UpdateSourceTrigger=PropertyChanged}" />
                     <DataGridTextColumn Width="230" Header="Titel" Binding="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
                     <DataGridTextColumn Width="80" Header="Geschlecht" Binding="{Binding Gender, UpdateSourceTrigger=PropertyChanged}" />
-                    <DataGridTextColumn Width="205" Header="Vorname" Binding="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" />
-                    <DataGridTextColumn Width="205" Header="Nachname" Binding="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Width="195" Header="Vorname" Binding="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Width="217" Header="Nachname" Binding="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" />
                     <DataGridTemplateColumn Header="Löschen" Width="80">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
