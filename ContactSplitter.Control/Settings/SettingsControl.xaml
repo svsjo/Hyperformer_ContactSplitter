@@ -11,9 +11,9 @@
     <Grid>
         <TabControl>
             <TabItem Header="Titel" FontSize="18">
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Vertical" Margin="20">
-                    <TextBlock Text="Zulässige Titel" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="20">
+                        <TextBlock Text="Zulässige Titel" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
                         <ListBox ItemsSource="{Binding AllTitles}" Height="580" Width="500" HorizontalAlignment="Left">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
@@ -25,20 +25,20 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="20">
-                    <TextBlock Text="Neuer Titel" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox IsReadOnly="True" Margin="0,0,10,10" Width="90">Voller Titel</TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="20">
+                        <TextBlock Text="Neuer Titel" FontSize="24" FontWeight="Bold" Foreground="{Binding TextColour}" TextAlignment="Left" Margin="0 0 0 10" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox IsReadOnly="True" Margin="0,0,10,10" Width="90">Voller Titel</TextBox>
                             <TextBox Text="{Binding NewTitleFull, Mode=TwoWay}" Margin="0,0,0,10" Width="175"/>
                         </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox IsReadOnly="True" Margin="0,0,10,10" Width="90">Abkürzung</TextBox>
-                        <TextBox Text="{Binding NewTitleAbbr, Mode=TwoWay}" Margin="0,0,0,10" Width="175"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox IsReadOnly="True" Margin="0,0,10,10" Width="90">Abkürzung</TextBox>
+                            <TextBox Text="{Binding NewTitleAbbr, Mode=TwoWay}" Margin="0,0,0,10" Width="175"/>
+                        </StackPanel>
+                        <Button Content="Add" Command="{Binding AddTitleCommand}" Height="35" Width="275"/>
                     </StackPanel>
-                    <Button Content="Add" Command="{Binding AddTitleCommand}" Height="35" Width="275"/>
                 </StackPanel>
-            </StackPanel>
             </TabItem>
 
             <TabItem Header="Präfix" FontSize="18">
@@ -85,6 +85,27 @@
                         </ComboBox>
                     </StackPanel>
                 </StackPanel>
+            </TabItem>
+            <TabItem FontSize="18" Header="Lizenzen">
+                <ScrollViewer>
+                    <StackPanel HorizontalAlignment="Center" Margin="10,10,10,01" Orientation="Vertical">
+                        <TextBlock FontSize="30">           
+                    <Hyperlink Command="{Binding OpenUrlCommand}"  CommandParameter="https://github.com/lepoco/wpfui">
+                        WPFUI
+                    </Hyperlink>
+                        </TextBlock>
+                        <TextBlock FontSize="30">           
+                            <Hyperlink Command="{Binding OpenUrlCommand}"  CommandParameter="https://dotnet.microsoft.com/en-us/download/dotnet/7.0">
+                                .NET 7.0
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock FontSize="30">           
+                            <Hyperlink Command="{Binding OpenUrlCommand}" CommandParameter="https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/">
+                                Microsoft.Extensions.DependencyInjection
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
     </Grid>

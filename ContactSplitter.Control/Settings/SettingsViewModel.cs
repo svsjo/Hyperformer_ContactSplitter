@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -23,6 +24,7 @@ public class SettingsViewModel : INotifyPropertyChanged
     private string _newTitleAbbr = string.Empty;
     private string _newTitleFull = string.Empty;
     private string _newPrefix = string.Empty;
+
 
     private Brush _textColour = null!;
 
@@ -47,6 +49,18 @@ public class SettingsViewModel : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
+    public ICommand OpenUrlCommand => new DelegateCommand(url =>
+    {
+        try
+        {
+            Process.Start(new ProcessStartInfo(url.ToString() ?? string.Empty) { UseShellExecute = true });
+        }
+        catch
+        {
+            // ignored
+        }
+    });
 
     public UiTheme SelectedTheme
     {
