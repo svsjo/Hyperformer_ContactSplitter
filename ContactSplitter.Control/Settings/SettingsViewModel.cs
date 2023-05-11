@@ -22,8 +22,6 @@ public class SettingsViewModel : INotifyPropertyChanged
 {
     private readonly IDataRepository _dataRepository;
     private readonly IProjectSettings _projectSettings;
-    private readonly DataRepository _dataRepository;
-    private readonly ProjectSettings _projectSettings;
 
     private string _newTitleAbbr = string.Empty;
     private string _newTitleFull = string.Empty;
@@ -89,10 +87,10 @@ public class SettingsViewModel : INotifyPropertyChanged
 
     public Brush TextColour
     {
-        get => _textColor;
+        get => _textColour;
         set
         {
-            _textColor = value;
+            _textColour = value;
             OnPropertyChanged();
         }
     }
