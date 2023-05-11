@@ -230,7 +230,6 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         var tmp = input
             .Replace(",", " ")
             .Replace(";", " ")
-            .Replace(".", " ")
             .Replace("#", " ")
             .Replace("+", " ")
             .Replace("~", " ")
