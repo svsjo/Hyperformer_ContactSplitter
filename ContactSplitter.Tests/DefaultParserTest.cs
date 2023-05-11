@@ -54,6 +54,8 @@ public class DefaultParserTest
         "Sehr geehrter Herr Doktor", "Franz", "Bauer", "M")]
     [InlineData("Frau Prof. Dr. rer. pol. habil. Anna Schmidt-Weiß", "Frau Professorin", "Prof. Dr. rer. pol. habil.",
         "Sehr geehrte Frau Professorin", "Anna", "Schmidt-Weiß", "F")]
+    [InlineData("Herr Weis", "Herr", "", "Sehr geehrter Herr", "", "Weis")]
+    [InlineData("Prof. Dr. Jonas Noah Weis", "Professoren und Professorinnen", "Prof. Dr.", "Sehr geehrter Professoren und Professorinnen", "Jonas Noah", "Weis", "D")]
     public async void GivenInput_ShouldParseContact(string input, string salutation, string title,
         string letterSalutation, string foreName, string lastName, string gender)
     {
