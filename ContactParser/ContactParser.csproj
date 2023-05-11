@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ContactParser.Contracts\ContactParser.Contracts.csproj" />
-    <ProjectReference Include="..\ContactSplitter.DataStorage\ContactSplitter.DataStorage.csproj" />
   </ItemGroup>
 
 </Project>

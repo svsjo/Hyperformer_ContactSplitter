@@ -2,7 +2,7 @@
 
 using System.Net;
 using ContactParser.Contracts;
-using ContactParser.Contracts.Data;
+using ContactSplitter.DataStorage.Contracts;
 
 #endregion
 

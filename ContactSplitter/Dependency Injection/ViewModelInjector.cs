@@ -10,7 +10,7 @@ using System.Windows.Controls;
 namespace ContactSplitter.Dependency_Injection;
 
 /// <summary>
-/// Represents an Dependecy Injection Extension for the ViewModel injection
+/// Represents an dependecy injection extension for the ViewModel injection
 /// </summary>
 public class ViewModelInjector
 {

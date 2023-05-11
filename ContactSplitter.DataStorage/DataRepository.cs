@@ -1,14 +1,14 @@
 ﻿#region
 
 using System.Collections.ObjectModel;
-using ContactParser.Contracts.Data;
-using ContactSplitter.DataStorage.HelperClasses;
+using ContactSplitter.DataStorage.Contracts;
+using ContactSplitter.DataStorage.Contracts.HelperClasses;
 
 #endregion
 
 namespace ContactSplitter.DataStorage;
 
-public class DataRepository
+public class DataRepository: IDataRepository
 {
     public ObservableCollection<Contact> AdressBook { get; set; } = new()
     {

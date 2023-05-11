@@ -1,6 +1,5 @@
 ﻿using ContactParser;
 using ContactParser.Contracts;
-using ContactParser.Contracts.Data;
 using ContactSplitter.DataStorage;
 
 namespace ContactSplitter.Tests;

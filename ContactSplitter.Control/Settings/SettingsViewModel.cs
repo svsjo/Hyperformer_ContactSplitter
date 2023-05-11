@@ -10,7 +10,8 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Media;
 using ContactSplitter.DataStorage;
-using ContactSplitter.DataStorage.HelperClasses;
+using ContactSplitter.DataStorage.Contracts;
+using ContactSplitter.DataStorage.Contracts.HelperClasses;
 using Wpf.Ui.Appearance;
 
 #endregion
@@ -19,16 +20,16 @@ namespace ContactSplitter.Control.Settings;
 
 public class SettingsViewModel : INotifyPropertyChanged
 {
-    private readonly DataRepository _dataRepository;
-    private readonly ProjectSettings _projectSettings;
+    private readonly IDataRepository _dataRepository;
+    private readonly IProjectSettings _projectSettings;
     private string _newTitleAbbr = string.Empty;
     private string _newTitleFull = string.Empty;
     private string _newPrefix = string.Empty;
 
 
-    private Brush _textColour = null!;
+    private Brush _textColor = null!;
 
-    public SettingsViewModel(DataRepository dataRepository, ProjectSettings projectSettings)
+    public SettingsViewModel(IDataRepository dataRepository, IProjectSettings projectSettings)
     {
         _dataRepository = dataRepository;
         _projectSettings = projectSettings;
@@ -75,10 +76,10 @@ public class SettingsViewModel : INotifyPropertyChanged
 
     public Brush TextColour
     {
-        get => _textColour;
+        get => _textColor;
         set
         {
-            _textColour = value;
+            _textColor = value;
             OnPropertyChanged();
         }
     }
@@ -196,13 +197,5 @@ public class SettingsViewModel : INotifyPropertyChanged
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    private bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-    {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-        field = value;
-        OnPropertyChanged(propertyName);
-        return true;
     }
 }

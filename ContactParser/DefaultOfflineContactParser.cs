@@ -1,9 +1,9 @@
 ﻿#region
 
 using ContactParser.Contracts;
-using ContactParser.Contracts.Data;
 using ContactSplitter.DataStorage;
-using ContactSplitter.DataStorage.HelperClasses;
+using ContactSplitter.DataStorage.Contracts;
+using ContactSplitter.DataStorage.Contracts.HelperClasses;
 
 #endregion
 
@@ -11,9 +11,9 @@ namespace ContactParser;
 
 public class DefaultOfflineContactParser : IOfflineContactParser
 {
-    private readonly DataRepository _dataRepository;
+    private readonly IDataRepository _dataRepository;
 
-    public DefaultOfflineContactParser(DataRepository dataRepository)
+    public DefaultOfflineContactParser(IDataRepository dataRepository)
     {
         _dataRepository = dataRepository;
     }
