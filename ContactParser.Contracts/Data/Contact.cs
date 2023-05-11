@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace ContactParser.Contracts.Data;
+﻿namespace ContactParser.Contracts.Data;
 
 public class Contact
 {
