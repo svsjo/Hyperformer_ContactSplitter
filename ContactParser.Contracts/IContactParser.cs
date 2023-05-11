@@ -1,4 +1,5 @@
-﻿using ContactParser.Contracts.Data;
+﻿
+using ContactSplitter.DataStorage.Contracts;
 
 namespace ContactParser.Contracts;
 

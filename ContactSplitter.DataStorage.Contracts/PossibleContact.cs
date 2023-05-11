@@ -1,4 +1,4 @@
-﻿namespace ContactParser.Contracts.Data;
+﻿namespace ContactSplitter.DataStorage.Contracts;
 
 /// <summary>
 /// Represents the results of parsing, before adjustment and confirmation by the user.

@@ -7,8 +7,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Data;
 using System.Windows.Input;
-using ContactParser.Contracts.Data;
 using ContactSplitter.DataStorage;
+using ContactSplitter.DataStorage.Contracts;
 using Wpf.Ui.Mvvm.Contracts;
 
 #endregion
@@ -17,14 +17,14 @@ namespace ContactSplitter.Control.ContactList;
 
 public class ContactListViewModel : INotifyPropertyChanged
 {
-    private readonly DataRepository _dataRepository;
-    private readonly ProjectSettings _projectSettings;
+    private readonly IDataRepository _dataRepository;
+    private readonly IProjectSettings _projectSettings;
     private ICollectionView _contactsView;
     public ICommand DeleteContactCommand { get; set; }
 
     private string _searchText = string.Empty;
 
-    public ContactListViewModel(DataRepository dataRepository, ProjectSettings projectSettings)
+    public ContactListViewModel(IDataRepository dataRepository, IProjectSettings projectSettings)
     {
         _dataRepository = dataRepository;
         _projectSettings = projectSettings;

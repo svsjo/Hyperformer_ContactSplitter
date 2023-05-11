@@ -1,4 +1,4 @@
-﻿namespace ContactParser.Contracts.Data;
+﻿namespace ContactSplitter.DataStorage.Contracts;
 
 public class Contact
 {

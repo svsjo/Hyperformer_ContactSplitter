@@ -1,16 +1,16 @@
 ﻿#region
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using ContactParser.Contracts;
-using ContactParser.Contracts.Data;
+
 using ContactSplitter.DataStorage;
-using ContactSplitter.DataStorage.HelperClasses;
+using ContactSplitter.DataStorage.Contracts;
+using ContactSplitter.DataStorage.Contracts.HelperClasses;
 
 #endregion
 
@@ -20,13 +20,12 @@ public class ContactParseViewModel : INotifyPropertyChanged
 {
     private IOnlineContactParser _onlineOnlineContactParser;
     private readonly IOfflineContactParser _offlineContactParser;
-    private readonly ProjectSettings _projectSettings;
+    private readonly IProjectSettings _projectSettings;
 
     public ICommand ParseCommand { get; set; }
     public ICommand SaveCommand { get; set; }
-
-    private readonly DataRepository _dataRepository;
-    private readonly UserGuidingNotes _userGuidingNotes;
+    private readonly IDataRepository _dataRepository;
+    private readonly IUserGuidingNotes _userGuidingNotes;
     private PossibleContact _parseResult = null!;
 
     private string _foreName = null!;
@@ -41,7 +40,7 @@ public class ContactParseViewModel : INotifyPropertyChanged
 
     private Visibility _isLoading = Visibility.Collapsed;
 
-    public ContactParseViewModel(IOnlineContactParser onlineOnlineContactParser, IOfflineContactParser offlineContactParser, DataRepository dataRepository, UserGuidingNotes userGuidingNotes, ProjectSettings projectSettings)
+    public ContactParseViewModel(IOnlineContactParser onlineOnlineContactParser, IOfflineContactParser offlineContactParser, IDataRepository dataRepository, IUserGuidingNotes userGuidingNotes, IProjectSettings projectSettings)
     {
         _onlineOnlineContactParser = onlineOnlineContactParser;
         _offlineContactParser = offlineContactParser;
@@ -252,13 +251,5 @@ public class ContactParseViewModel : INotifyPropertyChanged
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    private bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-    {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-        field = value;
-        OnPropertyChanged(propertyName);
-        return true;
     }
 }

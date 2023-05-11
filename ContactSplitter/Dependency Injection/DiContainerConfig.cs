@@ -4,14 +4,17 @@ using ContactSplitter.Control.ContactList;
 using ContactSplitter.Control.ContactParseOverview;
 using ContactSplitter.Control.Settings;
 using ContactSplitter.Control.UserGuide;
-using ContactSplitter.Control;
 using ContactSplitter.DataStorage;
 using GPTContactParser;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using ContactSplitter.DataStorage.Contracts;
 
 namespace ContactSplitter.Dependency_Injection
 {
+    /// <summary>
+    /// Configures the dependecy injection container
+    /// </summary>
     internal class DiContainerConfig
     {
         public ServiceProvider Init()
@@ -37,9 +40,9 @@ namespace ContactSplitter.Dependency_Injection
         private void ConfigureServices(IServiceCollection services)
         {
             /* Datenhaltung */
-            services.AddSingleton<DataRepository>();
-            services.AddScoped<UserGuidingNotes>();
-            services.AddSingleton<ProjectSettings>();
+            services.AddSingleton<IDataRepository,DataRepository>();
+            services.AddScoped<IUserGuidingNotes,UserGuidingNotes>();
+            services.AddSingleton<IProjectSettings,ProjectSettings>();
 
             /* Logik */
             services.AddScoped<IOfflineContactParser, DefaultOfflineContactParser>();

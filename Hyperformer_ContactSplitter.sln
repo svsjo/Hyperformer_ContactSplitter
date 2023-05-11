@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactSplitter", "ContactS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactSplitter.DataStorage", "ContactSplitter.DataStorage\ContactSplitter.DataStorage.csproj", "{C1980F2F-6C30-471D-B466-47BA018E2684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPTContactParser", "GPTContactParser\GPTContactParser.csproj", "{30E043EB-A5CA-45F6-A6AF-B97953741E56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GPTContactParser", "GPTContactParser\GPTContactParser.csproj", "{30E043EB-A5CA-45F6-A6AF-B97953741E56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactSplitter.DataStorage.Contracts", "ContactSplitter.DataStorage.Contracts\ContactSplitter.DataStorage.Contracts.csproj", "{279677D0-4071-4D20-8E5E-70FDA2D8E83B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{30E043EB-A5CA-45F6-A6AF-B97953741E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30E043EB-A5CA-45F6-A6AF-B97953741E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30E043EB-A5CA-45F6-A6AF-B97953741E56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{279677D0-4071-4D20-8E5E-70FDA2D8E83B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{279677D0-4071-4D20-8E5E-70FDA2D8E83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{279677D0-4071-4D20-8E5E-70FDA2D8E83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{279677D0-4071-4D20-8E5E-70FDA2D8E83B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

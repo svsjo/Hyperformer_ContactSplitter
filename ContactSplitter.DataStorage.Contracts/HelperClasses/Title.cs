@@ -1,4 +1,4 @@
-﻿namespace ContactSplitter.DataStorage.HelperClasses;
+﻿namespace ContactSplitter.DataStorage.Contracts.HelperClasses;
 
 public class Title
 {
