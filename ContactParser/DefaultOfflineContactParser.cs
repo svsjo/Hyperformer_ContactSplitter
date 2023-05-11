@@ -53,11 +53,17 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         });
     }
 
+    /// <summary>
+    /// Takes Gender and Title and generates the Salutation from them
+    /// </summary>
+    /// <param name="gender">Already parsed Gender</param>
+    /// <param name="title">Already parsed Title</param>
+    /// <returns></returns>
     private string GetSalutation(string gender, string title)
     {
         var anrede = gender switch
         {
-            "M" => "Herr", 
+            "M" => "Herr",
             "F" => "Frau",
             "D" => "Damen und Herren",
             _ => string.Empty
@@ -66,13 +72,23 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         if (string.IsNullOrEmpty(title)) return anrede;
 
         var splits = title.Split(' ').ToList();
+
         if (!TryFindTitle(splits.First(), out var titleObj)) return anrede;
 
-        if (gender == "F") return anrede + " " + titleObj!.FemaleTitle;
-        if (gender == "M") return anrede + " " + titleObj!.MaleTitle;
-        return titleObj!.GenericTitle;
+        return gender switch
+        {
+            "F" => anrede + " " + titleObj!.FemaleTitle,
+            "M" => anrede + " " + titleObj!.MaleTitle,
+            _ => titleObj!.GenericTitle
+        };
     }
 
+    /// <summary>
+    /// Checks if the input is a title (independent from its form: male, female, abbreviation) and returns its object
+    /// </summary>
+    /// <param name="input"></param>
+    /// <param name="title"></param>
+    /// <returns></returns>
     private bool TryFindTitle(string input, out Title? title)
     {
         title = _dataRepository.AllTitles.FirstOrDefault(x =>
@@ -80,6 +96,12 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         return title != null;
     }
 
+    /// <summary>
+    /// Takes Salutation and Gender and generates the formal letter Salutation
+    /// </summary>
+    /// <param name="salutation"></param>
+    /// <param name="gender"></param>
+    /// <returns></returns>
     private string GetLetterSalutation(string salutation, string gender)
     {
         var genericSalutation = gender switch
@@ -92,6 +114,11 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         return genericSalutation + " " + salutation;
     }
 
+    /// <summary>
+    /// Takes the remaining string as input und extracts the Lastname
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     private ParseResult TryGetLastName(string input)
     {
         var splits = input.Split(' ');
@@ -119,6 +146,12 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         }
     }
 
+    /// <summary>
+    /// Takes the remaining string as input and tries to match its words to known titles
+    /// Extracts (possibly multiple) titles
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     private ParseResult TryGetTitle(string input)
     {
         var splits = input.Split(' ');
@@ -148,7 +181,12 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         return new ParseResult(newString.Trim(), string.Join(' ', results));
     }
 
-
+    /// <summary>
+    /// Takes the input und tries to evaluate the Gender from it
+    /// Same is done after extracting the title to verify/update the Gender
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     private static ParseResult TryGetGender(string input)
     {
         var splits = input.Split(' ');
@@ -162,6 +200,12 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         };
     }
 
+    /// <summary>
+    /// Takes the title and checks if it is stricty male or female. Then it returns the gender if found
+    /// </summary>
+    /// <param name="titleString"></param>
+    /// <param name="gender"></param>
+    /// <returns></returns>
     private bool TryUpdateGender(string titleString, out string gender)
     {
         gender = string.Empty;

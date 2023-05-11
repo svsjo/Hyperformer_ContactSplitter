@@ -21,17 +21,28 @@ public class SettingsViewModel : INotifyPropertyChanged
 {
     private readonly DataRepository _dataRepository;
     private readonly ProjectSettings _projectSettings;
+
     private string _newTitleAbbr = string.Empty;
     private string _newTitleFull = string.Empty;
     private string _newPrefix = string.Empty;
 
-
     private Brush _textColour = null!;
+
+    public ICommand AddTitleCommand { get; set; }
+    public ICommand RemoveTitleCommand { get; set; }
+    public ICommand AddPrefixCommand { get; set; }
+    public ICommand RemovePrefixCommand { get; set; }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public List<UiTheme> AvailableThemes { get; } = Enum.GetValues(typeof(UiTheme)).Cast<UiTheme>().ToList();
+    public List<ParserType> AvailableParsers { get; } = Enum.GetValues(typeof(ParserType)).Cast<ParserType>().ToList();
 
     public SettingsViewModel(DataRepository dataRepository, ProjectSettings projectSettings)
     {
         _dataRepository = dataRepository;
         _projectSettings = projectSettings;
+
         CalculateBrush();
 
         AddTitleCommand = new DelegateCommand(AddTitle);
@@ -83,9 +94,6 @@ public class SettingsViewModel : INotifyPropertyChanged
         }
     }
 
-    public List<UiTheme> AvailableThemes { get; } = Enum.GetValues(typeof(UiTheme)).Cast<UiTheme>().ToList();
-    public List<ParserType> AvailableParsers { get; } = Enum.GetValues(typeof(ParserType)).Cast<ParserType>().ToList();
-
     public ObservableCollection<Title> AllTitles
     {
         get => _dataRepository.AllTitles;
@@ -136,13 +144,6 @@ public class SettingsViewModel : INotifyPropertyChanged
         }
     }
 
-    public ICommand AddTitleCommand { get; set; }
-    public ICommand RemoveTitleCommand { get; set; }
-    public ICommand AddPrefixCommand { get; set; }
-    public ICommand RemovePrefixCommand { get; set; }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
     private void CalculateBrush()
     {
         TextColour = _projectSettings.Theme == UiTheme.Hell ? Brushes.Black : Brushes.White;
@@ -189,6 +190,7 @@ public class SettingsViewModel : INotifyPropertyChanged
         };
 
         AllTitles.Add(title);
+
         NewTitleFull = string.Empty;
         NewTitleAbbr = string.Empty;
     }

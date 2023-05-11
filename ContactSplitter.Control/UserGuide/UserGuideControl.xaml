@@ -11,10 +11,9 @@
     <Grid>
         <ScrollViewer CanContentScroll="True">
             <StackPanel Orientation="Vertical" CanVerticallyScroll="True">
-                <ui:Card Margin="10" Footer="{Binding Bedieneranleitung}" Content="Bedieneranleitung"></ui:Card>
+                <ui:Card Margin="10" Footer="{Binding UserManual}" Content="Bedieneranleitung"></ui:Card>
                 <ui:Card Margin="10" Footer="{Binding BestPractices}" Content="Best Practices und Grenzfälle"></ui:Card>
                 <ui:Card Margin="10" Footer="{Binding Developers}" Content="Infos zum Entwicklerteam"></ui:Card>
-                
             </StackPanel>
         </ScrollViewer>
     </Grid>

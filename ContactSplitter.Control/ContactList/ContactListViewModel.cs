@@ -29,8 +29,9 @@ public class ContactListViewModel : INotifyPropertyChanged
         _dataRepository = dataRepository;
         _projectSettings = projectSettings;
 
-        _contactsView = CollectionViewSource.GetDefaultView(AllContacts);
+        _contactsView = CollectionViewSource.GetDefaultView(AllContacts); /* Is a filtered View of AllContacts */
         ContactsView.Filter = FilterContacts;
+
         DeleteContactCommand = new DelegateCommand((x) =>
         {
             if (x is not Contact contact) return;
@@ -98,6 +99,7 @@ public class ContactListViewModel : INotifyPropertyChanged
         if (string.IsNullOrEmpty(SearchText)) return true;
 
         var searchString = SearchText.ToLower();
+
         return contact.FirstName.ToLower().Contains(searchString)
                || contact.LastName.ToLower().Contains(searchString)
                || contact.Salutation.ToLower().Contains(searchString)

@@ -22,26 +22,21 @@ public class ContactParseViewModel : INotifyPropertyChanged
     private readonly IOfflineContactParser _offlineContactParser;
     private readonly ProjectSettings _projectSettings;
 
+    public ICommand ParseCommand { get; set; }
+    public ICommand SaveCommand { get; set; }
+
     private readonly DataRepository _dataRepository;
     private readonly UserGuidingNotes _userGuidingNotes;
     private PossibleContact _parseResult = null!;
 
     private string _foreName = null!;
-
     private string _gender = null!;
-
     private string _input = null!;
-
     private string _lastName = null!;
-
     private string _letterSalutation = null!;
-
     private string _note = null!;
-
     private string _notParsed = null!;
-
     private string _salutation = null!;
-
     private string _title = null!;
 
     private Visibility _isLoading = Visibility.Collapsed;
@@ -93,7 +88,8 @@ public class ContactParseViewModel : INotifyPropertyChanged
             Note = _userGuidingNotes.EmptyInput;
             return;
         }
-        IsLoading = Visibility.Visible;
+
+        IsLoading = Visibility.Visible; /* Loading Symbol */
 
         var success = false;
 
@@ -117,6 +113,7 @@ public class ContactParseViewModel : INotifyPropertyChanged
 
         if (!success) return;
 
+        /* Write Parse Results in Fields */
         ForeName = _parseResult.FirstName;
         LastName = _parseResult.LastName;
         Salutation = _parseResult.Salutation;
@@ -126,9 +123,6 @@ public class ContactParseViewModel : INotifyPropertyChanged
         Note = _parseResult.Note;
         NotParsed = _parseResult.NotParsed;
     }
-
-    public ICommand ParseCommand { get; set; }
-    public ICommand SaveCommand { get; set; }
 
     public string Input
     {
