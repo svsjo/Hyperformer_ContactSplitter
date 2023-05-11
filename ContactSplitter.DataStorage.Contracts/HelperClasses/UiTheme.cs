@@ -3,5 +3,5 @@
 public enum UiTheme
 {
     Dunkel,
-    Hell,
+    Hell
 }

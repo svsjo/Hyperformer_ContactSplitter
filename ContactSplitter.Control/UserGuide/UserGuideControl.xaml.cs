@@ -1,16 +1,18 @@
-﻿using System.Windows.Controls;
+﻿#region
 
-namespace ContactSplitter.Control.UserGuide
+using System.Windows.Controls;
+
+#endregion
+
+namespace ContactSplitter.Control.UserGuide;
+
+/// <summary>
+/// Interaktionslogik für UserGuideControl.xaml
+/// </summary>
+public partial class UserGuideControl : UserControl
 {
-    /// <summary>
-    /// Interaktionslogik für UserGuideControl.xaml
-    /// </summary>
-    public partial class UserGuideControl : UserControl
+    public UserGuideControl()
     {
-        public UserGuideControl()
-        {
-            InitializeComponent();
-
-        }
+        InitializeComponent();
     }
 }

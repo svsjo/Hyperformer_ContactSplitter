@@ -1,7 +1,6 @@
 ﻿#region
 
 using ContactParser.Contracts;
-using ContactSplitter.DataStorage;
 using ContactSplitter.DataStorage.Contracts;
 using ContactSplitter.DataStorage.Contracts.HelperClasses;
 
@@ -140,10 +139,8 @@ public class DefaultOfflineContactParser : IOfflineContactParser
 
             return new ParseResult(string.Join(' ', result), concatString);
         }
-        else
-        {
-            return new ParseResult(string.Join(' ', result), lastName);
-        }
+
+        return new ParseResult(string.Join(' ', result), lastName);
     }
 
     /// <summary>

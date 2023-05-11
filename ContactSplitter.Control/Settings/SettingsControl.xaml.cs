@@ -1,16 +1,18 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿#region
+
 using System.Windows.Controls;
 
-namespace ContactSplitter.Control.Settings
+#endregion
+
+namespace ContactSplitter.Control.Settings;
+
+/// <summary>
+/// Interaktionslogik für SettingsControl.xaml
+/// </summary>
+public partial class SettingsControl : UserControl
 {
-    /// <summary>
-    /// Interaktionslogik für SettingsControl.xaml
-    /// </summary>
-    public partial class SettingsControl : UserControl
+    public SettingsControl()
     {
-        public SettingsControl()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

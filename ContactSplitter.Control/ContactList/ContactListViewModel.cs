@@ -7,9 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Data;
 using System.Windows.Input;
-using ContactSplitter.DataStorage;
 using ContactSplitter.DataStorage.Contracts;
-using Wpf.Ui.Mvvm.Contracts;
 
 #endregion
 
@@ -19,8 +17,9 @@ public class ContactListViewModel : INotifyPropertyChanged
 {
     private readonly IDataRepository _dataRepository;
     private readonly IProjectSettings _projectSettings;
+
+    private string _contactsCount;
     private ICollectionView _contactsView;
-    public ICommand DeleteContactCommand { get; set; }
 
     private string _searchText = string.Empty;
 
@@ -32,7 +31,7 @@ public class ContactListViewModel : INotifyPropertyChanged
         _contactsView = CollectionViewSource.GetDefaultView(AllContacts); /* Is a filtered View of AllContacts */
         ContactsView.Filter = FilterContacts;
 
-        DeleteContactCommand = new DelegateCommand((x) =>
+        DeleteContactCommand = new DelegateCommand(x =>
         {
             if (x is not Contact contact) return;
             DeleteContact(contact);
@@ -40,6 +39,8 @@ public class ContactListViewModel : INotifyPropertyChanged
 
         _contactsCount = ContactsView.Cast<object>().Count() + " " + "(von " + AllContacts.Count + ") Einträgen";
     }
+
+    public ICommand DeleteContactCommand { get; set; }
 
     public ObservableCollection<Contact> AllContacts
     {
@@ -49,11 +50,6 @@ public class ContactListViewModel : INotifyPropertyChanged
             _dataRepository.AdressBook = value;
             OnPropertyChanged();
         }
-    }
-
-    private void DeleteContact(Contact contact)
-    {
-        AllContacts.Remove(contact);
     }
 
     public string SearchText
@@ -78,8 +74,6 @@ public class ContactListViewModel : INotifyPropertyChanged
         }
     }
 
-    private string _contactsCount;
-
     public string ContactsCount
     {
         get => _contactsCount;
@@ -91,6 +85,11 @@ public class ContactListViewModel : INotifyPropertyChanged
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
+
+    private void DeleteContact(Contact contact)
+    {
+        AllContacts.Remove(contact);
+    }
 
     private bool FilterContacts(object item)
     {

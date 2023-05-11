@@ -1,6 +1,5 @@
 ﻿#region
 
-using System.Net;
 using ContactParser.Contracts;
 using ContactSplitter.DataStorage.Contracts;
 

@@ -9,7 +9,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Media;
-using ContactSplitter.DataStorage;
 using ContactSplitter.DataStorage.Contracts;
 using ContactSplitter.DataStorage.Contracts.HelperClasses;
 using Wpf.Ui.Appearance;
@@ -22,22 +21,12 @@ public class SettingsViewModel : INotifyPropertyChanged
 {
     private readonly IDataRepository _dataRepository;
     private readonly IProjectSettings _projectSettings;
+    private string _newPrefix = string.Empty;
 
     private string _newTitleAbbr = string.Empty;
     private string _newTitleFull = string.Empty;
-    private string _newPrefix = string.Empty;
 
     private Brush _textColour = null!;
-
-    public ICommand AddTitleCommand { get; set; }
-    public ICommand RemoveTitleCommand { get; set; }
-    public ICommand AddPrefixCommand { get; set; }
-    public ICommand RemovePrefixCommand { get; set; }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    public List<UiTheme> AvailableThemes { get; } = Enum.GetValues(typeof(UiTheme)).Cast<UiTheme>().ToList();
-    public List<ParserType> AvailableParsers { get; } = Enum.GetValues(typeof(ParserType)).Cast<ParserType>().ToList();
 
     public SettingsViewModel(IDataRepository dataRepository, IProjectSettings projectSettings)
     {
@@ -51,6 +40,14 @@ public class SettingsViewModel : INotifyPropertyChanged
         AddPrefixCommand = new DelegateCommand(AddPrefix);
         RemovePrefixCommand = new DelegateCommand(RemovePrefix);
     }
+
+    public ICommand AddTitleCommand { get; set; }
+    public ICommand RemoveTitleCommand { get; set; }
+    public ICommand AddPrefixCommand { get; set; }
+    public ICommand RemovePrefixCommand { get; set; }
+
+    public List<UiTheme> AvailableThemes { get; } = Enum.GetValues(typeof(UiTheme)).Cast<UiTheme>().ToList();
+    public List<ParserType> AvailableParsers { get; } = Enum.GetValues(typeof(ParserType)).Cast<ParserType>().ToList();
 
     public ParserType SelectedParser
     {
@@ -145,6 +142,8 @@ public class SettingsViewModel : INotifyPropertyChanged
         }
     }
 
+    public event PropertyChangedEventHandler? PropertyChanged;
+
     private void CalculateBrush()
     {
         TextColour = _projectSettings.Theme == UiTheme.Hell ? Brushes.Black : Brushes.White;
@@ -178,24 +177,18 @@ public class SettingsViewModel : INotifyPropertyChanged
 
     private void AddPrefix(object x)
     {
-        if (string.IsNullOrEmpty(NewPrefix))
-        {
-            return;
-        }
+        if (string.IsNullOrEmpty(NewPrefix)) return;
         _dataRepository.AllPrefixes.Add(NewPrefix);
         NewPrefix = string.Empty;
     }
 
     private void AddTitle(object x)
     {
-        if (string.IsNullOrEmpty(NewTitleFull) || string.IsNullOrEmpty(NewTitleAbbr))
-        {
-            return;
-        }
-        var title = new Title()
+        if (string.IsNullOrEmpty(NewTitleFull) || string.IsNullOrEmpty(NewTitleAbbr)) return;
+        var title = new Title
         {
             MaleTitle = NewTitleFull,
-            Abbreviation = NewTitleAbbr,
+            Abbreviation = NewTitleAbbr
         };
 
 

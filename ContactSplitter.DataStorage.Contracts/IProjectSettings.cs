@@ -1,4 +1,8 @@
-﻿using ContactSplitter.DataStorage.Contracts.HelperClasses;
+﻿#region
+
+using ContactSplitter.DataStorage.Contracts.HelperClasses;
+
+#endregion
 
 namespace ContactSplitter.DataStorage.Contracts;
 

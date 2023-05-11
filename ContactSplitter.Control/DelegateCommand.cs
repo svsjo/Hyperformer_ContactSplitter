@@ -1,5 +1,9 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Windows.Input;
+
+#endregion
 
 namespace ContactSplitter.Control;
 
@@ -20,16 +24,18 @@ public class DelegateCommand : ICommand
         _canExecute = canExecute;
     }
 
+    public void RaiseCanExecuteChanged()
+    {
+        if (CanExecuteChanged != null) CanExecuteChanged(this, EventArgs.Empty);
+    }
+
     #region ICommand Members
 
     public event EventHandler CanExecuteChanged;
 
     public bool CanExecute(object parameter)
     {
-        if (_canExecute == null)
-        {
-            return true;
-        }
+        if (_canExecute == null) return true;
 
         return _canExecute(parameter);
     }
@@ -40,12 +46,4 @@ public class DelegateCommand : ICommand
     }
 
     #endregion
-
-    public void RaiseCanExecuteChanged()
-    {
-        if (CanExecuteChanged != null)
-        {
-            CanExecuteChanged(this, EventArgs.Empty);
-        }
-    }
 }

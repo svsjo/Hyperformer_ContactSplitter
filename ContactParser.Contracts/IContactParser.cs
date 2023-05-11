@@ -1,5 +1,8 @@
-﻿
+﻿#region
+
 using ContactSplitter.DataStorage.Contracts;
+
+#endregion
 
 namespace ContactParser.Contracts;
 

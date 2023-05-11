@@ -1,6 +1,10 @@
-﻿using System.Text;
+﻿#region
+
+using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+
+#endregion
 
 namespace GPTContactParser;
 
@@ -51,6 +55,5 @@ internal static class GptApiClient
         if (res == null) return res;
         var s = regex.Match(res).Groups[1].Value;
         return s;
-
     }
 }

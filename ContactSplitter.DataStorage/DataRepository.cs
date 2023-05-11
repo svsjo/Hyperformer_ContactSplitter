@@ -8,7 +8,7 @@ using ContactSplitter.DataStorage.Contracts.HelperClasses;
 
 namespace ContactSplitter.DataStorage;
 
-public class DataRepository: IDataRepository
+public class DataRepository : IDataRepository
 {
     public ObservableCollection<Contact> AdressBook { get; set; } = new()
     {

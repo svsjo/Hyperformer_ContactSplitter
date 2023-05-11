@@ -14,6 +14,5 @@ public partial class ContactListControl : UserControl
     public ContactListControl()
     {
         InitializeComponent();
-
     }
 }
