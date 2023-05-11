@@ -18,7 +18,7 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         _dataRepository = dataRepository;
     }
 
-    public async Task<PossibleContact> ParseContact(string input)
+    public Task<PossibleContact> ParseContact(string input)
     {
         var rawInput = input;
 
@@ -30,7 +30,7 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         var title = titleResult.Result;
         input = titleResult.NewString;
 
-        if (TryActualisateGender(title, out var newGender)) gender = newGender;
+        if (TryUpdateGender(title, out var newGender)) gender = newGender;
 
         var lastNameResult = TryGetLastName(input);
         var lastName = lastNameResult.Result;
@@ -41,7 +41,7 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         var salutation = GetSalutation(gender, title);
         var letterSalutation = GetLetterSalutation(salutation, gender);
 
-        return new PossibleContact
+        return Task.FromResult(new PossibleContact
         {
             Gender = gender,
             FirstName = firstName,
@@ -50,7 +50,7 @@ public class DefaultOfflineContactParser : IOfflineContactParser
             Salutation = salutation,
             LetterSalutation = letterSalutation,
             RawContact = rawInput
-        };
+        });
     }
 
     private string GetSalutation(string gender, string title)
@@ -82,15 +82,14 @@ public class DefaultOfflineContactParser : IOfflineContactParser
 
     private string GetLetterSalutation(string salutation, string gender)
     {
-        var anrede = gender switch
+        var genericSalutation = gender switch
         {
             "M" => "Sehr geehrter",
             "F" => "Sehr geehrte",
             _ => "Sehr geehrte"
         };
 
-
-        return anrede + " " + salutation;
+        return genericSalutation + " " + salutation;
     }
 
     private ParseResult TryGetLastName(string input)
@@ -126,7 +125,7 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         if (splits.Length == 1) return new ParseResult(input, string.Empty);
 
         var results = splits
-            .Where(x => TryFindTitle(x, out var title))
+            .Where(x => TryFindTitle(x, out _))
             .ToList();
 
         results.AddRange(splits.Except(results).Where(x => x.EndsWith('.')));
@@ -147,11 +146,10 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         }
 
         return new ParseResult(newString.Trim(), string.Join(' ', results));
-        /* Ggf. beachten, dass alle Titel ja zusammenhängend sein müssen -> außerdem letztes Wort != Titel */
     }
 
 
-    private ParseResult TryGetGender(string input)
+    private static ParseResult TryGetGender(string input)
     {
         var splits = input.Split(' ');
         if (splits.Length == 1) return new ParseResult(input, string.Empty);
@@ -164,7 +162,7 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         };
     }
 
-    private bool TryActualisateGender(string titleString, out string gender)
+    private bool TryUpdateGender(string titleString, out string gender)
     {
         gender = string.Empty;
         var splits = titleString.Split(' ').ToList();

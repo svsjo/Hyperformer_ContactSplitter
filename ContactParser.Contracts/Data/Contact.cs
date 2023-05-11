@@ -4,12 +4,12 @@ namespace ContactParser.Contracts.Data;
 
 public class Contact
 {
-    public string Salutation { get; set; } = string.Empty; // Anrede
-    public string LetterSalutation { get; set; } = string.Empty; // Brief-Anrede
-    public string Title { get; set; } = string.Empty; // Titel
-    public string Gender { get; set; } = string.Empty; // Geschlecht
-    public string FirstName { get; set; } = string.Empty; // Vorname
-    public string LastName { get; set; } = string.Empty; // Nachname
+    public string Salutation { get; init; } = string.Empty;
+    public string LetterSalutation { get; init; } = string.Empty; 
+    public string Title { get; init; } = string.Empty;
+    public string Gender { get; init; } = string.Empty;
+    public string FirstName { get; init; } = string.Empty;
+    public string LastName { get; init; } = string.Empty; 
 
     public bool IsEmpty => string.IsNullOrEmpty(Salutation)
                            && string.IsNullOrEmpty(LetterSalutation)

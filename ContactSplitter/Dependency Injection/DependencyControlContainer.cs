@@ -6,8 +6,11 @@ using System.Windows.Navigation;
 
 #endregion
 
-namespace ContactSplitter;
+namespace ContactSplitter.Dependency_Injection;
 
+/// <summary>
+/// Represents a Container Control with Dependency Injection ViewModel Mapping
+/// </summary>
 public class DependencyControlContainer : Frame
 {
     public static readonly DependencyProperty CustomViewInjectorProperty = DependencyProperty.Register(

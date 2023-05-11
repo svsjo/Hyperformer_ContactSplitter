@@ -1,14 +1,17 @@
 ﻿namespace ContactParser.Contracts.Data;
 
+/// <summary>
+/// Represents the results of parsing, before adjustment and confirmation by the user.
+/// </summary>
 public class PossibleContact
 {
-    public string RawContact { get; set; } = string.Empty; // Input String
-    public string Salutation { get; set; } = string.Empty; // Anrede
-    public string LetterSalutation { get; set; } = string.Empty; // Brief-Anrede
-    public string Title { get; set; } = string.Empty; // Titel
-    public string Gender { get; set; } = string.Empty; // Geschlecht
-    public string FirstName { get; set; } = string.Empty; // Vorname
-    public string LastName { get; set; } = string.Empty; // Nachname
+    public string RawContact { get; init; } = string.Empty; 
+    public string Salutation { get; init; } = string.Empty;
+    public string LetterSalutation { get; init; } = string.Empty;
+    public string Title { get; init; } = string.Empty; 
+    public string Gender { get; init; } = string.Empty;
+    public string FirstName { get; init; } = string.Empty; 
+    public string LastName { get; init; } = string.Empty; 
     public string Note { get; set; } = string.Empty;
     public string NotParsed { get; set; } = string.Empty;
 }

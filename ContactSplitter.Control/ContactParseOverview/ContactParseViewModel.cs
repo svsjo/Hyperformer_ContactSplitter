@@ -104,7 +104,7 @@ public class ContactParseViewModel : INotifyPropertyChanged
                 : await _offlineContactParser.ParseContact(Input);
             success = true;
         }
-        catch (APIException)
+        catch (ApiException)
         {
             this.Note = "API Error";
         }

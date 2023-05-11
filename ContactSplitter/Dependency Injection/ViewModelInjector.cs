@@ -7,8 +7,11 @@ using System.Windows.Controls;
 
 #endregion
 
-namespace ContactSplitter;
+namespace ContactSplitter.Dependency_Injection;
 
+/// <summary>
+/// Represents an Dependecy Injection Extension for the ViewModel injection
+/// </summary>
 public class ViewModelInjector
 {
     private readonly IServiceProvider _iServiceProvider;

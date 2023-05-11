@@ -19,7 +19,7 @@ public class GptOnlineContactParser : IOnlineContactParser
         }
         catch (Exception)
         {
-            throw new APIException();
+            throw new ApiException();
         }
 
         var resParts = res.Split(";");

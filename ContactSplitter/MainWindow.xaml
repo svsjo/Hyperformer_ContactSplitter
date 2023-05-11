@@ -14,6 +14,7 @@
         xmlns:controls="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:contactParseOverview="clr-namespace:ContactSplitter.Control.ContactParseOverview;assembly=ContactSplitter.Control"
         xmlns:settings="clr-namespace:ContactSplitter.Control.Settings;assembly=ContactSplitter.Control"
+        xmlns:dependencyInjection="clr-namespace:ContactSplitter.Dependency_Injection"
         Background="{ui:ThemeResource ApplicationBackgroundBrush}"
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
@@ -62,7 +63,7 @@
                     <ui:NavigationItem
                         Content="Anleitung"
                         Icon="Document20"
-                        PageType="{x:Type control:UserGuideControl}" 
+                        PageType="{x:Type userGuide:UserGuideControl}" 
                         PageTag="tutorial" />
                 </ui:NavigationStore.Items>
                 <ui:NavigationStore.Footer>
@@ -84,7 +85,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <local:DependencyControlContainer CustomViewInjector="{Binding UserControlInjector}" x:Name="RootFrame" Grid.Row="1" />
+                    <dependencyInjection:DependencyControlContainer CustomViewInjector="{Binding UserControlInjector}" x:Name="RootFrame" Grid.Row="1" />
                     <ui:Breadcrumb
                     Grid.Row="0"
                     Margin="18"
