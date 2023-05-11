@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Text.RegularExpressions;
 using ContactParser.Contracts;
 using ContactSplitter.DataStorage.Contracts;
 using ContactSplitter.DataStorage.Contracts.HelperClasses;
@@ -17,8 +18,10 @@ public class DefaultOfflineContactParser : IOfflineContactParser
         _dataRepository = dataRepository;
     }
 
+
     public Task<PossibleContact> ParseContact(string input)
     {
+        input = CleanInput(input);
         var rawInput = input;
 
         var genderResult = TryGetGender(input);
@@ -217,4 +220,28 @@ public class DefaultOfflineContactParser : IOfflineContactParser
 
         return false;
     }
+    /// <summary>
+    /// Removes special chars and replaces them with whitespace
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    private static string CleanInput(string input)
+    {
+        var tmp = input
+            .Replace(",", " ")
+            .Replace(";", " ")
+            .Replace(".", " ")
+            .Replace("#", " ")
+            .Replace("+", " ")
+            .Replace("~", " ")
+            .Replace(":", " ")
+            .Replace(@"\", " ")
+            .Replace("/", " ")
+            .Replace("`", " ")
+            .Replace("´", " ")
+            .Replace("'", " ");
+
+        return Regex.Replace(tmp, @"\s+", " ");
+    }
+
 }
