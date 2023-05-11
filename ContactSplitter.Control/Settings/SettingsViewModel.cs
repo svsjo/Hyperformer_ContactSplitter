@@ -178,17 +178,26 @@ public class SettingsViewModel : INotifyPropertyChanged
 
     private void AddPrefix(object x)
     {
+        if (string.IsNullOrEmpty(NewPrefix))
+        {
+            return;
+        }
         _dataRepository.AllPrefixes.Add(NewPrefix);
         NewPrefix = string.Empty;
     }
 
     private void AddTitle(object x)
     {
+        if (string.IsNullOrEmpty(NewTitleFull) || string.IsNullOrEmpty(NewTitleAbbr))
+        {
+            return;
+        }
         var title = new Title()
         {
             MaleTitle = NewTitleFull,
             Abbreviation = NewTitleAbbr,
         };
+
 
         AllTitles.Add(title);
 
